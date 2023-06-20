@@ -8,11 +8,7 @@ public class Stack {
         if (this.index == stack.length - 1) {
             throw new StackOverflowError();
         }
-        if (this.index == -1) {
-            this.index = 0;
-        } else {
-            this.index++;
-        }
+        this.index++;
         stack[this.index] = item;
     }
 
@@ -20,12 +16,8 @@ public class Stack {
         if (this.index == -1) {
             throw new IllegalArgumentException();
         }
-        int lastItem = stack[this.index];
-        var list = new int[index + 1];
-        for (int i = 0; i < index; i++) {
-            list[i] = stack[i];
-        }
-        stack = list;
+        int lastItem = this.stack[this.index];
+        this.stack[this.index] = 0;
         this.index--;
         return lastItem;
 
@@ -38,9 +30,13 @@ public class Stack {
         return stack[this.index];
     }
 
+    public boolean isEmpty() {
+        return this.index == -1;
+    }
+
     public int[] toArray() {
         int[] array = new int[this.index + 1];
-        for (var i = 0; i < array.length; i++) {
+        for (var i = 0; i < this.index + 1; i++) {
             array[i] = stack[i];
         }
         return array;

@@ -16,8 +16,8 @@ public class ReverseString {
         return reversed;
 
         /*
-         * No idea why stack is even required to reverse a string above. We can reverse
-         * directly from the first for-loop as well.
+         * No idea why a stack is even required to reverse a string above. We can
+         * reverse directly from the first for-loop as well.
          */
 
         // StringBuffer reversed = new StringBuffer();
