@@ -4,17 +4,16 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] __) {
-        MinStack stack = new MinStack();
-        stack.push(2);
-        stack.push(1);
-        stack.push(0);
-        // stack.push(2);
-        // stack.push(0);
+        StackUsingQueue stack = new StackUsingQueue();
 
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        System.out.println(stack.peek());
         stack.pop();
         stack.pop();
-
-        System.out.println(stack.min());
+        // stack.pop();
+        System.out.println(stack.peek());
 
     }
 }
