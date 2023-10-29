@@ -62,7 +62,7 @@ public class Array {
     // 1 -> [1, -1, 2, 3]
     // 2-> [1, 2, -1,  3]
     // 3-> [1, 2, 3, -1]
-
+    // It's simple. If the insert index >= current index shift the value else keep the same. That's it.
     public int[] insertAt(int index, int value){
         if(index > this.length){
             throw new Error("Index out of bound");

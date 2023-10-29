@@ -54,7 +54,7 @@ public class Main {
         list.printToConsole();
 
 
-        // Built in dynamic Array: LinkedList
+        // Built in dynamic Array: ArrayList
         // The above Array is actually ArrayList custom implementation
         ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(100);
@@ -63,7 +63,7 @@ public class Main {
 //        arrayList.remove(0);
         System.out.println(arrayList.contains(100));
         System.out.println(arrayList.size());
-        System.out.println(arrayList.toArray());
+        System.out.println(Arrays.toString(arrayList.toArray()));
 
     }
 
