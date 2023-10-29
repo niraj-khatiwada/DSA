@@ -1,25 +1,16 @@
 import java.util.Arrays;
 
 public class Array {
-    private int originalLength = 0;
+
     public int length = 0;
     private int index = 0;
     private int[] array;
 
-    public Array(int length){
-        this.length = length;
-        this.originalLength = length;
-        this.array = new int[length];
+    public Array(){
+        this.array = new int[0];
     }
 
     public int[] insert(int newValue){
-        if(this.index < this.originalLength){
-            this.array[this.index] = newValue;
-            this.index++;
-            return this.array;
-        }else {
-            this.length = this.originalLength;
-        }
         int[] newArray = new int[this.length+1];
         if(this.length > 0){
             for(int i = 0; i < this.length ; i++){
@@ -36,8 +27,7 @@ public class Array {
         if(index > (this.length -1)){
             throw new Error("Index out of range");
         }
-        int[] newArray = new int[(this.length) > this.originalLength ? (this.length - 1): this.originalLength ];
-        System.out.println(newArray.length);
+        int[] newArray = new int[this.length - 1];
         for(int i=0; i < this.length; i++){
             if(i != index){
                 newArray[i > index ? (i-1): i] = this.array[i];
@@ -45,9 +35,6 @@ public class Array {
         }
         this.array = newArray;
         this.length--;
-        if(this.length < (this.index + 1) && this.length > 0){
-            this.index--;
-        }
         return  newArray;
 
     }
@@ -60,6 +47,38 @@ public class Array {
             }
         }
         return index;
+    }
+
+    public int[] reverse(){
+        int[] newArray = new int[this.length];
+        for(int i = 0; i < this.length ; i++){
+            newArray[this.length - 1 - i] = this.array[i];
+        }
+        return newArray;
+    }
+
+    // [1, 2, 3]
+    // 0 -> [-1, 1, 2, 3]
+    // 1 -> [1, -1, 2, 3]
+    // 2-> [1, 2, -1,  3]
+    // 3-> [1, 2, 3, -1]
+
+    public int[] insertAt(int index, int value){
+        if(index > this.length){
+            throw new Error("Index out of bound");
+        }
+        int[] newArray = new int[this.length + 1];
+        for(int i = 0; i < this.length; i++){
+            if(i < index){
+                newArray[i] = this.array[i];
+            } else {
+                newArray[i + 1] = this.array[i];
+            }
+        }
+        newArray[index] = value;
+        this.length++;
+        this.array = newArray;
+        return newArray;
     }
 
     public void printToConsole(){

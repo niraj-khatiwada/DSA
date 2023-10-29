@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -25,12 +26,16 @@ public class Main {
             That's why LinkedList are better at delete operation.
         */
 
-        Array list = new Array(3);
+        Array list = new Array();
         list.insert(100);
         list.insert(200);
         list.insert(300);
-        list.insert(400);
-        System.out.println(list.length);
+//        list.insert(400);
+//        System.out.println(list.length);
+//        System.out.println(Arrays.toString(list.reverse()));
+        list.insertAt(0, 500);
+        list.printToConsole();
+
         list.printToConsole();
         list.removeAt(3);
         list.removeAt(2);
@@ -42,13 +47,23 @@ public class Main {
         list.insert(400);
         list.removeAt(0);
         list.removeAt(2);
+        list.removeAt(0);
+        list.removeAt(0);
 //        list.insert(200);
-        System.out.println(list.length);
+//        System.out.println(list.length);
         list.printToConsole();
-        System.out.println(list.indexOf(200));
 
 
-
+        // Built in dynamic Array: LinkedList
+        // The above Array is actually ArrayList custom implementation
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(100);
+        arrayList.indexOf(100);
+        System.out.println(arrayList);
+//        arrayList.remove(0);
+        System.out.println(arrayList.contains(100));
+        System.out.println(arrayList.size());
+        System.out.println(arrayList.toArray());
 
     }
 
