@@ -159,6 +159,40 @@ public class LinkedList {
         return pointer1.value;
     }
 
+    public String findMiddleValue() {
+        if (this.head == null) {
+            throw new Error("No nodes.");
+        }
+        if (this.head == this.tail) {
+            return String.valueOf(this.head.value);
+        }
+
+        Node pointer1 = this.head;
+        Node pointer2 = this.head.next;
+
+        int count = 1;
+        while (pointer2.next != null) {
+            pointer1 = pointer1.next;
+            count += 1;
+            for (int i = 0; i < count; i++) {
+                if (pointer2.next != null) {
+                    pointer2 = pointer2.next;
+                }
+            }
+
+        }
+
+        return String.valueOf(pointer1.value + (pointer2.next == this.tail ? String.format(" | %s", pointer1.next.value) : ""));
+    }
+
+    // Floyd’s Cycle-finding Algorithm.
+    // Check to see if a linked list has a loop.
+
+    public boolean hasLoop() {
+        // ...
+        return false;
+    }
+
     public int[] toArray() {
         ArrayList<Integer> array = new ArrayList<>();
 

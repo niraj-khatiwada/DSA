@@ -2,9 +2,11 @@ public class Main {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
 
+//        linkedList.addFirst(5);
+        linkedList.addFirst(4);
         linkedList.addFirst(3);
         linkedList.addFirst(2);
-        linkedList.addFirst(1);
+//        linkedList.addFirst(1);
 //        linkedList.addLast(3);
 //        System.out.println(linkedList.size());
 //
@@ -22,6 +24,9 @@ public class Main {
 //        linkedList.reverse();
 //        System.out.println(Arrays.toString(linkedList.toArray()));
 
-        System.out.println(linkedList.findKthNodeFromEnd(3));
+//        System.out.println(linkedList.findKthNodeFromEnd(3));
+        System.out.println(linkedList.findMiddleValue());
     }
+
+
 }

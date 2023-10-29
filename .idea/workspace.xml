@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0cef0c0-7026-46f2-9c56-4cee6ea558bd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Arrays/src/Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/Arrays/src/Array.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Arrays/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Arrays/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LinkedList/src/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList/src/LinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LinkedList/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LinkedList/LinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LinkedList/LinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LinkedList/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LinkedList/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
