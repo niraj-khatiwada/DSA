@@ -40,6 +40,15 @@ public class Main{
     // Worst performant one
     // Opposite of logarithmic growth
     public static void exponentialTimeComplexity(){
+        // ...
+    }
 
+    public static void spaceTimeComplexity(String[] array){
+        // Space complexity of newArray is O(n)
+        String[] newArray = new String[array.length];
+        // Space complexity of i is O(1)
+        for(int i = 0; i < array.length ; i++){
+            System.out.println(i);
+        }
     }
 }
