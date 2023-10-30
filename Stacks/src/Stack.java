@@ -2,11 +2,8 @@ public class Stack {
     private int[] array;
     private int index = -1;
 
-    private int size = 0;
-
     public Stack(int size) {
         this.array = new int[size];
-        this.size = size;
     }
 
     // O(n)
@@ -21,7 +18,7 @@ public class Stack {
         if (this.index == -1) {
             throw new Error("No item to pop.");
         }
-        if (this.index + 1 > this.size) {
+        if (this.index + 1 > this.array.length) {
             throw new StackOverflowError();
         }
         int popped = this.array[this.index];
@@ -41,7 +38,7 @@ public class Stack {
     public boolean isEmpty() {
         return this.index == -1;
     }
-    
+
     public int[] toArray() {
         int[] list = new int[this.index + 1];
         for (int i = 0; i < list.length; i++) {

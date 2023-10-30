@@ -7,3 +7,4 @@
 - LinkedList always has O(1) time complexity.
 - Use arrays if you know length beforehand. Use LinkedList if you don't.
 - LinkedList in Java is doubly LinkedList.
+- LinkedList in Java under the hood implements Queue interface.
