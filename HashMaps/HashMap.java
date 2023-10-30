@@ -27,14 +27,24 @@ public class HashMap {
         }
         KeyValuePair entry = new KeyValuePair(key, value);
         int index = hash(key);
-        System.out.println(this.list[index]);
         if (this.list[index] == null) {
             LinkedList<KeyValuePair> ll = new LinkedList<>();
             ll.add(entry);
             this.list[index] = ll;
         } else {
+            boolean shouldAdd = true;
             LinkedList<KeyValuePair> ll = this.list[index];
-            ll.add(entry);
+            for (int i = 0; i < ll.size(); i++) {
+                KeyValuePair en = ll.get(i);
+                if (en.key == key) {
+                    ll.add(i, new KeyValuePair(key, value));
+                    shouldAdd = false;
+                    break;
+                }
+            }
+            if (shouldAdd) {
+                ll.add(entry);
+            }
             this.list[index] = ll;
         }
         this.count++;
@@ -92,7 +102,7 @@ public class HashMap {
     }
 
     private int hash(int key) {
-        return Math.abs(key % 5);
+        return Math.abs(key % this.list.length);
     }
 
 }
