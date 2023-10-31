@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cef0c0-7026-46f2-9c56-4cee6ea558bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HashMaps/HashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/HashMaps/HashMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HashMaps/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/HashMaps/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-hw/HashMaps/HashMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/HashMaps/HashMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-hw/HashMaps/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/HashMaps/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigO/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/BigO/src/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HashMaps/TwoSum.java" beforeDir="false" afterPath="$PROJECT_DIR$/HashMaps/TwoSum.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,17 +41,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "v2",
-    "jdk.selected.JAVA_MODULE": "openjdk-20",
-    "last_opened_file_path": "/home/niraj/Documents/java-hw",
-    "onboarding.tips.debug.path": "/home/niraj/Documents/java-hw/Stacks/src/Main.java",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v2&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/niraj/Documents/java-hw&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/niraj/Documents/java-hw/Stacks/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="java-hw" />

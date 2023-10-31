@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cef0c0-7026-46f2-9c56-4cee6ea558bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkedList/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigO/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/BigO/src/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HashMaps/TwoSum.java" beforeDir="false" afterPath="$PROJECT_DIR$/HashMaps/TwoSum.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +49,7 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/niraj/Documents/java-hw&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;/home/niraj/Documents/java-hw/Stacks/src/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
 }</component>
   <component name="RunManager">
@@ -76,6 +77,17 @@
       <updated>1687113183329</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,3 +1,4 @@
 # Big O notation
 
-![Big O](./img.png)
+- Arrays, LinkedList, Stacks, Queues, HashTables/HashMaps, etc are called Linear Data Structures.
+  ![Big O](./img.png)
