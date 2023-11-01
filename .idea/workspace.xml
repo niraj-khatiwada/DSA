@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cef0c0-7026-46f2-9c56-4cee6ea558bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BigO/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/BigO/src/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HashMaps/TwoSum.java" beforeDir="false" afterPath="$PROJECT_DIR$/HashMaps/TwoSum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinaryTrees/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryTrees/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinaryTrees/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryTrees/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-hw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,9 +108,15 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="BinaryTrees.Tree$Node" memberName="left" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="table.table[0].get(0).value" />
+        <watch expression="tree.root.right.value" />
       </configuration>
     </watches-manager>
   </component>
