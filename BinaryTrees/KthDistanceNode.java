@@ -6,7 +6,6 @@ public class KthDistanceNode {
 
     private final Tree tree;
 
-
     public KthDistanceNode(Tree tree) {
         this.tree = tree;
     }
@@ -26,7 +25,7 @@ public class KthDistanceNode {
             nodes.add(root);
             return;
         }
-        
+
         if (root.left != null) {
             findNodes(root.left, k - 1, nodes);
         }

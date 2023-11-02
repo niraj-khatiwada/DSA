@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cef0c0-7026-46f2-9c56-4cee6ea558bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinaryTrees/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryTrees/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinaryTrees/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryTrees/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-hw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree$Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-hw/BinaryTrees/Tree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinaryTrees/KthDistanceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryTrees/KthDistanceNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HashMaps/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/HashMaps/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +47,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;v2&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/niraj/Documents/java-hw&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/niraj/Documents/leetcode&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;/home/niraj/Documents/java-hw/Stacks/src/Main.java&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
@@ -105,11 +101,6 @@
           <url>file://$PROJECT_DIR$/HashTables/Main.java</url>
           <line>7</line>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/BinaryTrees/Main.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
