@@ -1,33 +1,21 @@
-import java.util.ArrayList;
-
-import array.Array;
+import Array.Array;
 
 class Main {
     public static void main(String[] args) {
-
-        Array list = new Array(3);
-        list.add(1);
-        list.add(2);
-        list.add(21);
-        list.max();
-
-        var val = list.insertAt(0, 100);
-        var val2 = list.insertAt(5, 500);
-        list.add(10);
-
-        // ArrayList<Integer> array = new ArrayList<>();
-        // array.add(1);
-        // array.add(2);
-        // array.add(3);
-
-        // array.remove(2);
-
-        // System.out.println(array.indexOf(2));
-        // System.out.println(array.size());
-        // System.out.println(array.contains(100));
-
-        // for (var val : array) {
-        // System.out.printf("%s = %s\n", array.indexOf(val), val);
+        Array array = new Array(3);
+        array.insert(1);
+        array.insert(2);
+        array.insert(3);
+        array.insert(4);
+        array.insert(5);
+        array.insert(6);
+        array.removeAt(5);
+        array.removeAt(4);
+        array.removeAt(0);
+        array.removeAt(2);
+        array.print();
+        System.out.println(array.indexOf(100));
+        System.out.println(array.indexOf(2));
+        System.out.println(array.indexOf(3));
     }
-
 }
