@@ -1,11 +1,12 @@
+package Stack;
+
 import java.util.Stack;
 
-class Main {
-    public static void main(String[] args) {
+public class BalancedExpression {
+    public boolean isBalancedExpression(String str) {
         String openingBrackets = "{[(<";
         String closingBrackets = "}])>";
 
-        String str = "<<<";
         var stack = new Stack<Character>();
 
         boolean isBalanced = true;
@@ -25,7 +26,6 @@ class Main {
         if (!stack.isEmpty()) {
             isBalanced = false;
         }
-        System.out.printf("Is Balanced? %s\n", isBalanced);
-
+        return isBalanced;
     }
 }
