@@ -59,7 +59,7 @@ public class LinkedList {
     }
 
     // O(1)
-    public void deleteFirst() {
+    public void removeFirst() {
         if (this.head == null && this.tail == null) {
             return;
         }
@@ -73,7 +73,7 @@ public class LinkedList {
     }
 
     // O(n)
-    public void deleteLast() {
+    public void removeLast() {
         if (this.head == null && this.tail == null) {
             return;
         }
