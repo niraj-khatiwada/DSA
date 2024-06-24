@@ -11,6 +11,7 @@ public class MinStack {
         this.stack2 = new Stack<>();
     }
 
+    // O(1)
     public void push(int value) {
         this.stack1.push(value);
         if (!stack2.isEmpty()) {
@@ -22,6 +23,7 @@ public class MinStack {
         }
     }
 
+    // O(1)
     public int pop() {
         var value = this.stack1.pop();
         if (!this.stack2.isEmpty()) {
@@ -32,6 +34,7 @@ public class MinStack {
         return value;
     }
 
+    // O(1)
     public int min() {
         return this.stack2.peek();
     }
