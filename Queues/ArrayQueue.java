@@ -20,22 +20,44 @@ public class ArrayQueue {
             this.array[this.firstIndex] = value;
             return;
         }
-        this.lastIndex++;
-        this.array[this.lastIndex] = value;
+        // Circular
+        if (this.lastIndex < this.firstIndex) {
+            if (this.lastIndex == (this.firstIndex - 1)) {
+                throw new IllegalStateException("No space left to add.");
+            }
+            this.lastIndex++;
+            this.array[this.lastIndex] = value;
+            return;
+        }
+        if (this.lastIndex == (this.array.length - 1)) {
+            this.lastIndex = 0;
+            this.array[this.lastIndex] = value;
+        } else {
+            this.lastIndex++;
+            this.array[this.lastIndex] = value;
+        }
     }
 
     public int remove() {
         if (this.lastIndex == -1) {
             throw new IllegalStateException("No items to remove.");
         }
+        var value = this.array[this.firstIndex];
+        // Circular
+        if (this.lastIndex < this.firstIndex) {
+            if (this.firstIndex == (this.array.length - 1)) {
+                this.firstIndex = 0;
+                return value;
+            }
+            this.firstIndex++;
+            return value;
+        }
         if (this.firstIndex == this.lastIndex) {
-            var value = this.array[this.firstIndex];
             this.array[this.firstIndex] = 0;
             this.lastIndex = -1;
             this.firstIndex = -1;
             return value;
         }
-        var value = this.array[this.firstIndex];
         this.firstIndex++;
         return value;
     }
@@ -53,14 +75,50 @@ public class ArrayQueue {
     }
 
     public void print() {
-        int[] array = new int[this.lastIndex == -1 ? 0 : (this.lastIndex - this.firstIndex + 1)];
-        if (array.length > 0) {
-            var index = 0;
-            for (var i = this.firstIndex; i <= this.lastIndex; i++) {
-                array[index] = this.array[i];
-                index++;
+        if (this.lastIndex == -1) {
+            System.out.println("[]");
+            return;
+        }
+        var isCircular = this.lastIndex < this.firstIndex;
+        int[] array = new int[isCircular ? (this.array.length - 1 - this.lastIndex) + this.firstIndex
+                : (this.lastIndex - this.firstIndex + 1)];
+        var startingIndex = this.firstIndex;
+        for (var i = 0; i < array.length; i++) {
+            if (this.lastIndex < this.firstIndex) {
+                array[i] = this.array[startingIndex];
+                startingIndex++;
+                if (startingIndex >= this.array.length) {
+                    startingIndex = 0;
+                }
+            } else {
+                array[i] = this.array[this.firstIndex + i];
             }
         }
         System.out.println(Arrays.toString(array));
     }
 }
+
+// Sample to test with
+// var queue = new ArrayQueue(5);
+// queue.add(1);
+// queue.add(2);
+// queue.add(3);
+// queue.remove();
+// queue.remove();
+// queue.add(4);
+// queue.add(5);
+// queue.remove();
+// queue.remove();
+// queue.add(6);
+// queue.add(7);
+// queue.add(8);
+// queue.add(9);
+// queue.print();
+// queue.remove();
+// queue.remove();
+// queue.remove();
+// queue.remove();
+// queue.remove();
+// queue.print();
+// queue.add(9);
+// queue.print();
