@@ -14,6 +14,8 @@ Implement two stacks in one array. Support these operations:
     isFull2()
 Make sure your implementation is space efficient. (hint: do not allocate
 the same amount of space by dividing the array in half.)
+-> So, this question is saying you cannot allocate half space for each array at the initialization of array. 
+For example, if the size of array is 6, you cannot allocate 3 for stack 1 and 3 for stack 2. Because, if you try to push to stack 1 6 times, it'll fail. You should be able to push to stack 1 6 times if you don't push anything to stack2.
 */
 public class TwoStacks {
     private int[] array;
