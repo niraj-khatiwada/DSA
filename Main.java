@@ -1,17 +1,20 @@
-import java.util.Queue;
-import java.util.ArrayDeque;
-import Queues.Reverse;
+import Queues.ArrayQueue;
 
 class Main {
     public static void main(String[] args) {
-        Queue<Integer> queue = new ArrayDeque<>();
+        var queue = new ArrayQueue(5);
         queue.add(1);
         queue.add(2);
         queue.add(3);
-        var reverse = new Reverse();
+        queue.add(4);
+        queue.add(5);
+        System.out.println(queue.isEmpty());
         System.out.println(queue.peek());
-        System.out.println(reverse.reverse(queue));
+        System.out.println(queue.remove());
         System.out.println(queue.peek());
-
+        System.out.println(queue.remove());
+        System.out.println(queue.remove());
+        System.out.println(queue.isEmpty());
+        queue.print();
     }
 }
