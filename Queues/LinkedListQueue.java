@@ -14,6 +14,7 @@ public class LinkedListQueue {
     private Node tail;
     private int currentIndex = -1;
 
+    // O(1)
     public void add(int value) {
         var node = new Node(value);
         this.currentIndex++;
@@ -31,6 +32,7 @@ public class LinkedListQueue {
         this.tail.next = null;
     }
 
+    // O(2)
     public int remove() {
         if (this.tail == null) {
             throw new IllegalArgumentException("No items to remove.");
@@ -45,6 +47,7 @@ public class LinkedListQueue {
         return value;
     }
 
+    // O(1)
     public int peek() {
         if (this.tail == null) {
             throw new IllegalArgumentException("No items to peek.");
@@ -52,10 +55,12 @@ public class LinkedListQueue {
         return this.head.value;
     }
 
+    // O(1)
     public int size() {
         return this.currentIndex + 1;
     }
 
+    // O(1)
     public boolean isEmpty() {
         return this.currentIndex == -1;
     }

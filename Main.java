@@ -1,16 +1,18 @@
-import Queues.LinkedListQueue;
+import Queues.StackUsingQueue;
 
 class Main {
     public static void main(String[] args) {
-        var queue = new LinkedListQueue();
-        System.out.println(queue.isEmpty());
-        queue.add(10);
-        System.out.println(queue.peek());
-        queue.add(20);
-        queue.add(30);
-        System.out.println(queue.remove());
-        queue.add(10);
-        System.out.println(queue);
-        System.out.println(queue.size());
+        var stack = new StackUsingQueue();
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        System.out.println(stack.pop());
+        System.out.println(stack.peek());
+        System.out.println(stack.pop());
+        stack.push(40);
+        System.out.println(stack.peek());
+        System.out.println(stack.pop());
+        stack.print();
+
     }
 }
