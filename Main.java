@@ -1,25 +1,17 @@
-import Queues.PriorityQueue;
+import Queues.ReverseKthElements;
+
+import java.util.ArrayDeque;
 
 class Main {
     public static void main(String[] args) {
-        var queue = new PriorityQueue(5);
-        queue.add(4);
-        queue.add(2);
-        queue.add(5);
-        queue.add(3);
-        queue.add(16);
-        queue.remove();
-        queue.remove();
+        var queue = new ArrayDeque<Integer>();
+        queue.add(10);
         queue.add(20);
-        queue.remove();
-        queue.remove();
-        queue.remove();
-        queue.remove();
-        queue.add(4);
-        queue.add(2);
-        queue.add(5);
-        queue.add(3);
-        queue.add(16);
-        queue.print();
+        queue.add(30);
+        queue.add(40);
+        queue.add(50);
+        var reverseAQueue = new ReverseKthElements();
+        System.out.println(reverseAQueue.reverse(queue, 3));
+
     }
 }
