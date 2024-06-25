@@ -3,12 +3,12 @@ package Queues;
 import java.util.Queue;
 import java.util.ArrayDeque;
 
-public class StackUsingQueue {
+public class StackUsingTwoQueues {
     private Queue<Integer> queue1;
     private Queue<Integer> queue2;
     private int top;
 
-    public StackUsingQueue() {
+    public StackUsingTwoQueues() {
         this.queue1 = new ArrayDeque<Integer>();
         this.queue2 = new ArrayDeque<Integer>();
     }
