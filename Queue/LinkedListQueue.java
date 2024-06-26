@@ -1,4 +1,4 @@
-package Queues;
+package Queue;
 
 public class LinkedListQueue {
     private class Node {
