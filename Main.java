@@ -1,9 +1,10 @@
-import Hashmap.CountUniquePairsWithDiffK;
+import Hashmap.TwoSum;
+import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        var map = new CountUniquePairsWithDiffK();
-        int[] array = { 1, 7, 5, 9, 2, 12, 3 };
-        System.out.println(map.count(array, 2));
+        var map = new TwoSum();
+        int[] array = { 2, 11, 15, 7 };
+        System.out.println(Arrays.toString(map.find(array, 26)));
     }
 }
