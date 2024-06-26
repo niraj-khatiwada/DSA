@@ -1,27 +1,27 @@
 package Hashmap;
 
-import java.lang.Character;
-import java.util.HashMap;
+import java.util.HashMap;;
 
-// No repeat at all.
-// banana -> b is not repeated
-public class FirstNonRepeatedCharacter {
+// First repeated count
+// banana -> a is first repeated
+public class FirstRepeatedCharacter {
     public Character find(String in) {
-        var map = new HashMap<Character, Integer>();
         var input = in.toLowerCase();
+        var map = new HashMap<Character, Integer>();
+
         for (var c : input.toCharArray()) {
             map.put(c, (map.containsKey(c) ? map.get(c) : 0) + 1);
         }
-        for (var i = 1; i < input.length(); i++) {
+
+        for (var i = 0; i < input.length(); i++) {
             var key = input.charAt(i);
             if (key != ' ') {
                 var value = map.get(key);
-                if (value == 1) {
+                if (value > 1) {
                     return key;
                 }
             }
         }
-
         return input.charAt(0);
     }
 }

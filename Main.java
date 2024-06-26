@@ -1,8 +1,8 @@
-import Hashmap.FirstNonRepeatedCharacter;
+import Hashmap.FirstMostRepeatedCharacter;
 
 class Main {
     public static void main(String[] args) {
-        var map = new FirstNonRepeatedCharacter();
-        System.out.println(map.find("b    nb"));
+        var map = new FirstMostRepeatedCharacter();
+        System.out.println(map.find("banana"));
     }
 }
