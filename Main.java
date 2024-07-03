@@ -1,10 +1,14 @@
-import Hashmap.TwoSum;
-import java.util.Arrays;
+import Trees.Tree;
 
 class Main {
     public static void main(String[] args) {
-        var map = new TwoSum();
-        int[] array = { 2, 11, 15, 7 };
-        System.out.println(Arrays.toString(map.find(array, 26)));
+        var tree = new Tree();
+
+        tree.insert(10);
+        tree.insert(9);
+        tree.insert(12);
+        tree.insert(15);
+        tree.insert(1);
+        System.out.println(tree.find(120));
     }
 }
