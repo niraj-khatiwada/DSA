@@ -54,4 +54,55 @@ public class Tree {
         }
         return false;
     }
+
+    public void traversePreOrder() {
+        this._traversePreOrder(this.root);
+    }
+
+    private void _traversePreOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.value);
+        _traversePreOrder(node.left);
+        _traversePreOrder(node.right);
+    }
+
+    public void traverseInOrder() {
+        this._traverseInOrder(this.root);
+    }
+
+    private void _traverseInOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        _traverseInOrder(node.left);
+        System.out.println(node.value);
+        _traverseInOrder(node.right);
+    }
+
+    public void traversePostOrder() {
+        this._traversePostOrder(this.root);
+    }
+
+    private void _traversePostOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        _traversePostOrder(node.left);
+        _traversePostOrder(node.right);
+        System.out.println(node.value);
+    }
+
+    public int height() {
+        return this._height(this.root);
+    }
+
+    private int _height(Node node) {
+        if (node == null) {
+            return -1; // We've to cancel the (1 + ...) value here so we need to return -1 instead of
+                       // zero. Otherwise, the height of void node will be 1 which should be 0.
+        }
+        return 1 + Math.max(_height(node.left), _height(node.right));
+    }
 }
