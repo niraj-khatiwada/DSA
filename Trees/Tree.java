@@ -11,7 +11,7 @@ public class Tree {
         }
     }
 
-    private Node root;
+    public Node root;
 
     // log(n)
     public void insert(int value) {
@@ -105,4 +105,71 @@ public class Tree {
         }
         return 1 + Math.max(_height(node.left), _height(node.right));
     }
+
+    // O(n)
+    public int findMinValue() {
+        if (this.root == null) {
+            throw new IllegalStateException("No items in tree.");
+        }
+        return this._findMinValue(this.root);
+    }
+
+    private int _findMinValue(Node node) {
+        if (node.left == null && node.right == null) {
+            return node.value;
+        }
+        if (node.left == null) {
+            return node.right.value;
+        }
+        if (node.right == null) {
+            return node.left.value;
+        }
+        return Math.min(node.value, Math.min(_findMinValue(node.left), _findMinValue(node.right)));
+    }
+
+    // O(log(n))
+    public int findMinValueOfBTree() {
+        if (this.root == null) {
+            throw new IllegalStateException("No items in tree.");
+        }
+        var currentValue = this.root;
+        while (true) {
+            if (currentValue.left == null) {
+                break;
+            }
+            currentValue = currentValue.left;
+        }
+        return currentValue.value;
+    }
+
+    public boolean equals(Tree tree) {
+        return this._equals(this.root, tree.root);
+    }
+
+    private boolean _equals(Node node1, Node node2) {
+        if (node1 == null && node2 == null) {
+            return true;
+        }
+        if (node1 != null && node2 != null) {
+            return node1.value == node2.value && _equals(node1.left, node2.left) && _equals(node1.right, node2.right);
+
+        }
+        return false;
+    }
+
+    public boolean isBinarySearchTree() {
+        return this._isBinarySearchTree(this.root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean _isBinarySearchTree(Node node, int min, int max) {
+        if (node == null) {
+            return true;
+        }
+        if (node.value < min || node.value > max) {
+            return false;
+        }
+        return _isBinarySearchTree(node.left, min, node.value - 1)
+                && _isBinarySearchTree(node.right, node.value + 1, max);
+    }
+
 }

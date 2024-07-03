@@ -15,7 +15,23 @@ class Main {
         // tree.traversePreOrder();
         // tree.traverseInOrder();
         // tree.traversePostOrder();
+        // System.out.println(tree.height());
+        // System.out.println(tree.findMinValue());
+        // System.out.println(tree.findMinValueOfBTree());
 
-        System.out.println(tree.height());
+        // var tree2 = new Tree();
+
+        // tree2.insert(7);
+        // tree2.insert(4);
+        // tree2.insert(9);
+        // tree2.insert(1);
+        // tree2.insert(6);
+        // tree2.insert(8);
+        // tree2.insert(10);
+        // tree2.insert(20);
+
+        // System.out.println(tree.equals(tree2));
+
+        System.out.println(tree.isBinarySearchTree());
     }
 }
