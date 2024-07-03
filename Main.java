@@ -32,6 +32,10 @@ class Main {
 
         // System.out.println(tree.equals(tree2));
 
-        System.out.println(tree.isBinarySearchTree());
+        // tree.swapBranches();
+        // System.out.println(tree.isBinarySearchTree());
+
+        // tree.findNodesAtKthDistance(2);
+        tree.levelOrderTraversal();
     }
 }

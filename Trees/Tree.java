@@ -1,5 +1,7 @@
 package Trees;
 
+import java.util.ArrayList;
+
 public class Tree {
     private class Node {
         public int value;
@@ -170,6 +172,40 @@ public class Tree {
         }
         return _isBinarySearchTree(node.left, min, node.value - 1)
                 && _isBinarySearchTree(node.right, node.value + 1, max);
+    }
+
+    public void swapBranches() {
+        var right = this.root.right;
+        this.root.right = this.root.left;
+        this.root.left = right;
+    }
+
+    // This is also the same way we find nodes at given level k.
+    public ArrayList<Integer> findNodesAtKthDistance(int k) {
+        var list = new ArrayList<Integer>();
+        _findNodesAtKthDistance(this.root, k, list);
+        return list;
+    }
+
+    private void _findNodesAtKthDistance(Node node, int k, ArrayList<Integer> list) {
+        if (node == null) {
+            return;
+        }
+        if (k == 0) {
+            list.add(node.value);
+            return;
+        }
+        _findNodesAtKthDistance(node.left, k - 1, list);
+        _findNodesAtKthDistance(node.right, k - 1, list);
+
+    }
+
+    public void levelOrderTraversal() {
+        for (var i = 0; i <= this.height(); i++) {
+            for (var item : findNodesAtKthDistance(i)) {
+                System.out.println(item);
+            }
+        }
     }
 
 }
