@@ -36,6 +36,12 @@ class Main {
         // System.out.println(tree.isBinarySearchTree());
 
         // tree.findNodesAtKthDistance(2);
-        tree.levelOrderTraversal();
+        // tree.levelOrderTraversal();
+        // System.out.println(tree.countLeafNodes());
+        // System.out.println(tree.findMaxValue());
+        // System.out.println(tree.contains(20));
+        // System.out.println(tree.depth(100));
+        // System.out.println(tree.areSiblings(8, 10));
+        // System.out.println(tree.findAncestors(100));
     }
 }

@@ -15,6 +15,10 @@ public class Tree {
 
     public Node root;
 
+    private boolean _isLeadNode(Node node) {
+        return node.left == null && node.right == null;
+    }
+
     // log(n)
     public void insert(int value) {
         var node = new Node(value);
@@ -206,6 +210,104 @@ public class Tree {
                 System.out.println(item);
             }
         }
+    }
+
+    public int size() {
+        return this._size(this.root);
+    }
+
+    private int _size(Node node) {
+        if (node == null) {
+            return 0;
+        }
+
+        return 1 + _size(node.left) + _size(node.right);
+    }
+
+    // Leaf Nodes = node.left == null && node.right==null
+    public int countLeafNodes() {
+        return this._countLeafNode(this.root);
+    }
+
+    private int _countLeafNode(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        if (this._isLeadNode((node))) {
+            return 1;
+        }
+        return _countLeafNode(node.left) + _countLeafNode(node.right);
+    }
+
+    public int findMaxValue() {
+        return this._findMaxValue(this.root);
+    }
+
+    private int _findMaxValue(Node node) {
+        if (this._isLeadNode(node)) {
+            return node.value;
+        }
+
+        if (node.left == null) {
+            return node.right.value;
+        }
+
+        if (node.right == null) {
+            return node.left.value;
+        }
+
+        return Math.max(node.value, Math.max(_findMaxValue(node.left), _findMaxValue(node.right)));
+    }
+
+    public boolean contains(int value) {
+        return this._contains(this.root, value);
+    }
+
+    private boolean _contains(Node node, int value) {
+        if (node == null) {
+            return false;
+        }
+        if (this._isLeadNode(node)) {
+            return node.value == value;
+        }
+
+        return _contains(node.left, value) || _contains(node.right, value);
+    }
+
+    public boolean areSiblings(int value1, int value2) {
+        return this.depth(value1) == this.depth(value2);
+    }
+
+    public int depth(int value) {
+        if (this.root == null) {
+            return 0;
+        }
+        int d = 0;
+        var currentNode = this.root;
+        while (currentNode != null) {
+            if (currentNode.value == value) {
+                return d;
+            }
+            currentNode = value < currentNode.value ? currentNode.left : currentNode.right;
+            d++;
+        }
+        return -1;
+    }
+
+    public ArrayList<Integer> findAncestors(int value) {
+        var ancestors = new ArrayList<Integer>();
+
+        var currentNode = this.root;
+
+        while (currentNode != null) {
+            if (currentNode.value == value) {
+                return ancestors;
+            }
+            ancestors.add(currentNode.value);
+            currentNode = value < currentNode.value ? currentNode.left : currentNode.right;
+        }
+
+        return new ArrayList<>();
     }
 
 }
