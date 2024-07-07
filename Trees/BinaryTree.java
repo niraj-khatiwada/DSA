@@ -310,6 +310,40 @@ public class BinaryTree {
         return new ArrayList<>();
     }
 
+    // Binary Tree is imbalanced if balance factor i.e
+    // Math.abs(height(left) - height(right)) > 1 for any node
+    public boolean isBalanced() {
+        return this._isBalanced(this.root);
+    }
+
+    private boolean _isBalanced(Node node) {
+        if (node == null) {
+            return true;
+        }
+        var balanceFactory = this._height(node.left) - this._height(node.right);
+        return Math.abs(balanceFactory) <= 1 && _isBalanced(node.left) && _isBalanced(node.right);
+    }
+
+    // A tree is perfect if size = 2^(h+1) - 1
+    public boolean isPerfect() {
+        return this.size() == (Math.pow(2, this._height(this.root) + 1) - 1);
+    }
+
+    public int numberOfLeafNodes() {
+        return this._numberOfLeafNodes(this.root);
+    }
+
+    private int _numberOfLeafNodes(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+
+        return _numberOfLeafNodes(node.left) + _numberOfLeafNodes(node.right);
+    }
+
 }
 
 // var tree = new BinaryTree();
