@@ -391,3 +391,5 @@ public class BinaryTree {
 // System.out.println(tree.areSiblings(8, 10));
 // System.out.println(tree.findAncestors(100));
 // System.out.println(tree.height());
+// System.out.println(bTree.numberOfLeafNodes());
+// System.out.println(bTree.isPerfect());
