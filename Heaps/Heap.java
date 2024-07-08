@@ -56,8 +56,8 @@ public class Heap {
             // Child indexes can be out of bounds
             var leftChildIndex = this._findLeftChildIndex(c);
             var rightChildIndex = this._findRightChildIndex(c);
-            var leftChild = leftChildIndex <= this.heap.length ? this.heap[leftChildIndex] : null;
-            var rightChild = leftChildIndex <= this.heap.length ? this.heap[rightChildIndex] : null;
+            var leftChild = leftChildIndex <= (this.heap.length - 1) ? this.heap[leftChildIndex] : null;
+            var rightChild = rightChildIndex <= (this.heap.length - 1) ? this.heap[rightChildIndex] : null;
 
             if (leftChild == null && rightChild == null) {
                 break;
