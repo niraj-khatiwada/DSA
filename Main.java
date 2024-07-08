@@ -5,13 +5,9 @@ import Heaps.Heap;
 
 class Main {
     public static void main(String[] args) {
-        var heap = new Heap(5);
-        heap.insert(8);
-        heap.insert(5);
-        heap.insert(3);
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
+        var heap = new Heapify();
+        var heapify = heap.heapify(new int[] { 5, 3, 8, 4, 1, 2 });
+        System.out.println(Arrays.toString(heapify));
 
     }
 

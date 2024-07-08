@@ -6,7 +6,18 @@ package Heaps;
 public class Heapify {
 
     public int[] heapify(int[] array) {
-        for (var i = 0; i < array.length; i++) {
+        // Optimization: 1
+        // We do not need to loop through the last leaf nodes
+        // So instead of array.length, we can just loop up-to the last parent index
+        // Last parent index = (size/2) - 1;
+        // This optimization can save half the time since more than half nodes are
+        // always present at leaves
+
+        // Optimization: 2
+        // If we go from bottom to top, we decrease the number of repetitions inside
+        // while loop
+        var lastParentIndex = (array.length / 2) - 1;
+        for (var i = lastParentIndex; i >= 0; i--) {
             var currentIndex = i;
             while (true) {
                 var value = array[currentIndex];
