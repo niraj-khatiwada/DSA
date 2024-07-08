@@ -30,6 +30,10 @@ public class Heap {
         return deleted;
     }
 
+    public int size() {
+        return this.currentIndex + 1;
+    }
+
     private void _bubbleUp() {
         var c = this.currentIndex;
         var value = this.heap[c];
