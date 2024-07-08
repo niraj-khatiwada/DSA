@@ -1,21 +1,18 @@
+import java.util.Arrays;
 
-import Heaps.PriorityQueue;
+import Heaps.Heapify;
+import Heaps.Heap;
 
 class Main {
     public static void main(String[] args) {
-        var queue = new PriorityQueue(5);
+        var heap = new Heap(5);
+        heap.insert(8);
+        heap.insert(5);
+        heap.insert(3);
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
 
-        queue.add(3);
-        queue.add(2);
-        queue.add(4);
-        queue.add(1);
-        queue.add(5);
-
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
     }
 
 }

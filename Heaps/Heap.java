@@ -53,18 +53,36 @@ public class Heap {
         var c = 0;
         while (true) {
             var value = this.heap[c];
+            // Child indexes can be out of bounds
             var leftChildIndex = this._findLeftChildIndex(c);
-            var leftChild = this.heap[leftChildIndex];
             var rightChildIndex = this._findRightChildIndex(c);
-            var rightChild = this.heap[rightChildIndex];
+            var leftChild = leftChildIndex <= this.heap.length ? this.heap[leftChildIndex] : null;
+            var rightChild = leftChildIndex <= this.heap.length ? this.heap[rightChildIndex] : null;
 
-            if (value < leftChild || value < rightChild) {
-                this._swap(leftChild > rightChild ? leftChildIndex : rightChildIndex, c);
-                c++;
-                if (c > this.currentIndex) {
-                    break;
+            if (leftChild == null && rightChild == null) {
+                break;
+            }
+
+            if (leftChild == null || rightChild == null) {
+                if (leftChild == null) {
+                    if (value < rightChild) {
+                        this._swap(rightChildIndex, c);
+                    }
+                }
+                if (rightChild == null) {
+                    if (value < leftChild) {
+                        this._swap(leftChildIndex, c);
+                    }
                 }
             } else {
+                if (value < leftChild || value < rightChild) {
+                    this._swap(leftChild > rightChild ? leftChildIndex : rightChildIndex, c);
+                } else {
+                    break;
+                }
+            }
+            c++;
+            if (c > this.currentIndex) {
                 break;
             }
         }
