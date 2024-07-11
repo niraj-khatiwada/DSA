@@ -1,5 +1,7 @@
 package Tries;
 
+import java.util.ArrayList;
+
 public class TrieUsingArray {
     private class Node {
         public char value;
@@ -26,7 +28,7 @@ public class TrieUsingArray {
     }
 
     // O(L); L = length of word
-    public void insert(String w) {
+    public void add(String w) {
         if (w == null) {
             throw new IllegalArgumentException("Invalid word");
         }
@@ -91,4 +93,41 @@ public class TrieUsingArray {
         return levelNode.isEnd;
     }
 
+    public ArrayList<String> autocomplete(String w) {
+        var word = w.toLowerCase();
+        var levelNode = this.root;
+        var matched = new ArrayList<String>();
+        var prefix = new String();
+        for (var character : word.toCharArray()) {
+            int charIndex = character - 'a';
+            var value = levelNode.children[charIndex];
+            if (value == null) {
+                return matched;
+            }
+            levelNode = levelNode.children[charIndex];
+            prefix += character;
+        }
+        if (levelNode.isEnd) {
+            matched.add(word);
+            return matched;
+        }
+        this._accumulator(levelNode, prefix, matched);
+        return matched;
+
+    }
+
+    private void _accumulator(Node node, String prefix, ArrayList<String> accumulator) {
+        if (node == null) {
+            return;
+        }
+        if (node.isEnd) {
+            accumulator.add(prefix);
+            return;
+        }
+        for (var child : node.children) {
+            if (child != null) {
+                _accumulator(child, prefix + child.value, accumulator);
+            }
+        }
+    }
 }
