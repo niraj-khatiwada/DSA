@@ -6,7 +6,7 @@ class Main {
         var tries = new TrieUsingHashMap();
         tries.add("boy");
         tries.add("book");
-        System.out.println(tries.autocomplete(""));
+        System.out.println(tries.containsUsingRecursion("book"));
 
     }
 

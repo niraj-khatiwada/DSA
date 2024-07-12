@@ -93,6 +93,29 @@ public class TrieUsingArray {
         return levelNode.isLast;
     }
 
+    public boolean containsUsingRecursion(String w) {
+        String word = w.toLowerCase();
+        String prefix = new String();
+        return _containsAccumulator(this.root, prefix, word);
+    }
+
+    private boolean _containsAccumulator(Node node, String prefix, String word) {
+        if (node == null) {
+            return false;
+        }
+        if (node.isLast) {
+            return prefix.equals(word);
+        }
+        for (var child : node.children) {
+            if (child != null) {
+                if (_containsAccumulator(child, prefix + child.value, word)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public ArrayList<String> autocomplete(String w) {
         var word = w.toLowerCase();
         var levelNode = this.root;
@@ -130,4 +153,5 @@ public class TrieUsingArray {
             }
         }
     }
+
 }
