@@ -7,7 +7,7 @@ public class TrieUsingArray {
         public char value;
         public Node[] children;
         public int occurrenceCount;
-        public boolean isEnd = false;
+        public boolean isLast = false;
 
         public Node() {
             this.children = new Node[26];
@@ -44,7 +44,7 @@ public class TrieUsingArray {
             }
             levelNode = levelNode.children[charIndex];
         }
-        levelNode.isEnd = true;
+        levelNode.isLast = true;
     }
 
     // O(L); L = length of word
@@ -70,7 +70,7 @@ public class TrieUsingArray {
             }
             levelNode = value;
         }
-        if (!levelNode.isEnd) {
+        if (!levelNode.isLast) {
             throw new IllegalStateException(String.format("No such word `%s`", word));
         }
     }
@@ -90,7 +90,7 @@ public class TrieUsingArray {
             }
             levelNode = levelNode.children[charIndex];
         }
-        return levelNode.isEnd;
+        return levelNode.isLast;
     }
 
     public ArrayList<String> autocomplete(String w) {
@@ -107,7 +107,7 @@ public class TrieUsingArray {
             levelNode = levelNode.children[charIndex];
             prefix += character;
         }
-        if (levelNode.isEnd) {
+        if (levelNode.isLast) {
             matched.add(word);
             return matched;
         }
@@ -120,7 +120,7 @@ public class TrieUsingArray {
         if (node == null) {
             return;
         }
-        if (node.isEnd) {
+        if (node.isLast) {
             accumulator.add(prefix);
             return;
         }

@@ -1,13 +1,14 @@
 package Tries;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class TrieUsingHashMap {
     private class Node {
         public char value;
         public HashMap<Character, Node> children;
         public int occurrenceCount;
-        public boolean isEnd = false;
+        public boolean isLast = false;
 
         public Node() {
             this.children = new HashMap<Character, Node>();
@@ -28,7 +29,7 @@ public class TrieUsingHashMap {
     }
 
     // O(L); L = length of word
-    public void insert(String w) {
+    public void add(String w) {
         if (w == null) {
             throw new IllegalArgumentException("Invalid word");
         }
@@ -43,7 +44,7 @@ public class TrieUsingHashMap {
             }
             levelNode = levelNode.children.get(character);
         }
-        levelNode.isEnd = true;
+        levelNode.isLast = true;
     }
 
     // O(L); L = length of word
@@ -68,7 +69,7 @@ public class TrieUsingHashMap {
             }
             levelNode = value;
         }
-        if (!levelNode.isEnd) {
+        if (!levelNode.isLast) {
             throw new IllegalStateException(String.format("No such word `%s`", word));
         }
     }
@@ -87,7 +88,51 @@ public class TrieUsingHashMap {
             }
             levelNode = value;
         }
-        return levelNode.isEnd;
+        return levelNode.isLast;
+    }
+
+    public ArrayList<String> autocomplete(String w) {
+        var matched = new ArrayList<String>();
+        if (w == null) {
+            return matched;
+        }
+        String word = w.toLowerCase();
+
+        var levelNode = this.root;
+        var prefix = new String();
+        for (var character : word.toCharArray()) {
+            var value = levelNode.children.get(character);
+            if (value == null) {
+                return matched;
+            }
+            prefix += character;
+            levelNode = value;
+        }
+        if (levelNode.isLast) {
+            matched.add(word);
+            return matched;
+        }
+        _accumulator(levelNode, prefix, matched);
+        return matched;
+
+    }
+
+    private void _accumulator(Node node, String prefix, ArrayList<String> accumulator) {
+        if (node == null) {
+            return;
+        }
+
+        if (node.isLast) {
+            accumulator.add(prefix);
+            return;
+        }
+
+        for (var child : node.children.entrySet()) {
+            var childChar = child.getKey();
+            var childNode = child.getValue();
+            _accumulator(childNode, prefix + childChar, accumulator);
+        }
+
     }
 
 }
