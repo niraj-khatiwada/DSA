@@ -6,8 +6,7 @@ class Main {
         var tries = new TrieUsingHashMap();
         tries.add("boy");
         tries.add("book");
-        tries.add("cat");
-        System.out.println(tries.countWords());
+        System.out.println(tries.longestCommonPrefix());
 
     }
 

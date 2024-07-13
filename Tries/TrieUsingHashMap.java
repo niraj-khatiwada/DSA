@@ -180,4 +180,26 @@ public class TrieUsingHashMap {
         return count;
     }
 
+    public String longestCommonPrefix() {
+        return this._longestCommonPrefix(this.root, "");
+
+    }
+
+    private String _longestCommonPrefix(Node node, String prefix) {
+        if (node == null || node.isLast) {
+            return prefix;
+        }
+
+        if (node.children.size() > 1) {
+            return prefix;
+        }
+        for (var child : node.children.entrySet()) {
+            if (child != null) {
+                prefix = _longestCommonPrefix(child.getValue(), prefix + child.getKey());
+            }
+        }
+
+        return prefix;
+    }
+
 }

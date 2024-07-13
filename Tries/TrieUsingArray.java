@@ -175,4 +175,33 @@ public class TrieUsingArray {
         return count;
     }
 
+    public String longestCommonPrefix() {
+        return this._longestCommonPrefix(this.root, "");
+
+    }
+
+    private String _longestCommonPrefix(Node node, String prefix) {
+        if (node == null || node.isLast) {
+            return prefix;
+        }
+
+        var childrenCount = 0;
+        for (var child : node.children) {
+            if (child != null) {
+                childrenCount++;
+            }
+        }
+
+        if (childrenCount > 1) {
+            return prefix;
+        }
+        for (var child : node.children) {
+            if (child != null) {
+                prefix = _longestCommonPrefix(child, prefix + child.value);
+            }
+        }
+
+        return prefix;
+    }
+
 }
