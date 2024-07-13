@@ -154,4 +154,25 @@ public class TrieUsingArray {
         }
     }
 
+    public int countWords() {
+        return this._countWords(this.root, 0);
+
+    }
+
+    private int _countWords(Node node, int count) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.isLast) {
+            return 1;
+        }
+        for (var child : node.children) {
+            if (node != null) {
+                count += _countWords(child, 0);
+            }
+        }
+
+        return count;
+    }
+
 }

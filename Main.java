@@ -6,7 +6,8 @@ class Main {
         var tries = new TrieUsingHashMap();
         tries.add("boy");
         tries.add("book");
-        System.out.println(tries.containsUsingRecursion("book"));
+        tries.add("cat");
+        System.out.println(tries.countWords());
 
     }
 
