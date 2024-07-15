@@ -3,25 +3,19 @@ import Graphs.Graph;
 class Main {
     public static void main(String[] args) {
         var graph = new Graph();
-        graph.addNode("A");
+        graph.addNode("Z");
+        graph.addNode("P");
+        graph.addNode("X");
         graph.addNode("B");
-        graph.addNode("C");
+        graph.addNode("A");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "C");
+        graph.addEdge("X", "A");
+        graph.addEdge("A", "P");
+        graph.addEdge("B", "P");
+        graph.addEdge("X", "B");
+        graph.addEdge("Z", "X");
 
-        graph.addEdge("B", "C");
-        graph.addEdge("B", "A");
-
-        // graph.removeEdge("A", "B");
-        // graph.removeEdge("A", "C");
-
-        // graph.removeNode("A");
-        // graph.removeNode("C");
-
-        graph.print();
-        System.out.println("-----------------");
-        graph.depthFirstTraversal("C");
+        graph.topologicalSorting();
     }
 
 }
