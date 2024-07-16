@@ -16,25 +16,25 @@ public class Graph {
         }
     }
 
-    public HashMap<String, LinkedList<Node>> labelNodes;
+    public HashMap<String, LinkedList<Node>> nodes;
 
     public Graph() {
-        this.labelNodes = new HashMap<>();
+        this.nodes = new HashMap<>();
     }
 
     public void addNode(String label) {
-        if (this.labelNodes.containsKey(label)) {
+        if (this.nodes.containsKey(label)) {
             return;
         }
-        this.labelNodes.put(label, new LinkedList<Node>());
+        this.nodes.put(label, new LinkedList<Node>());
     }
 
     public void addEdge(String from, String to) {
-        var fromList = this.labelNodes.get(from);
+        var fromList = this.nodes.get(from);
         if (fromList == null) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", from));
         }
-        var toList = this.labelNodes.get(to);
+        var toList = this.nodes.get(to);
         if (toList == null) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", to));
         }
@@ -47,11 +47,11 @@ public class Graph {
     }
 
     public void removeEdge(String from, String to) {
-        var fromList = this.labelNodes.get(from);
+        var fromList = this.nodes.get(from);
         if (fromList == null) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", from));
         }
-        if (!this.labelNodes.containsKey(to)) {
+        if (!this.nodes.containsKey(to)) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", to));
         }
         for (var node : fromList) {
@@ -64,10 +64,10 @@ public class Graph {
     }
 
     public void removeNode(String label) {
-        if (!this.labelNodes.containsKey(label)) {
+        if (!this.nodes.containsKey(label)) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", label));
         }
-        for (var entry : this.labelNodes.entrySet()) {
+        for (var entry : this.nodes.entrySet()) {
             var _label = entry.getKey();
             var list = entry.getValue();
             if (!label.equals(_label)) {
@@ -78,11 +78,11 @@ public class Graph {
                 }
             }
         }
-        this.labelNodes.remove(label);
+        this.nodes.remove(label);
     }
 
     public void depthFirstTraversalUsingRecursion(String label) {
-        var nodes = this.labelNodes.get(label);
+        var nodes = this.nodes.get(label);
         if (nodes == null) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", label));
         }
@@ -93,7 +93,7 @@ public class Graph {
     private void _depthFirstTraversalUsingRecursion(String label, HashSet<String> set) {
         System.out.println(label);
         set.add(label);
-        for (var node : this.labelNodes.get(label)) {
+        for (var node : this.nodes.get(label)) {
             if (!set.contains(node.label)) {
                 _depthFirstTraversalUsingRecursion(node.label, set);
             }
@@ -102,7 +102,7 @@ public class Graph {
     }
 
     public void depthFirstTraversalUsingIteration(String label) {
-        var nodes = this.labelNodes.get(label);
+        var nodes = this.nodes.get(label);
         if (nodes == null) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", label));
         }
@@ -121,7 +121,7 @@ public class Graph {
             System.out.println(current);
             set.add(current);
 
-            for (var node : this.labelNodes.get(current)) {
+            for (var node : this.nodes.get(current)) {
                 if (!set.contains(node.label)) {
                     stack.add(node.label);
                 }
@@ -130,7 +130,7 @@ public class Graph {
     }
 
     public void breadthFirstTraversal(String label) {
-        var nodes = this.labelNodes.get(label);
+        var nodes = this.nodes.get(label);
         if (nodes == null) {
             throw new IllegalArgumentException(String.format("Label `%s` does not exist.", label));
         }
@@ -147,7 +147,7 @@ public class Graph {
             System.out.println(current);
             set.add(current);
 
-            for (var node : this.labelNodes.get(current)) {
+            for (var node : this.nodes.get(current)) {
                 if (!set.contains(node.label)) {
                     queue.add(node.label);
                 }
@@ -175,7 +175,7 @@ public class Graph {
     public void topologicalSorting() {
         var set = new HashSet<String>();
         var stack = new Stack<String>();
-        for (var entry : this.labelNodes.entrySet()) {
+        for (var entry : this.nodes.entrySet()) {
             var label = entry.getKey();
             this._topologicalSorting(label, set, stack);
         }
@@ -191,7 +191,7 @@ public class Graph {
         }
         set.add(label);
         // And it's children
-        var nodes = this.labelNodes.get(label);
+        var nodes = this.nodes.get(label);
         for (var node : nodes) {
             if (!set.contains(node.label)) {
                 _topologicalSorting(node.label, set, stack);
@@ -204,7 +204,7 @@ public class Graph {
     }
 
     public boolean hasCycle() {
-        for (var entry : this.labelNodes.entrySet()) {
+        for (var entry : this.nodes.entrySet()) {
             var visiting = new HashSet<String>();
             var visited = new HashSet<String>();
             var parent = new ArrayList<String>();
@@ -232,7 +232,7 @@ public class Graph {
 
         visiting.add(label);
 
-        var nodes = this.labelNodes.get(label);
+        var nodes = this.nodes.get(label);
 
         for (var node : nodes) {
             if (!visited.contains(node.label)) {
@@ -249,7 +249,7 @@ public class Graph {
     }
 
     public void print() {
-        for (var entry : this.labelNodes.entrySet()) {
+        for (var entry : this.nodes.entrySet()) {
             String label = entry.getKey();
             System.out.printf("-%s\n", label);
             for (var node : entry.getValue()) {
