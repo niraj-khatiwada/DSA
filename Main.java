@@ -3,19 +3,17 @@ import Graphs.Graph;
 class Main {
     public static void main(String[] args) {
         var graph = new Graph();
-        graph.addNode("Z");
-        graph.addNode("P");
-        graph.addNode("X");
-        graph.addNode("B");
         graph.addNode("A");
+        graph.addNode("B");
+        graph.addNode("C");
+        graph.addNode("D");
 
-        graph.addEdge("X", "A");
-        graph.addEdge("A", "P");
-        graph.addEdge("B", "P");
-        graph.addEdge("X", "B");
-        graph.addEdge("Z", "X");
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
+        // graph.addEdge("C", "A");
+        graph.addEdge("D", "A");
 
-        graph.topologicalSorting();
+        System.out.println(graph.hasCycle());
     }
 
 }

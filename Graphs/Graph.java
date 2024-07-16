@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 public class Graph {
     private class Node {
@@ -200,6 +201,51 @@ public class Graph {
         // to parent.
         stack.push(label);
 
+    }
+
+    public boolean hasCycle() {
+        for (var entry : this.labelNodes.entrySet()) {
+            var visiting = new HashSet<String>();
+            var visited = new HashSet<String>();
+            var parent = new ArrayList<String>();
+            var label = entry.getKey();
+            if (!visited.contains(label)) {
+                if (this._hasCycle(label, visiting, visited, parent)) {
+                    System.out.println("Cycle detected");
+                    for (var item : parent) {
+                        System.out.printf("%s ", item);
+                    }
+                    System.out.printf("\n");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean _hasCycle(String label, HashSet<String> visiting, HashSet<String> visited,
+            ArrayList<String> parent) {
+        parent.add(label);
+        if (visiting.contains(label)) {
+            return true;
+        }
+
+        visiting.add(label);
+
+        var nodes = this.labelNodes.get(label);
+
+        for (var node : nodes) {
+            if (!visited.contains(node.label)) {
+                if (_hasCycle(node.label, visiting, visited, parent)) {
+                    return true;
+                }
+            }
+        }
+
+        visited.add(label);
+        visiting.remove(label);
+
+        return false;
     }
 
     public void print() {
