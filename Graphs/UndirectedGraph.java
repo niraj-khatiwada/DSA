@@ -142,6 +142,49 @@ public class UndirectedGraph {
 
     }
 
+    public boolean hasCycle() {
+        for (var entry : this.nodes.entrySet()) {
+            var visited = new HashSet<String>();
+            var visiting = new HashSet<String>();
+            var cycle = new ArrayList<String>();
+            var node = entry.getValue();
+            if (this._hasCycle(node, visited, visiting, null, cycle)) {
+                System.out.println(cycle);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean _hasCycle(Node node, HashSet<String> visited, HashSet<String> visiting, Node parentNode,
+            ArrayList<String> cycle) {
+        if (visited.contains(node.value)) {
+            return false;
+        }
+
+        cycle.add(node.value);
+
+        if (visiting.contains(node.value)) {
+            return true;
+        }
+
+        visiting.add(node.value);
+        for (var edge : node.edges) {
+            if (!visited.contains(edge.to.value)) {
+                if (parentNode != null && parentNode.value.equals(edge.to.value))
+                    continue;
+                if (_hasCycle(edge.to, visited, visiting, node, cycle)) {
+                    return true;
+                }
+            }
+        }
+        visited.add(node.value);
+        visiting.remove(node.value);
+
+        return false;
+    }
+
     public void print() {
         for (var entry : this.nodes.entrySet()) {
             var key = entry.getKey();
