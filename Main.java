@@ -11,13 +11,14 @@ class Main {
         graph.addNode("E");
 
         graph.addEdge("A", "B", 3);
-        graph.addEdge("B", "C", 4);
-        graph.addEdge("C", "D", 2);
-        graph.addEdge("D", "E", 5);
-        graph.addEdge("E", "C", 5);
+        graph.addEdge("A", "C", 1);
+        graph.addEdge("B", "C", 2);
+        graph.addEdge("B", "D", 4);
+        graph.addEdge("B", "E", 5);
+        graph.addEdge("C", "D", 5);
+        graph.addEdge("D", "E", 1);
 
-        System.out.println(graph.hasCycle());
-
+        graph.minimumSpanningTree("A");
     }
 
 }

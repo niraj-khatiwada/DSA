@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Stack;
-import java.util.ArrayDeque;
 
 public class UndirectedGraph {
     private class Node {
@@ -183,6 +182,37 @@ public class UndirectedGraph {
         visiting.remove(node.value);
 
         return false;
+    }
+
+    // Prim's algorithm
+    public void minimumSpanningTree(String start) {
+        var startNode = this.nodes.get(start);
+        if (startNode == null) {
+            throw new IllegalArgumentException("startNode does not exist.");
+        }
+        var visited = new HashSet<String>();
+        var path = new ArrayList<String>();
+
+        var currentNode = startNode;
+        while (currentNode != null) {
+            var queue = new PriorityQueue<NodeEntry>(Comparator.comparingInt(x -> x.priority));
+            for (var edge : currentNode.edges) {
+                var node = edge.to;
+                if (!visited.contains(node.value)) {
+                    queue.add(new NodeEntry(node, edge.weight));
+                }
+            }
+            visited.add(currentNode.value);
+            path.add(currentNode.value);
+
+            if (queue.isEmpty()) {
+                break;
+            }
+            currentNode = queue.remove().node;
+        }
+
+        System.out.println(path);
+
     }
 
     public void print() {
