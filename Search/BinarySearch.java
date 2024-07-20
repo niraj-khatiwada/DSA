@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class BinarySearch {
     public int find(int[] array, int value) {
+        if (array.length == 0) {
+            return -1;
+        }
         Arrays.sort(array);
         var leftIndex = 0;
         var rightIndex = array.length - 1;
@@ -14,7 +17,7 @@ public class BinarySearch {
             if (middleValue == value) {
                 return middleIndex;
             }
-            if ((leftIndex + 1) == rightIndex) {
+            if (leftIndex == rightIndex || (leftIndex + 1) == rightIndex) {
                 if (array[rightIndex] == value) {
                     return rightIndex;
                 } else {
@@ -32,6 +35,9 @@ public class BinarySearch {
     }
 
     public int findUsingRecursion(int[] array, int value) {
+        if (array.length == 0) {
+            return -1;
+        }
         return this._findUsingRecursion(array, value, 0, array.length - 1);
     }
 
@@ -41,7 +47,7 @@ public class BinarySearch {
         if (middleItem == value) {
             return middleIndex;
         }
-        if ((leftIndex + 1) == rightIndex) {
+        if (leftIndex == rightIndex || (leftIndex + 1) == rightIndex) {
             if (array[rightIndex] == value) {
                 return rightIndex;
             }
