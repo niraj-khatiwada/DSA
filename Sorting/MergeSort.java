@@ -1,12 +1,11 @@
 package Sorting;
 
-import java.util.Arrays;
-
 public class MergeSort {
     public void sort(int[] array) {
-
         var sorted = _mergeSort(array);
-        System.out.println(Arrays.toString(sorted));
+        for (var i = 0; i < array.length; i++) {
+            array[i] = sorted[i];
+        }
     }
 
     private int[] _mergeSort(int[] array) {
@@ -35,9 +34,6 @@ public class MergeSort {
         var currentFinalIndex = 0;
         for (var i = 0; i < merged1.length; i++) {
             for (var j = 0; j < merged2.length; j++) {
-                if (currentRightIndex >= merged2.length) {
-                    break;
-                }
                 if (merged1[i] > merged2[currentRightIndex]) {
                     finalMerge[currentFinalIndex] = merged2[currentRightIndex];
                     currentRightIndex++;
@@ -48,6 +44,9 @@ public class MergeSort {
                     currentFinalIndex++;
                     break;
                 }
+            }
+            if (currentRightIndex >= merged2.length) {
+                break;
             }
 
         }
@@ -63,7 +62,6 @@ public class MergeSort {
             finalMerge[currentFinalIndex] = merged2[i];
             currentFinalIndex++;
         }
-
         return finalMerge;
     }
 }
