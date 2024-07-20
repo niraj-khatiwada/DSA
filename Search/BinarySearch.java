@@ -17,6 +17,7 @@ public class BinarySearch {
             if (middleValue == value) {
                 return middleIndex;
             }
+            // This means we have 1 or 2 items left;
             if (leftIndex == rightIndex || (leftIndex + 1) == rightIndex) {
                 if (array[rightIndex] == value) {
                     return rightIndex;
