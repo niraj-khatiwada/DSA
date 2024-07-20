@@ -3,22 +3,21 @@ package Sorting;
 public class SelectionSort {
     // O(n^2)
     public void sort(int[] array) {
-        var currentIndex = 0;
+        var startIndex = 0;
 
-        while (currentIndex != (array.length - 1)) {
+        while (startIndex != (array.length - 1)) {
             var minimum = Integer.MAX_VALUE;
             var minimumIndex = -1;
-            for (var i = currentIndex; i < array.length; i++) {
+            for (var i = startIndex; i < array.length; i++) {
                 if (array[i] < minimum) {
                     minimum = array[i];
                     minimumIndex = i;
                 }
             }
-
-            var ref = array[currentIndex];
-            array[currentIndex] = minimum;
+            var ref = array[startIndex];
+            array[startIndex] = minimum;
             array[minimumIndex] = ref;
-            currentIndex++;
+            startIndex++;
         }
     }
 }
