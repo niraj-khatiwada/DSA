@@ -3,6 +3,10 @@ package Sorting;
 public class CountingSort {
     // O(n)
     public void sort(int[] array) {
+        if (array.length == 0) {
+            return;
+        }
+
         // Max value can be supplied or we can find it.
         var max = Integer.MIN_VALUE;
         for (var item : array) {

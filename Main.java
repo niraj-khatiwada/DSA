@@ -6,7 +6,7 @@ class Main {
 
     public static void main(String[] args) {
         var sort = new CountingSort();
-        var array = new int[] { 5, 4, 2, 3, 1, 1, 5 };
+        var array = new int[] {};
         sort.sort(array);
         System.out.println(Arrays.toString(array));
 
