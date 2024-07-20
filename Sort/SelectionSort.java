@@ -1,4 +1,4 @@
-package Sorting;
+package Sort;
 
 public class SelectionSort {
     // O(n^2)

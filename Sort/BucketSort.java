@@ -1,4 +1,4 @@
-package Sorting;
+package Sort;
 
 import java.util.LinkedList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package Sorting;
+package Sort;
 
 public class CountingSort {
     // O(n)
