@@ -1,6 +1,7 @@
 package Sorting;
 
 import java.util.LinkedList;
+import java.util.Collections;
 
 public class BucketSort {
     public void sort(int[] array, int numberOfBuckets) {
@@ -17,14 +18,9 @@ public class BucketSort {
         var currentIndex = -1;
         for (var list : bucketList) {
             if (list != null) {
-                var listSize = list.size();
-                int[] arrayList = new int[listSize];
-                for (var i = 0; i < listSize; i++) {
-                    arrayList[i] = list.remove();
-                }
-                var sortingAlgorithm = new InsertionSort();
-                sortingAlgorithm.sort(arrayList);
-                for (var sortedItem : arrayList) {
+                // Collections.sort() uses Quick Sort under the hood.
+                Collections.sort(list);
+                for (var sortedItem : list) {
                     currentIndex++;
                     array[currentIndex] = sortedItem;
                 }
