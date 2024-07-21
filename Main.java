@@ -1,13 +1,12 @@
-import Search.TernarySearch;
+import Search.JumpSearch;
 
 class Main {
 
     public static void main(String[] args) {
-        var search = new TernarySearch();
+        var search = new JumpSearch();
 
-        System.out.println(search.find(new int[] { 3, 6, 7, 8, 11 }, -3));
-        System.out.println(search.findUsingRecursion(new int[] { 3, 6, 7, 8, 11 },
-                -3));
+        System.out.println(search.find(new int[] { 1, 2, 3, 4, 4, 6, 7, 8, 9, 10 }, 5));
+
     }
 
 }
