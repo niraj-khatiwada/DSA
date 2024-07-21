@@ -209,17 +209,21 @@ public class StringManipulation {
     // Eg: listen and silent
     // Eg: triangle and integral
     // We assume case insensitive.
+
+    // O(n)
     public boolean isAnagram(String a, String b) {
         if (a.length() != b.length()) {
             return false;
         }
 
+        // O(n)
         var map = new HashMap<Character, Integer>();
         for (var ch : a.toLowerCase().toCharArray()) {
             var value = map.get(ch);
             map.put(ch, value == null ? 1 : (value + 1));
         }
 
+        // O(n)
         for (var ch : b.toLowerCase().toCharArray()) {
             var value = map.get(ch);
             if (value != null) {
@@ -227,6 +231,7 @@ public class StringManipulation {
             }
         }
 
+        // O(n)
         for (var entry : map.entrySet()) {
             if (entry.getValue() != 0) {
                 return false;
@@ -235,17 +240,51 @@ public class StringManipulation {
         return true;
     }
 
-    // We sort both strings and check for equality
+    // We sort both strings and check for equality.
+    // This has worst performance so do not use this.
+    // Use above HashMap method one instead
+    // O(nlogn)
     public boolean isAnagramUsingSort(String a, String b) {
         if (a.length() != b.length()) {
             return false;
         }
+        // O(n)
         var aList = a.toLowerCase().toCharArray();
+        // O(nlogn)
         Arrays.sort(aList);
 
+        // O(n)
         var bList = b.toLowerCase().toCharArray();
+        // O(nlogn)
         Arrays.sort(bList);
 
+        // O(n)
         return Arrays.equals(aList, bList);
+    }
+
+    // Can be read same way form start and end.
+    // madam, racecar, radar, etc.
+    // O(n)
+    public boolean isPalindrome(String a) {
+        if (a.length() == 0) {
+            return false;
+        }
+        var leftIndex = 0;
+        var rightIndex = a.length() - 1;
+
+        var characters = a.toLowerCase().toCharArray();
+        while (true) {
+            if (leftIndex == rightIndex || leftIndex > rightIndex) {
+                break;
+            }
+            if (characters[leftIndex] != characters[rightIndex]) {
+                return false;
+            }
+            leftIndex++;
+            rightIndex--;
+        }
+
+        return true;
+
     }
 }
