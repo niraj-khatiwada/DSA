@@ -23,7 +23,7 @@ public class JumpSearch {
             // On all these cases, we need to traverse and find the value from left to
             // rightIndex. Right index can have gone out of boundary
             if (leftIndex == rightIndex || rightIndex > (array.length - 1) || value <= array[rightIndex]) {
-                // Traverse to that bucket
+                // Linear Search to that bucket
                 for (var i = leftIndex; i <= rightIndex; i++) {
                     // But rightIndex might have gone out of boundary.
                     if (i > (array.length - 1)) {

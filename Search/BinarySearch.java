@@ -39,10 +39,10 @@ public class BinarySearch {
         if (array.length == 0) {
             return -1;
         }
-        return this._findUsingRecursion(array, value, 0, array.length - 1);
+        return this.findUsingRecursion(array, value, 0, array.length - 1);
     }
 
-    private int _findUsingRecursion(int[] array, int value, int leftIndex, int rightIndex) {
+    public int findUsingRecursion(int[] array, int value, int leftIndex, int rightIndex) {
         int middleIndex = (leftIndex + rightIndex) / 2;
         var middleItem = array[middleIndex];
         if (middleItem == value) {
@@ -59,7 +59,7 @@ public class BinarySearch {
         } else {
             leftIndex = middleIndex;
         }
-        return _findUsingRecursion(array, value, leftIndex, rightIndex);
+        return findUsingRecursion(array, value, leftIndex, rightIndex);
 
     }
 }
