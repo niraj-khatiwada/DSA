@@ -3,6 +3,7 @@ package StringManipulation;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.Arrays;
 
 public class StringManipulation {
     public int findNumberOfVowels(String i) {
@@ -187,5 +188,64 @@ public class StringManipulation {
         }
 
         return character;
+    }
+
+    // hello Word
+    public String capitalizeFirstLetterOfEachWord(String phrase) {
+        var words = phrase.split(" ");
+        for (var i = 0; i < words.length; i++) {
+            var word = words[i];
+            if (word.length() > 0) {
+                words[i] = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase()
+                        + (i < (words.length - 1) ? " " : "");
+            }
+        }
+        return String.join("", words);
+    }
+
+    // An anagram refers to a situation where two strings contain the same
+    // characters with the same frequency, but the characters may be arranged in a
+    // different order.
+    // Eg: listen and silent
+    // Eg: triangle and integral
+    // We assume case insensitive.
+    public boolean isAnagram(String a, String b) {
+        if (a.length() != b.length()) {
+            return false;
+        }
+
+        var map = new HashMap<Character, Integer>();
+        for (var ch : a.toLowerCase().toCharArray()) {
+            var value = map.get(ch);
+            map.put(ch, value == null ? 1 : (value + 1));
+        }
+
+        for (var ch : b.toLowerCase().toCharArray()) {
+            var value = map.get(ch);
+            if (value != null) {
+                map.put(ch, value - 1);
+            }
+        }
+
+        for (var entry : map.entrySet()) {
+            if (entry.getValue() != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // We sort both strings and check for equality
+    public boolean isAnagramUsingSort(String a, String b) {
+        if (a.length() != b.length()) {
+            return false;
+        }
+        var aList = a.toLowerCase().toCharArray();
+        Arrays.sort(aList);
+
+        var bList = b.toLowerCase().toCharArray();
+        Arrays.sort(bList);
+
+        return Arrays.equals(aList, bList);
     }
 }
