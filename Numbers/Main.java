@@ -3,7 +3,7 @@ package Numbers;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(Main.isPrime(9));
+        System.out.println(Main.isPrime(3));
         System.out.println(Main.sumOfNaturalNumbers(3));
 
     }
@@ -12,9 +12,9 @@ public class Main {
         if (num == 1) {
             return true;
         }
-        var current = 1;
-        var count = 0;
-        while (current <= num) {
+        var current = 2;
+        var count = 2;
+        while (current <= (num / 2)) {
             if (num % current == 0) {
                 count++;
             }
