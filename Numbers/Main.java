@@ -24,6 +24,7 @@ public class Main {
         return count == 2;
     }
 
+    // Natural numbers mean 1,2,3,4...Math.MAX_VALUE
     public static int sumOfNaturalNumbers(int num) {
         return Main._sumOfNaturalNumbers(num);
     }
