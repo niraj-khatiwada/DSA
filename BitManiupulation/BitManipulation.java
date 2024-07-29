@@ -1,10 +1,12 @@
 package BitManiupulation;
 
+// Clear Bit = 0
+// Set Bit = 1
 public class BitManipulation {
     public void oddOrEven(int num) {
         var bitMask = 1;
         var op = num & bitMask;
-        if (op == 0) {
+        if (op == 0) { // Always check for 0 bit instead of 1
             System.out.println("Even");
         } else {
             System.out.println("Odd");
@@ -14,7 +16,7 @@ public class BitManipulation {
     public int getIthBit(int num, int i) {
         var bitMask = (1 << i);
         var op = num & bitMask;
-        if (op == 0) {
+        if (op == 0) { // Always check for 0 bit instead of 1
             return 0;
         }
         return 1;
@@ -61,5 +63,23 @@ public class BitManipulation {
     public boolean isPowerOf2(int num) {
         var bitMask = num - 1;
         return (num & bitMask) == 0;
+    }
+
+    // Count number of 1 bits
+    // Since, number of bits for a number = log(n) + 1
+    // Time complexity will be (log(n) + 1) ~ log(n)
+    public int countSetBits(int num) {
+        var current = num;
+        var count = 0;
+        while (true) {
+            if (current == 0) {
+                break;
+            }
+            if ((current & 1) != 0) {
+                count++;
+            }
+            current = current >> 1;
+        }
+        return count;
     }
 }
