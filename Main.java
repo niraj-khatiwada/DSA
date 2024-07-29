@@ -6,7 +6,7 @@ class Main {
 
     public static void main(String[] args) {
         var bit = new BitManipulation();
-        bit.oddOrEven(2);
+        System.out.println(bit.isPowerOf2(3));
     }
 
 }
