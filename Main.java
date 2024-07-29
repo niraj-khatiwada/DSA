@@ -1,10 +1,12 @@
-import StringManipulation.StringManipulation;
+import java.util.*;
+
+import BitManiupulation.BitManipulation;
 
 class Main {
 
     public static void main(String[] args) {
-        var strings = new StringManipulation();
-        System.out.println(strings.isPalindrome("a"));
+        var bit = new BitManipulation();
+        bit.oddOrEven(2);
     }
 
 }
