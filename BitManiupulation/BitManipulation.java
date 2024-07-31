@@ -82,4 +82,19 @@ public class BitManipulation {
         }
         return count;
     }
+
+    // O(log(n)). log(n) + 1 to be exact.
+    // 3^5 =( log(5) + 1) = (~2 + 1) = 3
+    public int fastExponentiation(int a, int n) {
+        var ans = 1;
+
+        while (n > 0) {
+            if ((n & 1) != 0) {
+                ans *= a;
+            }
+            a = (int) Math.pow(a, 2);
+            n = n >> 1;
+        }
+        return ans;
+    }
 }
