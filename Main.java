@@ -6,7 +6,8 @@ class Main {
 
     public static void main(String[] args) {
         var bit = new BitManipulation();
-        System.out.println(bit.fastExponentiation(3, 5));
+        System.out.println(bit.fastExponentiation(2, 5));
+
     }
 
 }
