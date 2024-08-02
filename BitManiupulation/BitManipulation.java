@@ -98,6 +98,56 @@ public class BitManipulation {
         }
 
         return ans;
+    }
 
+    // We can swap 2 variables without creating a third variable
+    // If you perform XOR operation 3 times, the values will be swapped.
+    public int[] swap(int x, int y) {
+        x = x ^ y;
+        y = x ^ y;
+        x = x ^ y;
+        return new int[] { x, y };
+    }
+
+    // Adding one to any integer can be done in Bit Manipulation using Compliment
+    // Remember, ~a = - (a + 1) -> ~5 = -4
+    // And, ~(-a) = + (a - 1) -> ~(-5) = 4
+    public int addOne(int a) {
+        return ~a * -1;
+    }
+
+    // Unicode int of ' ' = 32
+    // Let's say ch = 'A' = 65
+    // Now, ch | ' ' = 65 | 32 = 97
+    // So adding 32 to the uppercase value changes it to lower case value
+    public char toLowerCase(char ch) {
+        return (char) (ch | ' ');
+    }
+
+    // Let's say ch = a = 97
+    // Now ch & ~' ' = 97 & ~32 = 65
+    public char toUpperCase(char ch) {
+        return (char) (ch & ~' ');
+    }
+
+    // Detect if the character is lower or upper cased
+    public String detectCase(char ch) {
+        var toLower = (char) (ch | ' ');
+        if ((toLower - ch) == 0) {
+            return "lower";
+        }
+        return "UPPER";
+    }
+
+    // Convert upper cased to lower and lower to upper cased of a string
+    // O(n)
+    public String flipCase(String str) {
+        var newStr = new StringBuilder();
+        for (var ch : str.toCharArray()) {
+            var casing = this.detectCase(ch);
+            newStr.append(casing == "lower" ? this.toUpperCase(ch) : this.toLowerCase(ch));
+        }
+
+        return newStr.toString();
     }
 }
