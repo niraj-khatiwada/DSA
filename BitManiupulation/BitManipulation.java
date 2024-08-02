@@ -168,14 +168,26 @@ public class BitManipulation {
         return r;
     }
 
-    // You will be given numbers array that will always have distinct value from 0 -
-    // (array.length)
-    // For example, [1,2,3] which has range 0 - 3. So 0 is missing here.
+    // If you perform, XOR with the range value, it will always give the missing
+    // value. Because, XOR of same number will be 0 and it will have only the
+    // missing number.
+    // Example:
+    // Range: [0, 1, 2, 3]
+    // Given: [0, 2, 3]
+    // Perform XOR with index position and last index value from the main range. It
+    // will give you the missing number
+
+    // (0 ^ 0) ^ (1 ^ 2) ^ (2 ^ 3) ^ 3
+    // The above value can be re-ordered to look like this:
+    // (0 ^ 0) ^ (2 ^ 2) ^ (3 ^ 3) ^ 1
+    // 0 ^ 0 ^ 0 ^ 1
+    // 1
     public int findMissingNumberInRange(int[] nums) {
-        var m = 0;
-        for (var n : nums) {
-            m ^= n;
+        var r = 0;
+        for (var i = 0; i <= nums.length; i++) {
+            r ^= (((i >= nums.length) ? 0 : nums[i]) ^ i);
         }
-        return m;
+        return r;
+
     }
 }

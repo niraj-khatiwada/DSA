@@ -6,8 +6,7 @@ class Main {
 
     public static void main(String[] args) {
         var bit = new BitManipulation();
-        System.out.println(bit.reverse(1));
-        System.out.println(Integer.MIN_VALUE);
+        System.out.println(bit.findMissingNumberInRange(new int[] { 1, 0, 3 }));
 
     }
 
