@@ -188,6 +188,21 @@ public class BitManipulation {
             r ^= (((i >= nums.length) ? 0 : nums[i]) ^ i);
         }
         return r;
+    }
 
+    // Range: [0, 1, 2, 3] -> Sum is 6
+    // Given: [0, 2, 3] -> Sum is 5. So missing number is 6-5 = 1
+    // But we need to maintain O(1) space complexity
+    // So, what we can do is, add the value from range[] to the sum and subtract the
+    // value from given[].
+    public int findMissingNumberInRangeUsingSumMethod(int[] nums) {
+        var sum = 0;
+        for (var i = 0; i <= nums.length; i++) {
+            sum += i;
+            if (i < (nums.length)) {
+                sum -= nums[i];
+            }
+        }
+        return sum;
     }
 }
