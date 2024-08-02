@@ -6,7 +6,8 @@ class Main {
 
     public static void main(String[] args) {
         var bit = new BitManipulation();
-        System.out.println(bit.findMissingNumberInRangeUsingSumMethod(new int[] { 0, 2 }));
+        System.out.println(Integer.toBinaryString(20));
+        System.out.println(bit.sumOfIntegers(2, 3));
 
     }
 
