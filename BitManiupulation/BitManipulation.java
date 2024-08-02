@@ -163,8 +163,19 @@ public class BitManipulation {
         for (var i = 0; i < 32; i++) {
             var lsb = (num & 1);
             r = (r << 1) | lsb;
-            num = num >> 1;
+            num >>= 1;
         }
         return r;
+    }
+
+    // You will be given numbers array that will always have distinct value from 0 -
+    // (array.length)
+    // For example, [1,2,3] which has range 0 - 3. So 0 is missing here.
+    public int findMissingNumberInRange(int[] nums) {
+        var m = 0;
+        for (var n : nums) {
+            m ^= n;
+        }
+        return m;
     }
 }
