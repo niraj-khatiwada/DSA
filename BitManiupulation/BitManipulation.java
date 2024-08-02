@@ -150,4 +150,21 @@ public class BitManipulation {
 
         return newStr.toString();
     }
+
+    // We need to know what is the fixed size of the bits like 2, 4, 8, 16, 32, etc.
+    // It'll be given in the question. Most common one is 32.
+    // 1010 -> 0101
+
+    // Interesting:
+    // Reverse of 1 is Integer.MIN_VALUE i.e. -2147483648
+    // So, check if reverse(1) == Integer.MIN_VALUE;
+    public int reverse(int num) {
+        var r = 0;
+        for (var i = 0; i < 32; i++) {
+            var lsb = (num & 1);
+            r = (r << 1) | lsb;
+            num = num >> 1;
+        }
+        return r;
+    }
 }
