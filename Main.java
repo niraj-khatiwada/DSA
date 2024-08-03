@@ -14,8 +14,8 @@ class Main {
         tree.addUsingRecursion(3);
         tree.addUsingRecursion(1);
 
-        tree.postOrderDFS();
-        tree.postOrderDFSUsingStack();
+        tree.bfs();
+        tree.bfsUsingQueue();
     }
 
 }

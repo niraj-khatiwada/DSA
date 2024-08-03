@@ -223,15 +223,13 @@ public class Tree {
         }
     }
 
+    // Also, see bfs using queue method which is much shorter and easier approach.
     public void bfs() {
         if (this.root == null) {
             return;
         }
-    }
-
-    private void _bfs(Node node) {
-        if (node == null) {
-            return;
+        for (var i = 0; i <= this.height(); i++) {
+            this.printNodesAtKDistance(i);
         }
     }
 
@@ -252,6 +250,49 @@ public class Tree {
             if (n.right != null) {
                 queue.add(n.right);
             }
+        }
+    }
+
+    public int height() {
+        if (this.root == null) {
+            return -1;
+        }
+        return this.height(this.root);
+    }
+
+    public int height(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return this._height(node);
+    }
+
+    private int _height(Node node) {
+        if (node == null) {
+            return -1;
+        }
+        return 1 + Math.max(_height(node.left), _height(node.right));
+    }
+
+    public void printNodesAtKDistance(int k) {
+        if (this.root == null) {
+            return;
+        }
+        this._printNodesAtKDistance(this.root, k);
+    }
+
+    private void _printNodesAtKDistance(Node node, int k) {
+        if (k == 0) {
+            if (node != null) {
+                System.out.println(node.value);
+            }
+            return;
+        }
+        if (node.left != null) {
+            _printNodesAtKDistance(node.left, k - 1);
+        }
+        if (node.right != null) {
+            _printNodesAtKDistance(node.right, k - 1);
         }
 
     }
