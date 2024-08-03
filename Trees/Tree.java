@@ -1,5 +1,7 @@
 package Trees;
 
+import java.util.*;
+
 public class Tree {
     private class Node {
         public int value;
@@ -98,6 +100,160 @@ public class Tree {
             return true;
         }
         return _findUsingRecursion(value < node.value ? node.left : node.right, value);
+    }
+
+    public void preOrderDFS() {
+        if (this.root == null) {
+            return;
+        }
+        this._preOrderDFS(this.root);
+    }
+
+    private void _preOrderDFS(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.value);
+        _preOrderDFS(node.left);
+        _preOrderDFS(node.right);
+    }
+
+    // Pre Order DFS Using Stack
+    public void preOrderDFSUsingStack() {
+        if (this.root == null) {
+            return;
+        }
+        var stack = new Stack<Node>();
+        stack.add(this.root);
+        while (!stack.isEmpty()) {
+            var n = stack.pop();
+            System.out.println(n.value);
+            if (n.right != null) {
+                stack.add(n.right);
+            }
+            if (n.left != null) {
+                stack.add(n.left);
+            }
+        }
+    }
+
+    public void inOrderDFS() {
+        if (this.root == null) {
+            return;
+        }
+        this._inOrderDFS(this.root);
+    }
+
+    private void _inOrderDFS(Node node) {
+        if (node == null) {
+            return;
+        }
+        _inOrderDFS(node.left);
+        System.out.println(node.value);
+        _inOrderDFS(node.right);
+    }
+
+    // In Order DFS Using Stack
+    public void inOrderDFSUsingStack() {
+        if (this.root == null) {
+            return;
+        }
+        var stack = new Stack<Node>();
+        stack.add(this.root);
+        var leftDone = false;
+        while (!stack.isEmpty()) {
+            if (!leftDone) {
+                var n = stack.peek();
+                if (n.left != null) {
+                    stack.add(n.left);
+                    continue;
+                }
+            }
+            leftDone = true;
+            var popped = stack.pop();
+            System.out.println(popped.value);
+            if (popped.right != null) {
+                stack.add(popped.right);
+            }
+        }
+    }
+
+    public void postOrderDFS() {
+        if (this.root == null) {
+            return;
+        }
+        this._postOrderDFS(this.root);
+    }
+
+    private void _postOrderDFS(Node node) {
+        if (node == null) {
+            return;
+        }
+        _postOrderDFS(node.left);
+        _postOrderDFS(node.right);
+        System.out.println(node.value);
+    }
+
+    // Post Order DFS Using Stack
+    public void postOrderDFSUsingStack() {
+        if (this.root == null) {
+            return;
+        }
+        var stack = new Stack<Node>();
+        stack.add(this.root);
+        var leftDone = false;
+        Node rightDone = null;
+        while (!stack.isEmpty()) {
+            if (!leftDone) {
+                var n = stack.peek();
+                if (n.left != null) {
+                    stack.add(n.left);
+                    continue;
+                }
+            }
+            leftDone = true;
+            var n = stack.peek();
+            if (n.right != null && rightDone != n) {
+                stack.push(n.right);
+                rightDone = n;
+                continue;
+            }
+            var popped = stack.pop();
+            System.out.println(popped.value);
+        }
+    }
+
+    public void bfs() {
+        if (this.root == null) {
+            return;
+        }
+    }
+
+    private void _bfs(Node node) {
+        if (node == null) {
+            return;
+        }
+    }
+
+    // We can use queue to perform BFS as well
+    public void bfsUsingQueue() {
+        if (this.root == null) {
+            return;
+        }
+        var queue = new ArrayDeque<Node>();
+        // But required O(n) extra space
+        queue.add(this.root);
+        while (!queue.isEmpty()) {
+            var n = queue.remove();
+            System.out.println(n.value);
+            if (n.left != null) {
+                queue.add(n.left);
+            }
+            if (n.right != null) {
+                queue.add(n.right);
+            }
+        }
+
     }
 
 }

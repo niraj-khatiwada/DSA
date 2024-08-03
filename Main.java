@@ -14,7 +14,8 @@ class Main {
         tree.addUsingRecursion(3);
         tree.addUsingRecursion(1);
 
-        System.out.println(tree.findUsingRecursion(1));
+        tree.postOrderDFS();
+        tree.postOrderDFSUsingStack();
     }
 
 }
