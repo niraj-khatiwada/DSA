@@ -229,7 +229,9 @@ public class Tree {
             return;
         }
         for (var i = 0; i <= this.height(); i++) {
-            this.printNodesAtKDistance(i);
+            for (var node : this.getNodesAtKDistance(i)) {
+                System.out.println(node);
+            }
         }
     }
 
@@ -260,9 +262,9 @@ public class Tree {
         return this.height(this.root);
     }
 
-    public int height(Node node) {
+    private int height(Node node) {
         if (node == null) {
-            return 0;
+            return -1;
         }
         return this._height(node);
     }
@@ -274,26 +276,38 @@ public class Tree {
         return 1 + Math.max(_height(node.left), _height(node.right));
     }
 
-    public void printNodesAtKDistance(int k) {
-        if (this.root == null) {
-            return;
+    private int depth(int value) {
+        for (var i = 0; i <= this.height(); i++) {
+            var nodes = this.getNodesAtKDistance(i);
+            if (nodes.contains(value)) {
+                return i;
+            }
         }
-        this._printNodesAtKDistance(this.root, k);
+        return -1;
     }
 
-    private void _printNodesAtKDistance(Node node, int k) {
+    public List<Integer> getNodesAtKDistance(int k) {
+        var nodes = new ArrayList<Integer>();
+        if (this.root == null) {
+            return nodes;
+        }
+        return getNnodesAtKDistance(this.root, k, nodes);
+    }
+
+    private List<Integer> getNnodesAtKDistance(Node node, int k, List<Integer> nodes) {
         if (k == 0) {
             if (node != null) {
-                System.out.println(node.value);
+                nodes.add(node.value);
             }
-            return;
+            return nodes;
         }
         if (node.left != null) {
-            _printNodesAtKDistance(node.left, k - 1);
+            getNnodesAtKDistance(node.left, k - 1, nodes);
         }
         if (node.right != null) {
-            _printNodesAtKDistance(node.right, k - 1);
+            getNnodesAtKDistance(node.right, k - 1, nodes);
         }
+        return nodes;
     }
 
     // O(n)
@@ -432,6 +446,32 @@ public class Tree {
             return 1;
         }
         return _numberOfLeaves(node.left) + _numberOfLeaves(node.right);
+    }
+
+    public boolean areSiblings(int a, int b) {
+        return depth(a) == depth(b);
+    }
+
+    public List<Integer> getAncestors(int n) {
+        var list = new ArrayList<Integer>();
+        if (this.root == null) {
+            return list;
+        }
+        return this._getAncestors(this.root, n, list);
+    }
+
+    private List<Integer> _getAncestors(Node node, int n, List<Integer> list) {
+        if (node == null || node.value == n) {
+            return list;
+        }
+        list.add(node.value);
+        if (n < node.value) {
+            _getAncestors(node.left, n, list);
+        } else {
+            _getAncestors(node.right, n, list);
+        }
+        return list;
+
     }
 
 }

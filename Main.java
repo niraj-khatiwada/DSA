@@ -14,8 +14,7 @@ class Main {
         tree.add(3);
         tree.add(1);
 
-        System.out.println(tree.numberOfLeaves());
-
+        System.out.println(tree.getAncestors(7));
     }
 
 }
