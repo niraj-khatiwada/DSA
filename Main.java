@@ -14,8 +14,8 @@ class Main {
         tree.addUsingRecursion(3);
         tree.addUsingRecursion(1);
 
-        tree.bfs();
-        tree.bfsUsingQueue();
+        System.out.println(tree.getMinimumValue());
+        System.out.println(tree.getMaximumValue());
     }
 
 }

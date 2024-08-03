@@ -294,7 +294,70 @@ public class Tree {
         if (node.right != null) {
             _printNodesAtKDistance(node.right, k - 1);
         }
+    }
 
+    // O(n)
+    public int getMinimumValue() {
+        if (this.root == null) {
+            throw new IllegalStateException("Tree is empty");
+        }
+        return this._getMinimumValue(this.root);
+    }
+
+    private int _getMinimumValue(Node node) {
+        if (node == null) {
+            return Integer.MAX_VALUE;
+        }
+        return Math.min(node.value, Math.min(_getMinimumValue(node.left), _getMinimumValue(node.right)));
+    }
+
+    // O(n)
+    public int getMaximumValue() {
+        if (this.root == null) {
+            throw new IllegalStateException("Tree is empty");
+        }
+        return this._getMaximumValue(this.root);
+    }
+
+    private int _getMaximumValue(Node node) {
+        if (node == null) {
+            return Integer.MIN_VALUE;
+        }
+        return Math.max(node.value, Math.max(_getMaximumValue(node.left), _getMaximumValue(node.right)));
+    }
+
+    // O(log(n))
+    // If it is a Binary Search Tree, we can just go the left most node which will
+    // be the minimum value
+    public int getMinimumValueOfBST() {
+        if (this.root == null) {
+            throw new IllegalStateException("Tree is empty");
+        }
+        return this._getMinimumValueOfBST(this.root);
+    }
+
+    private int _getMinimumValueOfBST(Node node) {
+        if (node.left == null) {
+            return node.value;
+        }
+        return _getMinimumValueOfBST(node.left);
+    }
+
+    // O(log(n))
+    // If it is a Binary Search Tree, we can just go the right most node which will
+    // be the maximum value
+    public int getMaximumValueOfBST() {
+        if (this.root == null) {
+            throw new IllegalStateException("Tree is empty");
+        }
+        return this._getMaximumValueOfBST(this.root);
+    }
+
+    private int _getMaximumValueOfBST(Node node) {
+        if (node.right == null) {
+            return node.value;
+        }
+        return _getMaximumValueOfBST(node.right);
     }
 
 }
