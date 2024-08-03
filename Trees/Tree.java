@@ -377,4 +377,34 @@ public class Tree {
         return _areTreeEqual(a.left, b.left) == _areTreeEqual(a.right, b.right);
     }
 
+    public boolean isValidBinaryTree() {
+        return this._isValidBinaryTree(this.root);
+    }
+
+    private boolean _isValidBinaryTree(Node node) {
+        if (node == null) {
+            return true;
+        }
+        if (node.left != null && node.right != null) {
+            return node.left.value < node.value && node.right.value > node.value;
+        }
+        if (node.left == null) {
+            return node.right.value > node.value;
+        }
+        if (node.right == null) {
+            return node.left.value < node.value;
+        }
+        return _isValidBinaryTree(node.left) && _isValidBinaryTree(node.right);
+    }
+
+    // For test purpose only
+    public void flip() {
+        if (this.root == null) {
+            return;
+        }
+        var left = this.root.left;
+        this.root.left = this.root.right;
+        this.root.right = left;
+    }
+
 }
