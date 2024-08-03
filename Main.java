@@ -7,12 +7,14 @@ class Main {
     public static void main(String[] args) {
         var tree = new Tree();
 
-        tree.addUsingRecursion(6);
-        tree.addUsingRecursion(7);
-        tree.addUsingRecursion(4);
-        tree.addUsingRecursion(5);
-        tree.addUsingRecursion(3);
-        tree.addUsingRecursion(1);
+        tree.add(6);
+        tree.add(7);
+        tree.add(4);
+        tree.add(5);
+        tree.add(3);
+        tree.add(1);
+
+        System.out.println(tree.numberOfLeaves());
 
     }
 

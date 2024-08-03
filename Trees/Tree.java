@@ -407,4 +407,31 @@ public class Tree {
         this.root.right = left;
     }
 
+    // Size = Number of nodes
+    public int size() {
+        return this._size(this.root);
+    }
+
+    private int _size(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + _size(node.left) + _size(node.right);
+    }
+
+    // Number of leaf nodes or leaves = Nodes with no children
+    public int numberOfLeaves() {
+        return this._numberOfLeaves(this.root);
+    }
+
+    private int _numberOfLeaves(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+        return _numberOfLeaves(node.left) + _numberOfLeaves(node.right);
+    }
+
 }
