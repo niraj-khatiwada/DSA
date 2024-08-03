@@ -360,4 +360,21 @@ public class Tree {
         return _getMaximumValueOfBST(node.right);
     }
 
+    public boolean areTreeEqual(Tree tree) {
+        return _areTreeEqual(this.root, tree.root);
+    }
+
+    private boolean _areTreeEqual(Node a, Node b) {
+        if (a == null) {
+            return b == null;
+        }
+        if (b == null) {
+            return a == null;
+        }
+        if (a.value != b.value) {
+            return false;
+        }
+        return _areTreeEqual(a.left, b.left) == _areTreeEqual(a.right, b.right);
+    }
+
 }

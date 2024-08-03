@@ -14,8 +14,16 @@ class Main {
         tree.addUsingRecursion(3);
         tree.addUsingRecursion(1);
 
-        System.out.println(tree.getMinimumValue());
-        System.out.println(tree.getMaximumValue());
+        var tree2 = new Tree();
+
+        tree2.addUsingRecursion(6);
+        tree2.addUsingRecursion(7);
+        tree2.addUsingRecursion(4);
+        tree2.addUsingRecursion(5);
+        tree2.addUsingRecursion(3);
+        tree2.addUsingRecursion(1);
+
+        System.out.println(tree.areTreeEqual(tree2));
     }
 
 }
