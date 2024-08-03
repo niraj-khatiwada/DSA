@@ -13,6 +13,7 @@ public class Tree {
 
     private Node root;
 
+    // O(log(n))
     public void add(int value) {
         var node = new Node(value);
 
@@ -39,6 +40,30 @@ public class Tree {
         }
     }
 
+    public void addUsingRecursion(int value) {
+        if (this.root == null) {
+            this.root = new Node(value);
+            return;
+        }
+        this._addUsingRecursion(this.root, value);
+    }
+
+    private void _addUsingRecursion(Node node, int value) {
+        if (node == null) {
+            return;
+        }
+        if (node.left == null && value < node.value) {
+            node.left = new Node(value);
+            return;
+        }
+        if (node.right == null && value > node.value) {
+            node.right = new Node(value);
+            return;
+        }
+        _addUsingRecursion(value < node.value ? node.left : node.right, value);
+    }
+
+    // O(log(n))
     public boolean find(int value) {
         if (root == null) {
             return false;
@@ -56,6 +81,23 @@ public class Tree {
             }
         }
         return false;
+    }
+
+    public boolean findUsingRecursion(int value) {
+        if (root == null) {
+            return false;
+        }
+        return this._findUsingRecursion(this.root, value);
+    }
+
+    private boolean _findUsingRecursion(Node node, int value) {
+        if (node == null) {
+            return false;
+        }
+        if (node.value == value) {
+            return true;
+        }
+        return _findUsingRecursion(value < node.value ? node.left : node.right, value);
     }
 
 }
