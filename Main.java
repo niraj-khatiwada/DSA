@@ -1,14 +1,20 @@
 import java.util.*;
 
-import BitManiupulation.BitManipulation;
+import Trees.Tree;
 
 class Main {
 
     public static void main(String[] args) {
-        var bit = new BitManipulation();
-        System.out.println(Integer.toBinaryString(20));
-        System.out.println(bit.sumOfIntegers(2, 3));
+        var tree = new Tree();
 
+        tree.add(6);
+        tree.add(7);
+        tree.add(4);
+        tree.add(5);
+        tree.add(3);
+        tree.add(1);
+
+        System.out.println(tree.find(1));
     }
 
 }
