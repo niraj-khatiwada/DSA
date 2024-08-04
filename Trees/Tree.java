@@ -392,23 +392,20 @@ public class Tree {
     }
 
     public boolean isValidBinaryTree() {
-        return this._isValidBinaryTree(this.root);
+        return this._isValidBinaryTree(this.root, -Double.MAX_VALUE, Double.MAX_VALUE);
     }
 
-    private boolean _isValidBinaryTree(Node node) {
+    private boolean _isValidBinaryTree(Node node, double min, double max) {
         if (node == null) {
             return true;
         }
-        if (node.left != null && node.right != null) {
-            return node.left.value < node.value && node.right.value > node.value;
+        if (node.left != null && !(node.left.value > min && node.left.value < node.value)) {
+            return false;
         }
-        if (node.left == null) {
-            return node.right.value > node.value;
+        if (node.right != null && !(node.right.value > node.value && node.right.value < max)) {
+            return false;
         }
-        if (node.right == null) {
-            return node.left.value < node.value;
-        }
-        return _isValidBinaryTree(node.left) && _isValidBinaryTree(node.right);
+        return _isValidBinaryTree(node.left, min, node.value) && _isValidBinaryTree(node.right, node.value, max);
     }
 
     // For test purpose only
