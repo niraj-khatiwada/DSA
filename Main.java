@@ -19,6 +19,11 @@ class Main {
 
         heap.print();
         heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
         heap.print();
 
     }

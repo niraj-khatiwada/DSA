@@ -46,7 +46,8 @@ public class Heap {
             if (l == -1) {
                 break;
             }
-            if (this.heap[c] < this.heap[l] || this.heap[c] < this.heap[r]) {
+            if ((l <= this.currentIndex && this.heap[c] < this.heap[l])
+                    || (r <= this.currentIndex && this.heap[c] < this.heap[r])) {
                 var ni = this.heap[l] > this.heap[r] ? l : r;
                 var ref = this.heap[ni];
                 this.heap[ni] = this.heap[c];
