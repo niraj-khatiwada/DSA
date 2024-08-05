@@ -1,20 +1,25 @@
 import java.util.*;
 
-import Trees.Tree;
+import Heap.Heap;
 
 class Main {
 
     public static void main(String[] args) {
-        var tree = new Tree();
+        var heap = new Heap(10);
 
-        tree.add(12);
-        tree.add(3);
-        tree.add(15);
-        // tree.add(4);
-        // tree.add(6);
-        // tree.add(2);
+        heap.add(15);
+        heap.add(10);
+        heap.add(3);
+        heap.add(8);
+        heap.add(12);
+        heap.add(9);
+        heap.add(4);
+        heap.add(1);
+        heap.add(24);
 
-        System.out.println(tree.isBTBalanced());
+        heap.print();
+        heap.remove();
+        heap.print();
 
     }
 
