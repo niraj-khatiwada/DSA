@@ -143,6 +143,32 @@ public class Heap {
         return heap;
     }
 
+    public int kThLargestElement(int[] array, int k) {
+        if (k < 1 || k > array.length) {
+            throw new IllegalArgumentException("Index out range");
+        }
+        var heap = new Heap(array.length);
+        for (var i : array) {
+            heap.add(i);
+        }
+        var rs = 0;
+        for (var i = 0; i < k; i++) {
+            rs = heap.remove();
+        }
+        return rs;
+    }
+
+    public boolean isValidMaxHeap(int[] array) {
+        for (var i = 0; i < (array.length / 2 - 1); i++) {
+            var ci = this._getChildrenIndices(i);
+            int li = ci[0], ri = ci[1];
+            if ((li < array.length && array[i] < array[li]) || (ri < array.length && array[i] < array[ri])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // Heap Sort
     // n(log(n)) Because each deletion can be O(logn) in worst case and if we repeat
     // that for n times, it will be nlogn

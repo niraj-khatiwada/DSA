@@ -8,7 +8,7 @@ class Main {
 
         var heap = new Heap(6);
 
-        System.out.println(Arrays.toString(heap.heapify(new int[] { 5, 3, 8, 4, 1, 2 })));
+        System.out.println(heap.isValidMaxHeap(new int[] { 10, 8, 4, 5, 3, 2, 1 }));
 
     }
 
