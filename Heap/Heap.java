@@ -30,10 +30,11 @@ public class Heap {
         }
     }
 
-    public void remove() {
+    public int remove() {
         if (this.currentIndex == -1) {
-            return;
+            throw new IllegalStateException("No values to remove");
         }
+        var removed = this.heap[0];
         this.heap[0] = this.heap[this.currentIndex];
         this.heap[currentIndex] = 0;
         this.currentIndex--;
@@ -57,6 +58,7 @@ public class Heap {
                 break;
             }
         }
+        return removed;
 
     }
 
@@ -80,6 +82,85 @@ public class Heap {
         for (var i = 0; i < array.length; i++) {
             array[i] = this.heap[i];
         }
+        System.out.println(Arrays.toString(array));
+    }
+
+    public int[] heapify(int[] array) {
+        var map = new HashMap<Integer, Integer>();
+        var heap = new int[array.length];
+        for (var i = 0; i < heap.length; i++) {
+            heap[i] = array[i];
+            map.put(array[i], i);
+
+        }
+        int lastParentIndex = (array.length / 2) - 1;
+        for (var i = lastParentIndex; i >= 0; i--) {
+            var item = array[i];
+            if (i != 0) {
+                // Bubble Up
+                var c = i;
+                while (true) {
+                    var pi = this._getParentIndex(c);
+                    if (pi == -1) {
+                        break;
+                    }
+                    var itemi = map.get(item);
+                    if (heap[pi] < heap[itemi]) {
+                        var ref = heap[pi];
+                        heap[pi] = heap[itemi];
+                        heap[itemi] = ref;
+                        map.put(heap[pi], pi);
+                        map.put(heap[itemi], itemi);
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            // Bubble Down
+            var c = i;
+            while (true) {
+                var pi = this._getChildrenIndices(c);
+                var li = pi[0];
+                var ri = pi[1];
+                var itemi = map.get(item);
+
+                if ((li < array.length && (heap[itemi] < heap[li]))
+                        || (ri < array.length && (heap[itemi] < heap[ri]))) {
+                    var si = heap[li] > heap[ri] ? li : ri;
+                    var ref = heap[si];
+                    heap[si] = heap[itemi];
+                    heap[itemi] = ref;
+                    map.put(heap[si], si);
+                    map.put(heap[itemi], itemi);
+                    c = si;
+                } else {
+                    break;
+                }
+            }
+
+        }
+        return heap;
+    }
+
+    // Heap Sort
+    // n(log(n)) Because each deletion can be O(logn) in worst case and if we repeat
+    // that for n times, it will be nlogn
+    public void heapSort() {
+        var array = new int[] { 3, 6, 5, 1, 4, 9 };
+        var heap = new Heap(array.length);
+
+        // O(n(log(n)))
+        for (var a : array) {
+            // O(log(n))
+            heap.add(a);
+        }
+        // O(n(log(n)))
+        for (var i = 0; i < array.length; i++) {
+            // O(log(n))
+            array[array.length - 1 - i] = heap.remove();
+        }
+
         System.out.println(Arrays.toString(array));
     }
 }
