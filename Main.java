@@ -1,21 +1,19 @@
 import java.util.*;
 
-import Trees.Tree;
+import Trees.AVLTree;
 
 class Main {
 
     public static void main(String[] args) {
-        var tree = new Tree();
+        var tree = new AVLTree();
 
-        tree.add(6);
-        tree.add(7);
-        tree.add(4);
-        tree.add(5);
+        tree.add(12);
         tree.add(3);
-        tree.add(1);
+        tree.add(9);
+        tree.add(4);
+        tree.add(6);
+        tree.add(2);
 
-        System.out.println(-Double.MAX_VALUE < 0);
-        System.out.println(Double.MAX_VALUE);
     }
 
 }
