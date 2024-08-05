@@ -491,4 +491,24 @@ public class Tree {
         return 1 + Math.max(l, r);
     }
 
+    public boolean isBTBalanced() {
+        return this._isBTBalanced(this.root);
+    }
+
+    private boolean _isBTBalanced(Node node) {
+        if (node == null) {
+            return true;
+        }
+
+        if (Math.abs(this._height(node.left) - this._height(node.right)) > 1) {
+            return false;
+        }
+
+        return _isBTBalanced(node.left) && _isBTBalanced(node.right);
+    }
+
+    public boolean isBTPerfect() {
+        return this.size() == (Math.pow(2, this.height() + 1) - 1);
+    }
+
 }
