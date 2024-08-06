@@ -189,4 +189,13 @@ public class Heap {
 
         System.out.println(Arrays.toString(array));
     }
+
+    // Creating a maxHeap in Java;
+    private void maxHeap() {
+        var maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+        maxHeap.add(1);
+        maxHeap.add(2);
+        maxHeap.add(3);
+        System.out.println(maxHeap);
+    }
 }

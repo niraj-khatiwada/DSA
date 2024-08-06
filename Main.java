@@ -6,10 +6,15 @@ class Main {
 
     public static void main(String[] args) {
 
-        var heap = new Heap(6);
+        var queue = new PriorityQueue<Integer>(Collections.reverseOrder());
 
-        System.out.println(heap.isValidMaxHeap(new int[] { 10, 8, 4, 5, 3, 2, 1 }));
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
 
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
     }
 
 }
