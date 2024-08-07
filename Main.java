@@ -1,15 +1,18 @@
 import java.util.*;
 
-import Heap.Heap;
+import Tries.Trie;
 
 class Main {
 
     public static void main(String[] args) {
 
-        var heap = new Heap(6);
-        var array = new int[] { 1, 2, 3, 4, 5 };
-        heap.heapify(array);
-        System.out.println(Arrays.toString(array));
+        var trie = new Trie();
+        trie.add("cat");
+        trie.add("car");
+        trie.add("carb");
+
+        trie.remove("car");
+        trie.print();
     }
 
 }
