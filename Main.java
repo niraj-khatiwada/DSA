@@ -6,15 +6,10 @@ class Main {
 
     public static void main(String[] args) {
 
-        var queue = new PriorityQueue<Integer>(Collections.reverseOrder());
-
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
-
-        System.out.println(queue.poll());
-        System.out.println(queue.poll());
-        System.out.println(queue.poll());
+        var heap = new Heap(6);
+        var array = new int[] { 1, 2, 3, 4, 5 };
+        heap.heapify(array);
+        System.out.println(Arrays.toString(array));
     }
 
 }

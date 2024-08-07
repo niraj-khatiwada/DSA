@@ -10,6 +10,7 @@ public class Heap {
         this.heap = new int[size];
     }
 
+    // O(logn)
     public void add(int val) {
         this.currentIndex++;
         var c = this.currentIndex;
@@ -30,6 +31,7 @@ public class Heap {
         }
     }
 
+    // O(logn)
     public int remove() {
         if (this.currentIndex == -1) {
             throw new IllegalStateException("No values to remove");
@@ -85,62 +87,29 @@ public class Heap {
         System.out.println(Arrays.toString(array));
     }
 
-    public int[] heapify(int[] array) {
-        var map = new HashMap<Integer, Integer>();
-        var heap = new int[array.length];
-        for (var i = 0; i < heap.length; i++) {
-            heap[i] = array[i];
-            map.put(array[i], i);
-
+    // O(log(n))
+    // Pick non leaf nodes only and recursively bubble down
+    public void heapify(int[] array) {
+        for (var i = ((array.length / 2) - 1); i >= 0; i--) {
+            this._heapify(array, i);
         }
-        int lastParentIndex = (array.length / 2) - 1;
-        for (var i = lastParentIndex; i >= 0; i--) {
-            var item = array[i];
-            if (i != 0) {
-                // Bubble Up
-                var c = i;
-                while (true) {
-                    var pi = this._getParentIndex(c);
-                    if (pi == -1) {
-                        break;
-                    }
-                    var itemi = map.get(item);
-                    if (heap[pi] < heap[itemi]) {
-                        var ref = heap[pi];
-                        heap[pi] = heap[itemi];
-                        heap[itemi] = ref;
-                        map.put(heap[pi], pi);
-                        map.put(heap[itemi], itemi);
-                    } else {
-                        break;
-                    }
-                }
-            }
+    }
 
-            // Bubble Down
-            var c = i;
-            while (true) {
-                var pi = this._getChildrenIndices(c);
-                var li = pi[0];
-                var ri = pi[1];
-                var itemi = map.get(item);
-
-                if ((li < array.length && (heap[itemi] < heap[li]))
-                        || (ri < array.length && (heap[itemi] < heap[ri]))) {
-                    var si = heap[li] > heap[ri] ? li : ri;
-                    var ref = heap[si];
-                    heap[si] = heap[itemi];
-                    heap[itemi] = ref;
-                    map.put(heap[si], si);
-                    map.put(heap[itemi], itemi);
-                    c = si;
-                } else {
-                    break;
-                }
-            }
-
+    private void _heapify(int[] array, int i) {
+        var ci = _getChildrenIndices(i);
+        var li = ci[0];
+        var ri = ci[1];
+        if ((_isIndexBound(li, array) && array[i] < array[li]) || (_isIndexBound(ri, array) && array[i] < array[ri])) {
+            var si = _isIndexBound(ri, array) ? (array[li] > array[ri] ? li : ri) : li;
+            var ref = array[i];
+            array[i] = array[si];
+            array[si] = ref;
+            _heapify(array, si);
         }
-        return heap;
+    }
+
+    private boolean _isIndexBound(int i, int[] array) {
+        return i < array.length;
     }
 
     public int kThLargestElement(int[] array, int k) {
@@ -187,15 +156,6 @@ public class Heap {
             array[array.length - 1 - i] = heap.remove();
         }
 
-        System.out.println(Arrays.toString(array));
     }
 
-    // Creating a maxHeap in Java;
-    private void maxHeap() {
-        var maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
-        maxHeap.add(1);
-        maxHeap.add(2);
-        maxHeap.add(3);
-        System.out.println(maxHeap);
-    }
 }
