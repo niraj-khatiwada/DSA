@@ -70,6 +70,37 @@ public class Trie {
         return true;
     }
 
+    public List<String> autocomplete(String word) {
+        var list = new ArrayList<String>();
+        this._autocomplete(this.root, word, 0, new StringBuilder(), list);
+        return list;
+    }
+
+    private void _autocomplete(Node node, String word, int i, StringBuilder s, List<String> list) {
+        if (i >= 0 && i < word.length()) {
+            var child = node.children.get(word.charAt(i));
+            if (child == null) {
+                return;
+            }
+            s.append(child.value);
+            _autocomplete(child, word, i + 1, new StringBuilder(s), list);
+        } else {
+            if (i == -1) {
+                s.append(node.value);
+            }
+            if (node.isEnd) {
+                list.add(s.toString());
+                if (node.children.size() == 0) {
+                    return;
+                }
+            }
+            for (var entry : node.children.entrySet()) {
+                _autocomplete(entry.getValue(), word, -1, new StringBuilder(s), list);
+            }
+        }
+        return;
+    }
+
     public void dfsPreOrder() {
         this._dfsPreOrder(this.root);
     }
