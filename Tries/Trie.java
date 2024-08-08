@@ -42,33 +42,31 @@ public class Trie {
     }
 
     public boolean remove(String word) {
-        return _remove(this.root, word, 0);
+        return _remove(this.root, word, 0, null);
     }
 
-    public boolean _remove(Node node, String word, int index) {
-        if (index == (word.length())) {
-            var ch = word.charAt(index - 1);
-            if (!node.isEnd) {
-                return false;
-            }
-            // The last character must match
-            // For example, cat, car can lead to same place
-            if (ch == node.value) {
-                node.isEnd = false;
-            }
-            return true;
-        }
-        for (var entry : node.children.entrySet()) {
-            _remove(entry.getValue(), word, index + 1);
-        }
-        var ch = word.charAt(index);
-        var child = node.children.get(ch);
-        if (child == null) {
+    public boolean _remove(Node node, String word, int i, Node parent) {
+        if (node == null) {
             return false;
         }
-        if (!child.isEnd && child.children.size() == 0) {
-            node.children.remove(ch);
+        if (i < word.length()) {
+            var child = node.children.get(word.charAt(i));
+            if (child == null) {
+                return false;
+            }
+            if (i == (word.length() - 1)) {
+                if (!child.isEnd) {
+                    return false;
+                }
+                child.isEnd = false;
+            }
+            _remove(child, word, i + 1, node);
         }
+
+        if (node.children.size() == 0) {
+            parent.children.remove(node.value);
+        }
+
         return true;
     }
 
