@@ -24,6 +24,7 @@ public class Trie {
         this.root = new Node();
     }
 
+    // O(word.length)
     public void add(String word) {
         var current = this.root;
         var characters = word.toCharArray();
@@ -41,6 +42,7 @@ public class Trie {
         }
     }
 
+    // O(word.length)
     public boolean remove(String word) {
         return _remove(this.root, word, 0, null);
     }
@@ -70,12 +72,33 @@ public class Trie {
         return true;
     }
 
+    // O(word.length)
+    public boolean contains(String word) {
+        return this._contains(this.root, word, 0);
+    }
+
+    private boolean _contains(Node node, String word, int i) {
+        if (node == null) {
+            return false;
+        }
+        if (i >= word.length()) {
+            return node.isEnd;
+
+        }
+        var child = node.children.get(word.charAt(i));
+        if (child == null) {
+            return false;
+        }
+        return this._contains(child, word, i + 1);
+    }
+
     public List<String> autocomplete(String word) {
         var list = new ArrayList<String>();
         this._autocomplete(this.root, word, 0, new StringBuilder(), list);
         return list;
     }
 
+    // O(number of nodes)
     private void _autocomplete(Node node, String word, int i, StringBuilder s, List<String> list) {
         // First match given word
         if (i >= 0 && i < word.length()) {
@@ -102,6 +125,29 @@ public class Trie {
             }
         }
         return;
+    }
+
+    public int numberOfWords() {
+        var rs = new int[] { 0 };
+        this._numberOfWords(this.root, rs);
+        return rs[0];
+    }
+
+    private void _numberOfWords(Node node, int[] rs) {
+        if (node == null) {
+            return;
+        }
+        if (node.isEnd) {
+            rs[0]++;
+            if (node.children.size() == 0) {
+                return;
+            }
+        }
+
+        for (var entry : node.children.entrySet()) {
+            _numberOfWords(entry.getValue(), rs);
+        }
+
     }
 
     public void dfsPreOrder() {
