@@ -150,6 +150,25 @@ public class Trie {
 
     }
 
+    public String longestCommonPrefix() {
+        var rs = new StringBuilder[] { new StringBuilder() };
+        _longestCommonPrefix(this.root, rs);
+        return rs[0].toString();
+    }
+
+    private void _longestCommonPrefix(Node node, StringBuilder[] rs) {
+        if (node.value != 32) {
+            rs[0].append(node.value);
+        }
+        if (node.children.size() > 1 || node.isEnd) {
+            return;
+        }
+
+        for (var entry : node.children.entrySet()) {
+            _longestCommonPrefix(entry.getValue(), rs);
+        }
+    }
+
     public void dfsPreOrder() {
         this._dfsPreOrder(this.root);
     }
