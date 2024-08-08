@@ -77,14 +77,17 @@ public class Trie {
     }
 
     private void _autocomplete(Node node, String word, int i, StringBuilder s, List<String> list) {
+        // First match given word
         if (i >= 0 && i < word.length()) {
             var child = node.children.get(word.charAt(i));
+            // Word exceeded
             if (child == null) {
                 return;
             }
             s.append(child.value);
             _autocomplete(child, word, i + 1, new StringBuilder(s), list);
         } else {
+            // Match all remaining children
             if (i == -1) {
                 s.append(node.value);
             }

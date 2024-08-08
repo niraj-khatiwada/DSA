@@ -12,7 +12,7 @@ class Main {
         trie.add("car");
         trie.add("carb");
 
-        System.out.println(trie.autocomplete(""));
+        System.out.println(trie.autocomplete("car"));
     }
 
 }
