@@ -7,13 +7,11 @@ class Main {
     public static void main(String[] args) {
 
         var trie = new Trie();
-        trie.add("ca");
-        trie.add("cat");
-        trie.add("car");
-        trie.add("carb");
+        trie.add("bad");
+        trie.add("mad");
+        trie.add("dad");
 
-        System.out.println(trie.longestCommonPrefix());
-
+        System.out.println(trie.search(".ad"));
     }
 
 }

@@ -5,7 +5,9 @@ import java.util.*;
 public class Trie {
     private class Node {
         public char value;
-        public HashMap<Character, Node> children;
+        public HashMap<Character, Node> children; // Using Array Index is gives more efficient time complexity. Using
+                                                  // HashMap gives more efficient space complexity
+                                                  // Use Array index in Leetcode and interviews;
         public boolean isEnd;
 
         public Node() {
@@ -33,13 +35,15 @@ public class Trie {
             var val = current.children.get(ch);
             if (val == null) {
                 var node = new Node(ch);
-                if (i == (characters.length - 1)) {
-                    node.isEnd = true;
-                }
                 current.children.put(ch, node);
             }
-            current = current.children.get(ch);
+            var node = current.children.get(ch);
+            if (i == (characters.length - 1)) {
+                node.isEnd = true;
+            }
+            current = node;
         }
+
     }
 
     // O(word.length)
@@ -219,5 +223,43 @@ public class Trie {
         for (var entry : node.children.entrySet()) {
             _print(entry.getValue(), new StringBuilder(str));
         }
+    }
+
+    public boolean search(String word) {
+        var queue = new ArrayDeque<Node>();
+        queue.add(this.root);
+        var i = 0;
+        var isEnd = false;
+        while (!queue.isEmpty()) {
+            var isLastIndex = i == (word.length() - 1);
+            if (i >= word.length()) {
+                break;
+            }
+            var size = queue.size();
+            var ch = word.charAt(i);
+            for (var j = 0; j < size; j++) {
+                var pop = queue.poll();
+                if (ch != '.') {
+                    var child = pop.children.get(ch);
+                    if (child != null) {
+                        queue.add(child);
+                        if (isLastIndex) {
+                            isEnd = child.isEnd;
+                        }
+                    }
+
+                } else {
+                    for (var entry : pop.children.entrySet()) {
+                        var n = entry.getValue();
+                        if (isLastIndex && n.isEnd) {
+                            isEnd = true;
+                        }
+                        queue.add(n);
+                    }
+                }
+            }
+            i++;
+        }
+        return isEnd;
     }
 }
