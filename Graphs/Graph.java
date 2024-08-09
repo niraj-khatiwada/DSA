@@ -207,15 +207,11 @@ public class Graph {
         for (var entry : this.nodes.entrySet()) {
             var visiting = new HashSet<String>();
             var visited = new HashSet<String>();
-            var parent = new ArrayList<String>();
             var label = entry.getKey();
             if (!visited.contains(label)) {
-                if (this._hasCycle(label, visiting, visited, parent)) {
+                if (this._hasCycle(label, visiting, visited)) {
                     System.out.println("Cycle detected");
-                    for (var item : parent) {
-                        System.out.printf("%s ", item);
-                    }
-                    System.out.printf("\n");
+                    // See branch revision-1 for cycle path
                     return true;
                 }
             }
@@ -223,9 +219,7 @@ public class Graph {
         return false;
     }
 
-    private boolean _hasCycle(String label, HashSet<String> visiting, HashSet<String> visited,
-            ArrayList<String> parent) {
-        parent.add(label);
+    private boolean _hasCycle(String label, HashSet<String> visiting, HashSet<String> visited) {
         if (visiting.contains(label)) {
             return true;
         }
@@ -236,7 +230,7 @@ public class Graph {
 
         for (var node : nodes) {
             if (!visited.contains(node.label)) {
-                if (_hasCycle(node.label, visiting, visited, parent)) {
+                if (_hasCycle(node.label, visiting, visited)) {
                     return true;
                 }
             }
