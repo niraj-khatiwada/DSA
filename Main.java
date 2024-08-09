@@ -6,17 +6,20 @@ class Main {
 
     public static void main(String[] args) {
         var graph = new Graph();
-        graph.addNode("X");
-        graph.addNode("A");
-        graph.addNode("B");
-        graph.addNode("P");
+        graph.addNode("Dwight");
+        graph.addNode("Michael");
+        graph.addNode("Pam");
+        graph.addNode("Jim");
+        graph.addNode("Andy");
+        graph.addNode("Erin");
 
-        graph.addEdge("X", "A");
-        graph.addEdge("X", "B");
-        graph.addEdge("A", "P");
-        graph.addEdge("B", "P");
+        graph.addEdge("Michael", "Dwight");
+        graph.addEdge("Jim", "Pam");
+        graph.addEdge("Michael", "Jim");
+        graph.addEdge("Dwight", "Pam");
+        graph.addEdge("Pam", "Jim");
 
-        graph.topologicalSort();
+        System.out.println(graph.detectCycle());
 
     }
 

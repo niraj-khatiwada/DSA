@@ -114,6 +114,33 @@ public class Graph {
     }
 
     // O(v)
+    public boolean detectCycle() {
+        var visited = new HashSet<String>();
+        var rs = new boolean[] { false };
+        for (var entry : this.graph.entrySet()) {
+            var visiting = new HashSet<String>();
+            this._detectCycle(entry.getKey(), visited, visiting, rs);
+        }
+        return rs[0];
+    }
+
+    public void _detectCycle(String value, HashSet<String> visited, HashSet<String> visiting, boolean[] rs) {
+        if (visited.contains(value)) {
+            return;
+        }
+        if (visiting.contains(value)) {
+            rs[0] = true;
+            return;
+        }
+        visiting.add(value);
+        for (var e : this.graph.get(value)) {
+            _detectCycle(e, visited, visiting, rs);
+        }
+        visited.add(value);
+
+    }
+
+    // O(v)
     public void print() {
         for (var entry : this.graph.entrySet()) {
             System.out.println(entry.getKey());
