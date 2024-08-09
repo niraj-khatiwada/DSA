@@ -116,28 +116,43 @@ public class Graph {
     // O(v)
     public boolean detectCycle() {
         var visited = new HashSet<String>();
-        var rs = new boolean[] { false };
         for (var entry : this.graph.entrySet()) {
+            var parentMap = new HashMap<String, String>();
             var visiting = new HashSet<String>();
-            this._detectCycle(entry.getKey(), visited, visiting, rs);
+            var c = _detectCycle(entry.getKey(), visited, visiting, parentMap, "");
+            if ((boolean) c[0]) {
+                var p = (String) c[1];
+                var path = new StringBuilder(p);
+                while (!p.isEmpty()) {
+                    var parent = parentMap.get(p);
+                    path.append(parent);
+                    p = parent;
+                }
+                System.out.println(path.toString());
+                return true;
+            }
         }
-        return rs[0];
+        return false;
     }
 
-    public void _detectCycle(String value, HashSet<String> visited, HashSet<String> visiting, boolean[] rs) {
+    public Object[] _detectCycle(String value, HashSet<String> visited, HashSet<String> visiting,
+            HashMap<String, String> parentMap, String parent) {
         if (visited.contains(value)) {
-            return;
+            return new Object[] { false };
         }
         if (visiting.contains(value)) {
-            rs[0] = true;
-            return;
+            return new Object[] { true, parent };
         }
+        parentMap.put(value, parent);
         visiting.add(value);
         for (var e : this.graph.get(value)) {
-            _detectCycle(e, visited, visiting, rs);
+            var c = _detectCycle(e, visited, visiting, parentMap, value);
+            if ((boolean) c[0]) {
+                return c;
+            }
         }
         visited.add(value);
-
+        return new Object[] { false };
     }
 
     // O(v)
