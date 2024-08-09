@@ -1,4 +1,4 @@
-package Trees;
+package Tree;
 
 public class AVLTree {
     private class Node {

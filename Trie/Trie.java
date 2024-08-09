@@ -1,4 +1,4 @@
-package Tries;
+package Trie;
 
 import java.util.*;
 

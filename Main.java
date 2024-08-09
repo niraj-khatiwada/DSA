@@ -1,17 +1,23 @@
 import java.util.*;
 
-import Tries.Trie;
+import Graph.Graph;
 
 class Main {
 
     public static void main(String[] args) {
+        var graph = new Graph();
+        graph.addNode("X");
+        graph.addNode("A");
+        graph.addNode("B");
+        graph.addNode("P");
 
-        var trie = new Trie();
-        trie.add("bad");
-        trie.add("mad");
-        trie.add("dad");
+        graph.addEdge("X", "A");
+        graph.addEdge("X", "B");
+        graph.addEdge("A", "P");
+        graph.addEdge("B", "P");
 
-        System.out.println(trie.search(".ad"));
+        graph.topologicalSort();
+
     }
 
 }
