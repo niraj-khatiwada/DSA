@@ -1,24 +1,28 @@
 import java.util.*;
 
-import Graph.Graph;
+import Graph.UndirectedGraph;
 
 class Main {
 
     public static void main(String[] args) {
-        var graph = new Graph();
-        graph.addNode("Dwight");
-        graph.addNode("Michael");
-        graph.addNode("Pam");
-        graph.addNode("Jim");
+        var graph = new UndirectedGraph();
+        graph.addNode("A");
+        graph.addNode("B");
+        graph.addNode("C");
+        graph.addNode("D");
+        graph.addNode("E");
 
-        graph.addEdge("Michael", "Dwight");
-        graph.addEdge("Michael", "Jim");
-        graph.addEdge("Jim", "Pam");
-        // graph.addEdge("Dwight", "Pam");
-        graph.addEdge("Pam", "Jim");
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("A", "C", 4);
+        graph.addEdge("A", "D", 2);
+        graph.addEdge("B", "E", 1);
+        graph.addEdge("B", "D", 6);
+        graph.addEdge("C", "D", 1);
+        graph.addEdge("D", "E", 5);
 
-        System.out.println(graph.detectCycle());
-
+        var path = graph.shortestPath("A", "E");
+        System.out.println((int) path[0]);
+        System.out.println((String) path[1]);
     }
 
 }
