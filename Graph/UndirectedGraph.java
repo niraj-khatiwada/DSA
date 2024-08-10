@@ -134,6 +134,7 @@ public class UndirectedGraph {
         queue.offer(new NodeEntry(this.graph.get(from)));
         while (!queue.isEmpty()) {
             var current = queue.poll();
+            visited.add(current.node.value);
             for (var edge : current.node.edges) {
                 var toVal = edge.to.value;
                 if (visited.contains(toVal)) {
@@ -144,10 +145,9 @@ public class UndirectedGraph {
                 if (newMin < previousMinDistance) {
                     nodeDistance.put(toVal, newMin);
                     nodeParent.put(toVal, current.node);
+                    queue.add(new NodeEntry(edge.to, newMin));
                 }
-                queue.add(new NodeEntry(edge.to, newMin));
             }
-            visited.add(current.node.value);
         }
         var path = new StringBuilder(to);
         var c = to;
