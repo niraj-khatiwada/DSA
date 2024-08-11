@@ -121,6 +121,7 @@ public class UndirectedGraph {
         fromNode.removeEdge(toNode);
     }
 
+    // Dikstra's Shortest Path Algrithm
     public Object[] shortestPath(String from, String to) {
         var nodeDistance = new HashMap<String, Integer>();
         var nodeParent = new HashMap<String, Node>();
@@ -162,7 +163,99 @@ public class UndirectedGraph {
         }
         // [Min Distance, Path]
         return new Object[] { nodeDistance.get(to), path.toString() };
+    }
 
+    public boolean detectCycle() {
+        var visited = new HashSet<String>();
+        for (var entry : this.graph.entrySet()) {
+            var visiting = new HashSet<String>();
+            var path = new HashMap<String, Node>();
+            var cycle = this._detectCycle(entry.getValue(), null, visited, visiting, path);
+            if ((boolean) cycle[0]) {
+                var end = (Node) cycle[1];
+                var current = end;
+                var pathStr = new StringBuilder(end.value);
+                while (true) {
+                    if (current != null) {
+                        var node = path.get(current.value);
+                        if (node != null) {
+                            pathStr.append(node.value);
+                        }
+                        current = node;
+                    } else {
+                        break;
+                    }
+                }
+                pathStr.append(end.value);
+                System.out.println(pathStr.toString());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Object[] _detectCycle(Node node, Node parent, Set<String> visited, Set<String> visiting,
+            Map<String, Node> path) {
+        if (node == null || visited.contains(node.value)) {
+            return new Object[] { false, null };
+        }
+        if (visiting.contains(node.value)) {
+            return new Object[] { true, parent };
+        }
+        path.put(node.value, parent);
+        visiting.add(node.value);
+        for (var edge : node.edges) {
+            if (parent != null && parent.value.equals(edge.to.value)) {
+                continue;
+            }
+            var cycle = _detectCycle(edge.to, node, visited, visiting, path);
+            if ((boolean) cycle[0]) {
+                return cycle;
+            }
+        }
+        visited.add(node.value);
+
+        return new Object[] { false, null };
+    }
+
+    public void minimumSpanningTree() {
+        var minDistance = Integer.MAX_VALUE;
+        var minPath = new StringBuilder();
+        for (var entry : this.graph.entrySet()) {
+            var visited = new HashSet<String>();
+            var queue = new PriorityQueue<NodeEntry>(Comparator.comparingInt(x -> x.distance));
+            queue.add(new NodeEntry(entry.getValue(), 0));
+            var d = 0;
+            var path = new StringBuilder();
+            while (!queue.isEmpty()) {
+                var current = queue.poll();
+                d += current.distance;
+                path.append(current.node.value);
+                visited.add(current.node.value);
+                var minD = Integer.MAX_VALUE;
+                Node minN = null;
+                for (var edge : current.node.edges) {
+                    if (visited.contains(edge.to.value)) {
+                        continue;
+                    }
+                    if (edge.weight < minD) {
+                        minD = edge.weight;
+                        minN = edge.to;
+                    }
+                }
+                if (minN != null) {
+                    queue.offer(new NodeEntry(minN, minD));
+                }
+            }
+            if (visited.size() == this.graph.size()) {
+                minDistance = Math.min(minDistance, d);
+                if (d == minDistance) {
+                    minPath = path;
+                }
+            }
+        }
+        System.out.println(minDistance);
+        System.out.println(minPath.toString());
     }
 
 }

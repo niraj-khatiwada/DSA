@@ -10,19 +10,14 @@ class Main {
         graph.addNode("B");
         graph.addNode("C");
         graph.addNode("D");
-        graph.addNode("E");
 
-        graph.addEdge("A", "B", 5);
-        graph.addEdge("A", "C", 0);
-        graph.addEdge("A", "D", 0);
-        graph.addEdge("B", "E", 1);
-        graph.addEdge("B", "D", 1);
-        graph.addEdge("C", "D", 1);
-        graph.addEdge("D", "E", 4);
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("A", "C", 1);
+        graph.addEdge("B", "C", 2);
+        graph.addEdge("B", "D", 4);
+        graph.addEdge("C", "D", 5);
 
-        var path = graph.shortestPath("A", "E");
-        System.out.println((int) path[0]);
-        System.out.println((String) path[1]);
+        graph.minimumSpanningTree();
     }
 
 }
