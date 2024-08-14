@@ -1,6 +1,8 @@
 package Sorting;
 
 public class BubbleSort {
+    // O(n) for best case (already sorted)
+    // O(n^2)
     public void sort(int[] array) {
         for (var i = 0; i < array.length; i++) {
             var c = 0;

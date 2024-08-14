@@ -1,6 +1,7 @@
 package Sorting;
 
 public class SelectionSort {
+    // O(n^2)
     public void sort(int[] array) {
         var p = 0;
         for (var i = 0; i < array.length; i++) {
