@@ -1,23 +1,14 @@
 import java.util.*;
 
-import Graph.UndirectedGraph;
+import Sorting.BubbleSort;
 
 class Main {
 
     public static void main(String[] args) {
-        var graph = new UndirectedGraph();
-        graph.addNode("A");
-        graph.addNode("B");
-        graph.addNode("C");
-        graph.addNode("D");
-
-        graph.addEdge("A", "B", 3);
-        graph.addEdge("A", "C", 1);
-        graph.addEdge("B", "C", 2);
-        graph.addEdge("B", "D", 4);
-        graph.addEdge("C", "D", 5);
-
-        graph.minimumSpanningTree();
+        var sort = new BubbleSort();
+        var array = new int[] { 6, 5, 4, 3, 1 };
+        sort.sort(array);
+        System.out.println(Arrays.toString(array));
     }
 
 }
