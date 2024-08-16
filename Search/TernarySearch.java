@@ -1,6 +1,7 @@
 package Search;
 
 public class TernarySearch {
+    // log base 3(n)
     public int search(int[] array, int num) {
         return this._search(array, 0, array.length - 1, num);
     }
