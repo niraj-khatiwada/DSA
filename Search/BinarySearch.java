@@ -7,7 +7,7 @@ public class BinarySearch {
     }
 
     public int _search(int[] array, int l, int r, int num) {
-        if (l > r) {
+        if (l > r || l >= array.length || r >= array.length) {
             return -1;
         }
         var m = (l + r) / 2;
