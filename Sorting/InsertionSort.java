@@ -1,6 +1,7 @@
 package Sorting;
 
 public class InsertionSort {
+    // O(n^2)
     public void sort(int[] array) {
         for (var i = 0; i < array.length; i++) {
             if (i == 0) {
