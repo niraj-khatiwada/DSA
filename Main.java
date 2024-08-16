@@ -1,14 +1,13 @@
-import Sorting.CountingSort;
+import Sorting.BucketSort;
 import java.util.*;
 
 class Main {
 
     public static void main(String[] args) {
-        var sort = new CountingSort();
-        var array = new int[] { 15, 6, 3, 22, 1, 10 };
+        var sort = new BucketSort();
+        var array = new int[] { 3, 1, 2, 5, 4, 6, 222, 1000 };
         sort.sort(array);
         System.out.println(Arrays.toString(array));
-
     }
 
 }
