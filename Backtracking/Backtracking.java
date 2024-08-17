@@ -37,13 +37,8 @@ public class Backtracking {
         }
         var chars = str.toString().toCharArray();
         for (var i = 0; i < chars.length; i++) {
-            var rem = new StringBuilder();
-            for (var j = 0; j < chars.length; j++) {
-                if (j != i) {
-                    rem.append(chars[j]);
-                }
-            }
-            _findPermutations(rem, new StringBuilder(String.format("%s%s", ans, chars[i])), list);
+            _findPermutations(new StringBuilder(str.substring(0, i) + str.substring(i + 1)),
+                    new StringBuilder(ans.toString() + chars[i]), list);
         }
     }
 }
