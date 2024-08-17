@@ -3,26 +3,30 @@ package Backtracking;
 public class NQueens {
     public void findNQueens(int n) {
         var grid = new char[n][n];
+        var rs = new int[] { 0 };
 
         for (var i = 0; i < n; i++) {
             for (var j = 0; j < n; j++) {
                 grid[i][j] = '.';
             }
         }
-        this._findNQueens(grid, 0);
+        this._findNQueens(grid, 0, rs);
+
+        System.out.printf("Found %s possibilities.\n", rs[0]);
 
     }
 
-    private void _findNQueens(char[][] grid, int i) {
+    private void _findNQueens(char[][] grid, int i, int[] rs) {
         if (i >= grid.length) {
             this.printGrid(grid);
+            rs[0]++;
             return;
         }
 
         for (var j = 0; j < grid.length; j++) {
             if (this._isSafeToPlace(grid, i, j)) {
                 grid[i][j] = 'Q';
-                _findNQueens(grid, i + 1);
+                _findNQueens(grid, i + 1, rs);
                 grid[i][j] = '.';
             }
         }

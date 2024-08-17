@@ -1,12 +1,13 @@
 import java.util.*;
 
-import Backtracking.NQueens;
+import Backtracking.GridWays;
 
 class Main {
 
     public static void main(String[] args) {
-        var backtracking = new NQueens();
-        backtracking.findNQueens(4);
+        var backtracking = new GridWays();
+        System.out.println(backtracking.findNumberOfWays(3, 3));
+        System.out.println(backtracking.findNumberOfWaysUsingMath(3, 3));
     }
 
 }
