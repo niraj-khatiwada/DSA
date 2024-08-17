@@ -27,6 +27,7 @@ public class RatInMaze {
         _findPossiblePath(maze, x, y - 1, visited, path + "L");
         _findPossiblePath(maze, x - 1, y, visited, path + "U");
 
+        // Backtrack
         visited.remove(coord);
 
     }

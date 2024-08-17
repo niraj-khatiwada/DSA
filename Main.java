@@ -1,15 +1,12 @@
 import java.util.*;
 
-import Backtracking.RatInMaze;
+import Backtracking.KeypadCombinations;
 
 class Main {
 
     public static void main(String[] args) {
-        var backtracking = new RatInMaze();
-        backtracking.findPossiblePath(new int[][] { { 1, 1, 1 },
-                { 1, 1, 1 },
-                { 1, 1, 1 },
-        });
+        var backtracking = new KeypadCombinations();
+        backtracking.keypadCombinations(new int[] { 2, 2 });
     }
 
 }
