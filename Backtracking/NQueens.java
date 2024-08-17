@@ -11,7 +11,6 @@ public class NQueens {
             }
         }
         this._findNQueens(grid, 0, rs);
-
         System.out.printf("Found %s possibilities.\n", rs[0]);
 
     }
