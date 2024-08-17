@@ -1,14 +1,12 @@
 import java.util.*;
 
-import BitManiupulation.BitManipulation;
+import Backtracking.Backtracking;
 
 class Main {
 
     public static void main(String[] args) {
-        var bit = new BitManipulation();
-        System.out.println(Integer.toBinaryString(20));
-        System.out.println(bit.sumOfIntegers(2, 3));
-
+        var backtracking = new Backtracking();
+        System.out.println(backtracking.findPermutations("abc"));
     }
 
 }
