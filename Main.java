@@ -1,13 +1,14 @@
 import java.util.*;
 
-import Backtracking.KnightsTour;
+import Backtracking.CombinationTargetSum;
 
 class Main {
 
     public static void main(String[] args) {
-        var backtracking = new KnightsTour();
+        var backtracking = new CombinationTargetSum();
         // backtracking.solveKT();
-        backtracking.knightsTour(8);
+        System.out.println(backtracking.combinationSum(new int[] { 2, 3, 6, 7 }, 7));
+
     }
 
 }
