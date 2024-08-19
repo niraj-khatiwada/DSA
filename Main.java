@@ -1,11 +1,12 @@
 import java.util.*;
 
-import Backtracking.PermutationAndCombination;
+import Backtracking.NQueens;
 
 class Main {
 
     public static void main(String[] args) {
-        var backtracking = new PermutationAndCombination();
+        var backtracking = new NQueens();
+        backtracking.findNQueens(4);
 
     }
 

@@ -26,7 +26,6 @@ public class PermutationAndCombination {
         for (var j = 0; j < nums.length; j++) {
             this._permutation(nums, j, count + 1, new ArrayList<>(list));
         }
-
     }
 
 }
