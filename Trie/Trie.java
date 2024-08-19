@@ -5,7 +5,7 @@ import java.util.*;
 public class Trie {
     private class Node {
         public char value;
-        public HashMap<Character, Node> children; // Using Array Index is gives more efficient time complexity. Using
+        public HashMap<Character, Node> children; // Using Array Index gives more efficient time complexity. Using
                                                   // HashMap gives more efficient space complexity
                                                   // Use Array index in Leetcode and interviews;
         public boolean isEnd;
