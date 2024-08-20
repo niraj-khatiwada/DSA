@@ -1,4 +1,4 @@
-package Maths;
+package DynamicProgramming;
 
 import java.util.*;
 
@@ -10,6 +10,8 @@ public class Fibonacci {
 
     }
 
+    // All recursion methods are called Memoization DP
+
     // O(2^n)
     // This one calculates f() for numbers lower than target multiple times.
     // For example, while calculating f(5), we calculate f(3) twice and f(2) thrice.
@@ -19,7 +21,6 @@ public class Fibonacci {
         if (target == 0 || target == 1) {
             return target;
         }
-        System.out.println("CALLED");
         // f(n-1) + f(n-2)
         return _fibonacci(target - 1) + _fibonacci(target - 2);
     }
@@ -32,7 +33,6 @@ public class Fibonacci {
         if (dp[target] != 0) {
             return dp[target];
         }
-        System.out.println("CALLED");
         dp[target] = _fibonacciOptimized(target - 2, dp) + _fibonacciOptimized(target - 1, dp);
         return dp[target];
     }
@@ -48,5 +48,19 @@ public class Fibonacci {
         var sum = a + b;
         System.out.println(sum);
         _fibonacciPattern(b, sum, target);
+    }
+
+    // Tabulation DP: Iteration methods are called Tabulation DP.
+    // O(n)
+    public int fibonacciTabulation(int target) {
+        var dp = new int[target + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+
+        for (var i = 2; i <= target; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        return dp[target];
     }
 }

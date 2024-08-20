@@ -1,11 +1,11 @@
 
-import Maths.Fibonacci;
+import DynamicProgramming.ClimbingStairs;
 
 class Main {
 
     public static void main(String[] args) {
-        var f = new Fibonacci();
-        System.out.println(f.fibonacci(6));
+        var f = new ClimbingStairs();
+        System.out.println(f.countPossibilities(5));
 
     }
 
