@@ -1,23 +1,16 @@
-import Strings.Strings;
-import java.util.*;
 
 class Main {
 
     public static void main(String[] args) {
-        var string = new Strings();
-        System.out.println(string.isAnagram("listen", "silent"));
-
-        _fibonacci(-1, 1, 5);
+        System.out.println(_fibonacci(4));
 
     }
 
-    public static void _fibonacci(int a, int b, int target) {
-        if (b >= target) {
-            return;
+    public static int _fibonacci(int target) {
+        if (target == 0 || target == 1) {
+            return target;
         }
-        var sum = a + b;
-        System.out.println(sum);
-        _fibonacci(b, sum, target);
+        return _fibonacci(target - 1) + _fibonacci(target - 2);
     }
 
 }
