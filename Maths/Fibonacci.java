@@ -15,7 +15,7 @@ public class Fibonacci {
     }
 
     public void fibonacciPattern(int upto) {
-        _fibonacciPattern(0, 1, upto);
+        _fibonacciPattern(-1, 1, upto);
     }
 
     public void _fibonacciPattern(int a, int b, int target) {
