@@ -1,11 +1,11 @@
-package StringManipulation;
+package Strings;
 
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Stack;
 import java.util.Arrays;
 
-public class StringManipulation {
+public class Strings {
     public int findNumberOfVowels(String i) {
         var vowels = new HashSet<Character>();
         vowels.add('a');
