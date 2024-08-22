@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package DP;
 
 public class ClimbingStairs {
     public int countPossibilities(int n) {

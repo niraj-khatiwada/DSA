@@ -1,35 +1,67 @@
-package DynamicProgramming;
+package DP;
 
 import java.util.*;
 
 public class KnapSack01 {
 
-    public int maxProfit(int[] items, int[] weights, int maxWeight) {
-        var rs = new int[] { Integer.MIN_VALUE };
-        var map = new HashMap<Integer, Integer>();
-        for (var i = 0; i < items.length; i++) {
-            var used = new ArrayList<Integer>();
-            this._maxProfit(items, weights, maxWeight, i, 0, 0, used, map, rs);
+    // O(n*maxWeight)
+    public int knapSackTabulation(int[] items, int[] weights, int maxWeight) {
+        var n = items.length;
+        var wn = maxWeight;
+        var dp = new int[n + 1][wn + 1];
+        for (var i = 1; i <= n; i++) {
+            for (var j = 1; j <= wn; j++) {
+                var weight = weights[i - 1];
+                var value = items[i - 1];
+                var included = 0;
+                if (weight <= j) {
+                    included = value + dp[i - 1][j - weight];
+                }
+                var excluded = dp[i - 1][j];
+                dp[i][j] = Math.max(included, excluded);
+            }
         }
-        return rs[0];
+        print(dp);
+        return dp[n][wn];
     }
 
-    public void _maxProfit(int[] items, int[] weights, int m, int i, int value, int weight, List<Integer> used,
-            Map<Integer, Integer> map, int[] rs) {
-        if (i >= (items.length) || used.contains(items[i]) || map.get(items[i]) != null) {
-            return;
+    // O(n*maxWeight)
+    public int knapSackRecursion(int[] items, int[] weights, int maxWeight) {
+        var dp = new int[items.length + 1][maxWeight + 1];
+        for (var i = 0; i <= items.length; i++) {
+            for (var j = 0; j <= maxWeight; j++) {
+                dp[i][j] = -1;
+            }
         }
-        if ((weight + weights[i]) > m) {
-            rs[0] = Math.max(rs[0], value);
-            map.put(used.get(0), rs[0]);
-            return;
-        }
-        value += items[i];
-        used.add(items[i]);
-        weight += weights[i];
+        var rs = this._knapSackRecursion(items, weights, maxWeight, 0, dp);
+        print(dp);
+        return rs;
+    }
 
-        for (var j = 0; j < items.length; j++) {
-            _maxProfit(items, weights, m, j, value, weight, used, map, rs);
+    private int _knapSackRecursion(int[] items, int[] weights, int weight,
+            int i, int[][] dp) {
+        if (i >= items.length || weight < 0) {
+            return 0;
+        }
+        if (dp[i][weight] != -1) {
+            return dp[i][weight];
+        }
+        var included = 0;
+        if (weights[i] <= weight) {
+            included = items[i] + _knapSackRecursion(items, weights, weight - weights[i], i
+                    + 1, dp);
+        }
+        var excluded = _knapSackRecursion(items, weights, weight, i + 1, dp);
+        dp[i][weight] = Math.max(included, excluded);
+        return dp[i][weight];
+    }
+
+    public void print(int[][] grid) {
+        for (var i = 0; i < grid.length; i++) {
+            for (var j = 0; j < grid[0].length; j++) {
+                System.out.printf("%5s", grid[i][j]);
+            }
+            System.out.println();
         }
     }
 
