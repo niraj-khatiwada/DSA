@@ -1,14 +1,12 @@
 import java.util.*;
 
-import DP.KnapSack01;
+import DP.TargetSum;
 
 class Main {
 
     public static void main(String[] args) {
-        var backtracking = new KnapSack01();
-        System.out.println(
-                backtracking.knapSackTabulation(new int[] { 15, 14, 10, 45, 30 },
-                        new int[] { 2, 5, 1, 3, 4 }, 7));
+        var dp = new TargetSum();
+        System.out.println(dp.targetSum(new int[] { 4, 2, 7, 1, 3 }, 10));
 
     }
 
