@@ -1,13 +1,13 @@
 import java.util.*;
 
-import DP.TargetSum;
+import Greedy.ActivitySelection;
 
 class Main {
 
     public static void main(String[] args) {
-        var dp = new TargetSum();
-        System.out.println(dp.targetSum(new int[] { 4, 2, 7, 1, 3 }, 10));
+        var greedy = new ActivitySelection();
+        System.out.println(greedy.maxNumberOfJobs(new int[] { 1, 3, 0, 5, 8, 5 },
+                new int[] { 2, 4, 6, 7, 9, 9 }));
 
     }
-
 }
