@@ -3,33 +3,23 @@ package Search;
 import java.util.Arrays;
 
 public class BinarySearch {
-    public int find(int[] array, int value) {
-        if (array.length == 0) {
+    // O(log(n))
+    public int find(int[] nums, int t) {
+        if (nums.length == 0) {
             return -1;
         }
-        Arrays.sort(array);
-        var leftIndex = 0;
-        var rightIndex = array.length - 1;
-
-        while (true) {
-            int middleIndex = (leftIndex + rightIndex) / 2;
-            var middleValue = array[middleIndex];
-            if (middleValue == value) {
-                return middleIndex;
-            }
-            // This means we have 1 or 2 items left;
-            if (leftIndex == rightIndex || (leftIndex + 1) == rightIndex) {
-                if (array[rightIndex] == value) {
-                    return rightIndex;
-                } else {
-                    // Left also didn't match, right also didn't match. So, no match.
-                    break;
-                }
-            }
-            if (value > middleValue) {
-                leftIndex = middleIndex;
+        Arrays.sort(nums);
+        var l = 0;
+        var r = nums.length - 1;
+        while (l <= r) {
+            var m = (l + r) / 2;
+            var itm = nums[m];
+            if (itm == t) {
+                return t;
+            } else if (t < itm) {
+                r = m - 1;
             } else {
-                rightIndex = middleIndex;
+                l = m + 1;
             }
         }
         return -1;
@@ -60,6 +50,29 @@ public class BinarySearch {
             leftIndex = middleIndex;
         }
         return findUsingRecursion(array, value, leftIndex, rightIndex);
+    }
 
+    // O(log(n))
+    // If the value does not match, this gives the closest neighbor.
+    public int findClosestNeighbor(int[] nums, int t) {
+        Arrays.sort(nums); // The number must be given already sorted though.
+        var l = 0;
+        var r = nums.length - 1;
+        var closest = nums[0];
+        while (l <= r) {
+            var m = (l + r) / 2;
+            var itm = nums[m];
+            if (itm == t) {
+                return t;
+            } else if (t < itm) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+            if (Math.abs(itm - t) < Math.abs(closest - t)) {
+                closest = itm;
+            }
+        }
+        return closest;
     }
 }
