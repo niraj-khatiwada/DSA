@@ -118,21 +118,17 @@ public class Tree {
         _preOrderDFS(node.right);
     }
 
-    // Pre Order DFS Using Stack
-    public void preOrderDFSUsingStack() {
-        if (this.root == null) {
-            return;
-        }
+    public void traversePreOrderUsingStack() {
         var stack = new Stack<Node>();
-        stack.add(this.root);
+        stack.push(this.root);
         while (!stack.isEmpty()) {
-            var n = stack.pop();
-            System.out.println(n.value);
-            if (n.right != null) {
-                stack.add(n.right);
+            var pop = stack.pop();
+            System.out.println(pop.value);
+            if (pop.right != null) {
+                stack.push(pop.right);
             }
-            if (n.left != null) {
-                stack.add(n.left);
+            if (pop.left != null) {
+                stack.push(pop.left);
             }
         }
     }
@@ -153,27 +149,21 @@ public class Tree {
         _inOrderDFS(node.right);
     }
 
-    // In Order DFS Using Stack
-    public void inOrderDFSUsingStack() {
-        if (this.root == null) {
-            return;
-        }
+    public void traverseInOrderUsingStack() {
         var stack = new Stack<Node>();
-        stack.add(this.root);
-        var leftDone = false;
+        stack.push(this.root);
+        var current = this.root;
         while (!stack.isEmpty()) {
-            if (!leftDone) {
-                var n = stack.peek();
-                if (n.left != null) {
-                    stack.add(n.left);
-                    continue;
-                }
+            if (current.left != null) {
+                stack.push(current.left);
+                current = current.left;
+                continue;
             }
-            leftDone = true;
-            var popped = stack.pop();
-            System.out.println(popped.value);
-            if (popped.right != null) {
-                stack.add(popped.right);
+            var pop = stack.pop();
+            System.out.println(pop.value);
+            if (pop.right != null) {
+                stack.push(pop.right);
+                current = pop.right;
             }
         }
     }
@@ -194,33 +184,28 @@ public class Tree {
         System.out.println(node.value);
     }
 
-    // Post Order DFS Using Stack
-    public void postOrderDFSUsingStack() {
-        if (this.root == null) {
-            return;
-        }
-        var stack = new Stack<Node>();
-        stack.add(this.root);
-        var leftDone = false;
-        Node rightDone = null;
-        while (!stack.isEmpty()) {
-            if (!leftDone) {
-                var n = stack.peek();
-                if (n.left != null) {
-                    stack.add(n.left);
-                    continue;
-                }
+    public void traversePostOrderUsingStack() {
+        var stack1 = new Stack<Node>();
+        var stack2 = new Stack<Node>();
+
+        stack1.push(this.root);
+
+        while (!stack1.isEmpty()) {
+            var pop = stack1.pop();
+            stack2.push(pop);
+            if (pop.left != null) {
+                stack1.push(pop.left);
             }
-            leftDone = true;
-            var n = stack.peek();
-            if (n.right != null && rightDone != n) {
-                stack.push(n.right);
-                rightDone = n;
-                continue;
+            if (pop.right != null) {
+                stack1.push(pop.right);
             }
-            var popped = stack.pop();
-            System.out.println(popped.value);
         }
+
+        // The values are in reverse order here
+        while (!stack2.isEmpty()) {
+            System.out.println(stack2.pop().value);
+        }
+
     }
 
     // Also, see bfs using queue method which is much shorter and easier approach.
