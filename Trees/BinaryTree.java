@@ -1,6 +1,6 @@
 package Trees;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class BinaryTree {
     private class Node {
@@ -20,7 +20,7 @@ public class BinaryTree {
     }
 
     // log(n)
-    public void insert(int value) {
+    public void add(int value) {
         var node = new Node(value);
 
         if (this.root == null) {
@@ -74,6 +74,22 @@ public class BinaryTree {
         _traversePreOrder(node.right);
     }
 
+    public void traversePreOrderUsingStack() {
+        var stack = new Stack<Node>();
+        stack.push(this.root);
+        while (!stack.isEmpty()) {
+            var pop = stack.pop();
+            System.out.println(pop.value);
+            if (pop.right != null) {
+                stack.push(pop.right);
+            }
+            if (pop.left != null) {
+                stack.push(pop.left);
+            }
+        }
+
+    }
+
     public void traverseInOrder() {
         this._traverseInOrder(this.root);
     }
@@ -87,6 +103,26 @@ public class BinaryTree {
         _traverseInOrder(node.right);
     }
 
+    public void traverseInOrderUsingStack() {
+        var stack = new Stack<Node>();
+        stack.push(this.root);
+        var current = this.root;
+        while (!stack.isEmpty()) {
+            if (current.left != null) {
+                stack.push(current.left);
+                current = current.left;
+                continue;
+            }
+            var pop = stack.pop();
+            System.out.println(pop.value);
+            if (pop.right != null) {
+                stack.push(pop.right);
+                current = pop.right;
+            }
+        }
+
+    }
+
     public void traversePostOrder() {
         this._traversePostOrder(this.root);
     }
@@ -98,6 +134,28 @@ public class BinaryTree {
         _traversePostOrder(node.left);
         _traversePostOrder(node.right);
         System.out.println(node.value);
+    }
+
+    public void traversePostOrderUsingStack() {
+        var stack = new Stack<Node>();
+        stack.push(this.root);
+        var current = this.root;
+        while (!stack.isEmpty()) {
+            if (current.left != null) {
+                stack.push(current.left);
+                current = current.left;
+                continue;
+            }
+            if (current.right != null) {
+                stack.push(current.right);
+                current = current.right;
+                continue;
+            }
+            var pop = stack.pop();
+            System.out.println(pop.value);
+
+        }
+
     }
 
     public int height() {

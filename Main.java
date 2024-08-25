@@ -1,37 +1,19 @@
 import java.util.*;
 
-import Greedy.MinimumSumOfAbsoluteDifference;
+import Trees.BinaryTree;
 
 class Main {
 
     public static void main(String[] args) {
-        var greedy = new MinimumSumOfAbsoluteDifference();
-        // System.out.println(greedy.minimumSum(new int[] { 4, 1, 8, 7 }, new int[] { 2,
-        // 3, 6, 5 }));
-        var nums = new int[] { 1, 12, 50 };
-        Arrays.sort(nums);
-        System.out.println(_findClosest(nums, 0));
-
+        var btree = new BinaryTree();
+        btree.add(5);
+        btree.add(3);
+        btree.add(7);
+        btree.add(2);
+        btree.add(4);
+        btree.add(6);
+        btree.add(8);
+        btree.traversePostOrderUsingStack();
     }
 
-    private static int _findClosest(int[] nums, int t) {
-        var l = 0;
-        var r = nums.length - 1;
-        var closest = nums[0];
-        while (l <= r) {
-            var m = (l + r) / 2;
-            var itm = nums[m];
-            if (itm == t) {
-                return t;
-            } else if (t < itm) {
-                r = m - 1;
-            } else {
-                l = m + 1;
-            }
-            if (Math.abs(itm - t) < Math.abs(closest - t)) {
-                closest = itm;
-            }
-        }
-        return closest;
-    }
 }
