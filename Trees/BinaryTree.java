@@ -19,6 +19,10 @@ public class BinaryTree {
         return node.left == null && node.right == null;
     }
 
+    public BinaryTree() {
+
+    }
+
     // log(n)
     public void add(int value) {
         var node = new Node(value);
@@ -120,7 +124,6 @@ public class BinaryTree {
                 current = pop.right;
             }
         }
-
     }
 
     public void traversePostOrder() {
@@ -137,23 +140,25 @@ public class BinaryTree {
     }
 
     public void traversePostOrderUsingStack() {
-        var stack = new Stack<Node>();
-        stack.push(this.root);
-        var current = this.root;
-        while (!stack.isEmpty()) {
-            if (current.left != null) {
-                stack.push(current.left);
-                current = current.left;
-                continue;
-            }
-            if (current.right != null) {
-                stack.push(current.right);
-                current = current.right;
-                continue;
-            }
-            var pop = stack.pop();
-            System.out.println(pop.value);
+        var stack1 = new Stack<Node>();
+        var stack2 = new Stack<Node>();
 
+        stack1.push(this.root);
+
+        while (!stack1.isEmpty()) {
+            var pop = stack1.pop();
+            stack2.push(pop);
+            if (pop.left != null) {
+                stack1.push(pop.left);
+            }
+            if (pop.right != null) {
+                stack1.push(pop.right);
+            }
+        }
+
+        // The values are in reverse order here
+        while (!stack2.isEmpty()) {
+            System.out.println(stack2.pop().value);
         }
 
     }
