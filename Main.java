@@ -1,13 +1,12 @@
 import java.util.*;
 
-import Greedy.MaximumNumberOfEvents;
+import Greedy.IndianCoins;
 
 class Main {
 
     public static void main(String[] args) {
-        var greedy = new MaximumNumberOfEvents();
-        System.out.println(greedy.maxEvents(new int[][] { { 1, 4 }, { 4, 4 }, { 2, 2 }, { 3, 4 }, { 1, 1 } }));
-
+        var greedy = new IndianCoins();
+        System.out.println(greedy.minNumOfCoins(new int[] { 1, 2, 5, 10, 20, 50, 100, 500, 2000 }, 9832));
     }
 
 }
