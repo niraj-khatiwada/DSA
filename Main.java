@@ -7,7 +7,7 @@ class Main {
     public static void main(String[] args) {
         var greedy = new ChocolaProblem();
         System.out.println(greedy.minimalCost(new int[] { 4, 1, 2 }, new int[] { 2, 1, 3, 1, 4 }));
-        System.out.println(_search(new int[][] { { 1, 3 }, { 2, 4 }, { 3, 5 }, { 3, 6 } }, 0));
+        System.out.println(_search(new int[][] { { 1, 3 }, { 2, 4 }, { 3, 5 }, { 3, 6 } }, 2));
     }
 
     private static int _search(int[][] matrix, int i) {
@@ -20,7 +20,7 @@ class Main {
             } else {
                 l = m + 1;
             }
-            if (l == r) {
+            if (l == r && (matrix[l][0] >= matrix[i][1])) {
                 return r;
             }
         }

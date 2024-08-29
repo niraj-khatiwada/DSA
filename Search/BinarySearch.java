@@ -75,4 +75,25 @@ public class BinarySearch {
         }
         return closest;
     }
+
+    // Finds the next first element's index that satisfies a given condition.
+    // Let's say the condition is (num-4) >= 0
+    // If there's no any value that satisfies the condition, return -1
+    // See 1235-MaximumProfitInJobScheduling.mkv self-video for explanation.
+    public int findNextFirstElement(int[] nums, int index) {
+        var l = index + 1;
+        var r = nums.length - 1;
+        while (l <= r) {
+            int m = (l + r) / 2;
+            if ((nums[m] - 4) >= 0) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+            if (l == r && ((nums[l] - 4) >= 0)) {
+                return r;
+            }
+        }
+        return -1;
+    }
 }
