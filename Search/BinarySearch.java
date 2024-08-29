@@ -80,6 +80,9 @@ public class BinarySearch {
     // Let's say the condition is (num-4) >= 0
     // If there's no any value that satisfies the condition, return -1
     // See 1235-MaximumProfitInJobScheduling.mkv self-video for explanation.
+    // Test Cases:
+    // 1 3 3 3 3 3 3, index 0 -> Output: -1
+    // 1 2 3 6 7 9 10, index 1 -> Output: 6
     public int findNextFirstElement(int[] nums, int index) {
         var l = index + 1;
         var r = nums.length - 1;
