@@ -5,13 +5,16 @@ import java.util.*;
 public class DisjointSet {
     public int[] parent;
     public int[] rank;
+    public int[] size; // size of each disjoint set;
 
-    public DisjointSet(int size) {
-        this.parent = new int[size + 1];
-        this.rank = new int[size + 1];
-        for (var i = 0; i <= size; i++) {
+    public DisjointSet(int len) {
+        this.parent = new int[len + 1];
+        this.rank = new int[len + 1];
+        this.size = new int[len + 1];
+        for (var i = 0; i <= len; i++) {
             parent[i] = i;
             rank[i] = 0;
+            size[i] = 1;
         }
     }
 
@@ -27,17 +30,21 @@ public class DisjointSet {
         var parentA = find(a);
         var parentB = find(b);
 
-        var rankA = rank[a];
-        var rankB = rank[b];
+        var rankA = rank[parentA];
+        var rankB = rank[parentB];
 
         if (rankA >= rankB) {
+            size[parentB]--;
             parent[parentB] = parentA;
             if (rankA == rankB) {
                 rank[parentA]++;
             }
+            size[parentA]++;
             return parentA;
         }
+        size[parentA]--;
         parent[parentA] = parentB;
+        size[parentB]++;
         return parentB;
     }
 }
