@@ -41,4 +41,14 @@ public class DisjointSet {
         parent.set(parentA, parentB);
         return parentB;
     }
+
+    public int numberOfDisjointSets() {
+        var c = 0;
+        for (var i = 0; i < parent.size(); i++) {
+            if (parent.get(i) == i) {
+                c++;
+            }
+        }
+        return c - 1; // -1 for 0
+    }
 }
