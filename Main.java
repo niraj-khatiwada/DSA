@@ -1,30 +1,19 @@
 import java.util.*;
 
-import Greedy.ChocolaProblem;
+import Graphs.DisjointSet;
 
 class Main {
 
     public static void main(String[] args) {
-        var greedy = new ChocolaProblem();
-        System.out.println(greedy.minimalCost(new int[] { 4, 1, 2 }, new int[] { 2, 1, 3, 1, 4 }));
-        System.out.println(_search(new int[][] { { 1, 3 }, { 2, 4 }, { 3, 5 }, { 3, 6 } }, 2));
-    }
+        var ds = new DisjointSet(7);
+        System.out.println(ds.find(1));
+        ds.union(1, 2);
+        System.out.println(ds.find(2));
+        ds.union(2, 3);
+        System.out.println(ds.find(3));
 
-    private static int _search(int[][] matrix, int i) {
-        var l = i + 1;
-        var r = matrix.length - 1;
-        while (l <= r) {
-            int m = (l + r) / 2;
-            if (matrix[m][0] >= matrix[i][1]) {
-                r = m;
-            } else {
-                l = m + 1;
-            }
-            if (l == r && (matrix[l][0] >= matrix[i][1])) {
-                return r;
-            }
-        }
-        return -1;
+        System.out.println(ds.parent);
+        System.out.println(ds.rank);
     }
 
 }
