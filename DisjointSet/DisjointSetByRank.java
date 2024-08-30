@@ -30,6 +30,10 @@ public class DisjointSetByRank {
         var parentA = find(a);
         var parentB = find(b);
 
+        if (parentA == parentB) {
+            return parentA;
+        }
+
         var rankA = rank[parentA];
         var rankB = rank[parentB];
 
