@@ -1,13 +1,13 @@
-package Graphs;
+package DisjointSet;
 
 import java.util.*;
 
-public class DisjointSet {
+public class DisjointSetByRank {
     public int[] parent;
     public int[] rank;
     public int[] size; // size of each disjoint set;
 
-    public DisjointSet(int len) {
+    public DisjointSetByRank(int len) {
         this.parent = new int[len + 1];
         this.rank = new int[len + 1];
         this.size = new int[len + 1];
@@ -23,7 +23,7 @@ public class DisjointSet {
         if (n == parent[n]) {
             return n;
         }
-        return parent[p] = find(p);
+        return parent[p] = find(p); // Path compression or Collapsing Find
     }
 
     public int union(int a, int b) {
@@ -46,5 +46,9 @@ public class DisjointSet {
         parent[parentA] = parentB;
         size[parentB]++;
         return parentB;
+    }
+
+    public int size(int n) {
+        return size[n];
     }
 }
