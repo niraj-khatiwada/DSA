@@ -137,6 +137,7 @@ public class DirectedGraph {
     }
 
     // parent-to-child
+    // O(v+e)
     public void preOrderDfs(int start) {
         var node = graph.get(start);
         if (node == null) {
@@ -167,6 +168,7 @@ public class DirectedGraph {
     }
 
     // children-to-parent
+    // O(v+e)
     private void postOrderDfs(Node node, Set<Integer> visited) {
         if (node == null || visited.contains(node.value)) {
             return;
@@ -227,6 +229,37 @@ public class DirectedGraph {
         while (!stack2.isEmpty()) {
             System.out.println(stack2.pop());
         }
+    }
+
+    // O(v+e)
+    public boolean pathExists(int from, int to) {
+        var fromNode = graph.get(from);
+        if (fromNode == null) {
+            throw new IllegalArgumentException("from node does not exit");
+        }
+        var toNode = graph.get(to);
+        if (toNode == null) {
+            throw new IllegalArgumentException("to node does not exit");
+        }
+        var visited = new HashSet<Integer>();
+        return this._pathExists(fromNode, toNode, visited);
+    }
+
+    private boolean _pathExists(Node node, Node target, Set<Integer> visited) {
+        if (node == null || visited.contains(node.value)) {
+            return false;
+        }
+        if (node.value == target.value) {
+            return true;
+        }
+        visited.add(node.value);
+        for (var edge : node.edges) {
+            if (_pathExists(edge.to, target, visited)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     public void print() {

@@ -13,12 +13,12 @@ class Main {
         graph.addNode(5);
         graph.addEdge(1, 2);
         graph.addEdge(1, 4);
-        // graph.addEdge(2, 4);
+        graph.addEdge(2, 4);
         graph.addEdge(3, 4);
         graph.addEdge(4, 5);
 
         // graph.preOrderDfs(1);
-        graph.postOrderDFSUsingStack(1);
+        System.out.println(graph.pathExists(1, 5));
     }
 
 }
