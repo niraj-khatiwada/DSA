@@ -1,30 +1,24 @@
 import java.util.*;
 
-import DisjointSet.DisjointSetByRank;
-import DisjointSet.DisjointSet;
+import Graph.DirectedGraph;
 
 class Main {
 
     public static void main(String[] args) {
-        var dsByRank = new DisjointSetByRank(5);
-        dsByRank.union(0, 3);
-        dsByRank.union(0, 5);
-        dsByRank.union(2, 3);
-        dsByRank.union(2, 5);
-        dsByRank.union(1, 4);
-        System.out.println(dsByRank.size(0));
-        System.out.println(Arrays.toString(dsByRank.parent));
+        var graph = new DirectedGraph();
+        graph.addNode(1);
+        graph.addNode(2);
+        graph.addNode(3);
+        graph.addNode(4);
+        graph.addNode(5);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 4);
+        // graph.addEdge(2, 4);
+        graph.addEdge(3, 4);
+        graph.addEdge(4, 5);
 
-        var ds = new DisjointSet(5);
-        ds.union(0, 3);
-        ds.union(0, 5);
-        ds.union(2, 3);
-        ds.union(2, 5);
-        ds.union(1, 4);
-
-        System.out.println(ds.size(0));
-        System.out.println(Arrays.toString(ds.parent));
-
+        // graph.preOrderDfs(1);
+        graph.postOrderDFSUsingStack(1);
     }
 
 }
