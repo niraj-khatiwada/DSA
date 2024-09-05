@@ -14,7 +14,7 @@ public class IndianCoins {
         }
 
         var rs = new ArrayList<Integer>();
-        while (numOfCoins > 0 && (sum / numOfCoins) <= maxCoin) {
+        while (numOfCoins > 0) {
             for (var i = coins.length - 1; i >= 0; i--) {
                 var coin = coins[i];
                 if ((sum - coin) >= (numOfCoins - 1)) {

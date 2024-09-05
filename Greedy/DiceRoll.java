@@ -20,8 +20,7 @@ public class DiceRoll {
         }
 
         var rs = new ArrayList<Integer>();
-
-        while (numOfRolls > 0 && (sum / numOfRolls) <= 6) {
+        while (numOfRolls > 0) {
             for (var i = 6; i >= 1; i--) {
                 if ((sum - i) > (numOfRolls - 1)) {
                     rs.add(i);
