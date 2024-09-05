@@ -14,7 +14,7 @@ public class DiceRoll {
      * the range 1 - (6 * numOfRolls)
      */
     public void firstDiceCombination(int numOfRolls, int sum) {
-        if (sum < numOfRolls || ((double) sum / numOfRolls) > 6.0) {
+        if (sum < numOfRolls || (sum > (numOfRolls * 6))) {
             System.out.println("Not possible");
             return;
         }
@@ -23,7 +23,7 @@ public class DiceRoll {
 
         while (numOfRolls > 0 && (sum / numOfRolls) <= 6) {
             for (var i = 6; i >= 1; i--) {
-                if (i <= (sum / numOfRolls)) {
+                if ((sum - i) > (numOfRolls - 1)) {
                     rs.add(i);
                     sum -= i;
                     numOfRolls--;

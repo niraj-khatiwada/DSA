@@ -7,18 +7,17 @@ public class IndianCoins {
 
     // O(numOfCoins)
     public void firstCoinsCombinations(int numOfCoins, int sum) {
-        if (((double) sum / numOfCoins) > 1000.00) {
+        var maxCoin = coins[coins.length - 1];
+        if (numOfCoins > sum || (numOfCoins * maxCoin) < sum) {
             System.out.println("Not possible");
             return;
         }
 
-        var lastCoin = coins[coins.length - 1];
         var rs = new ArrayList<Integer>();
-        while (numOfCoins > 0 && (sum / numOfCoins) <= lastCoin) {
+        while (numOfCoins > 0 && (sum / numOfCoins) <= maxCoin) {
             for (var i = coins.length - 1; i >= 0; i--) {
                 var coin = coins[i];
-                int maxCoin = sum / numOfCoins;
-                if (coin <= maxCoin) {
+                if ((sum - coin) >= (numOfCoins - 1)) {
                     rs.add(coin);
                     sum -= coin;
                     numOfCoins--;
