@@ -291,7 +291,50 @@ public class DirectedGraph {
             }
         }
         return false;
+    }
 
+    public boolean hasCycle() {
+        var visited = new HashSet<Integer>();
+        for (var entry : graph.entrySet()) {
+            var visiting = new HashSet<Integer>();
+            var path = new HashMap<Integer, Node>();
+            var res = this._hasCycle(entry.getValue(), null, visiting, path);
+            if ((boolean) res[0]) {
+                var point = (Node) res[1];
+                var parent = (Node) res[2];
+                System.out.printf("Found circular at %s -> %s\n", parent.value, point.value);
+                var str = new StringBuilder();
+                str.append(point.value + " <- " + parent.value);
+                while (parent != null) {
+                    parent = path.get(parent.value);
+                    if (parent != null) {
+                        str.append(" <- " + parent.value);
+                    }
+                }
+                System.out.println(str);
+                return true;
+            }
+            visited.addAll(visiting);
+        }
+        return false;
+    }
+
+    private Object[] _hasCycle(Node node, Node parent, Set<Integer> visiting, Map<Integer, Node> path) {
+        if (node == null) {
+            return new Object[] { false, null, null };
+        }
+        if (visiting.contains(node.value)) {
+            return new Object[] { true, node, parent };
+        }
+        path.put(node.value, parent);
+        visiting.add(node.value);
+        for (var edge : node.edges) {
+            var res = _hasCycle(edge.to, node, visiting, path);
+            if ((boolean) res[0]) {
+                return res;
+            }
+        }
+        return new Object[] { false, null, null };
     }
 
     public void print() {

@@ -14,9 +14,10 @@ class Main {
         graph.addEdge(1, 2);
         graph.addEdge(1, 4);
         graph.addEdge(3, 5);
-        graph.addEdge(5, 4);
+        graph.addEdge(5, 1);
+        graph.addEdge(4, 3);
 
-        graph.postOrderDFSUsingStack(1);
+        System.out.println(graph.hasCycle());
     }
 
 }
