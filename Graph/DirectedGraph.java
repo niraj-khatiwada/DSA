@@ -145,6 +145,11 @@ public class DirectedGraph {
         }
         var visited = new HashSet<Integer>();
         this._preOrderDfs(node, visited);
+        for (var entry : graph.entrySet()) {
+            if (entry.getValue() != node) {
+                this._preOrderDfs(entry.getValue(), visited);
+            }
+        }
     }
 
     private void _preOrderDfs(Node node, Set<Integer> visited) {
@@ -158,23 +163,28 @@ public class DirectedGraph {
         }
     }
 
+    // children-to-parent
+    // O(v+e)
     public void postOrderDfs(int start) {
         var node = graph.get(start);
         if (node == null) {
             return;
         }
         var visited = new HashSet<Integer>();
-        this.postOrderDfs(node, visited);
+        this._postOrderDfs(node, visited);
+        for (var entry : graph.entrySet()) {
+            if (entry.getValue() != node) {
+                this._postOrderDfs(entry.getValue(), visited);
+            }
+        }
     }
 
-    // children-to-parent
-    // O(v+e)
-    private void postOrderDfs(Node node, Set<Integer> visited) {
+    private void _postOrderDfs(Node node, Set<Integer> visited) {
         if (node == null || visited.contains(node.value)) {
             return;
         }
         for (var edge : node.edges) {
-            postOrderDfs(edge.to, visited);
+            _postOrderDfs(edge.to, visited);
         }
         System.out.println(node.value);
         visited.add(node.value);
@@ -188,6 +198,18 @@ public class DirectedGraph {
         var visited = new HashSet<Integer>();
         var stack = new Stack<Node>();
         stack.add(node);
+        _preOrderDFSUsingStack(stack, visited);
+        for (var entry : graph.entrySet()) {
+            var n = entry.getValue();
+            if (n != node) {
+                stack.add(n);
+                this._preOrderDFSUsingStack(stack, visited);
+            }
+        }
+
+    }
+
+    private void _preOrderDFSUsingStack(Stack<Node> stack, Set<Integer> visited) {
         while (!stack.isEmpty()) {
             var size = stack.size();
             for (var i = 0; i < size; i++) {
@@ -213,7 +235,21 @@ public class DirectedGraph {
         var stack1 = new Stack<Node>();
         stack1.add(node);
         var stack2 = new Stack<Integer>();
+        this._postOrderDFSUsingStack(stack1, stack2, visited);
+        for (var entry : graph.entrySet()) {
+            var n = entry.getValue();
+            if (n != node) {
+                stack1.add(n);
+                this._postOrderDFSUsingStack(stack1, stack2, visited);
+            }
+        }
+        while (!stack2.isEmpty()) {
+            System.out.println(stack2.pop());
+        }
 
+    }
+
+    private void _postOrderDFSUsingStack(Stack<Node> stack1, Stack<Integer> stack2, Set<Integer> visited) {
         while (!stack1.isEmpty()) {
             var pop = stack1.pop();
             if (visited.contains(pop.value)) {
@@ -224,10 +260,6 @@ public class DirectedGraph {
             for (var edge : pop.edges) {
                 stack1.push(edge.to);
             }
-        }
-
-        while (!stack2.isEmpty()) {
-            System.out.println(stack2.pop());
         }
     }
 
