@@ -1,12 +1,12 @@
 import java.util.*;
 
-import Recursion.DiceRoll;
+import Greedy.IndianCoins;
 
 class Main {
 
     public static void main(String[] args) {
-        var dice = new DiceRoll();
-        dice.firstDiceCombinations(2, 5);
+        var coins = new IndianCoins();
+        coins.firstCoinsCombinations(2, 4);
     }
 
 }
