@@ -328,14 +328,41 @@ public class Directed {
         path.put(node.value, parent);
         visiting.add(node.value);
         for (var edge : node.edges) {
-            if (edge.to != parent) {
-                var res = _hasCycle(edge.to, node, visiting, path);
-                if ((boolean) res[0]) {
-                    return res;
-                }
+            var res = _hasCycle(edge.to, node, visiting, path);
+            if ((boolean) res[0]) {
+                return res;
+
             }
         }
+        visiting.remove(node.value); // Need to backtrack for directed if circular was not found.
+        path.remove(node.value);
         return new Object[] { false, null, null };
+    }
+
+    // O(v+e)
+    // SC: O(v) for extra stack and array list
+    public List<Integer> topologicalSort() {
+        var visited = new HashSet<Integer>();
+        var stack = new Stack<Integer>();
+        for (var entry : graph.entrySet()) {
+            this._topologicalSort(entry.getValue(), stack, visited);
+        }
+        var sorted = new ArrayList<Integer>();
+        while (!stack.isEmpty()) {
+            sorted.add(stack.pop());
+        }
+        return sorted;
+    }
+
+    private void _topologicalSort(Node node, Stack<Integer> stack, Set<Integer> visited) {
+        if (node == null || visited.contains(node.value)) {
+            return;
+        }
+        for (var edge : node.edges) {
+            _topologicalSort(edge.to, stack, visited);
+        }
+        visited.add(node.value);
+        stack.push(node.value);
     }
 
     public void print() {

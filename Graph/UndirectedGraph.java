@@ -345,6 +345,14 @@ public class UndirectedGraph {
     }
 
     // Graph Coloring
+    // O(v+e), since we are just doing BFS
+    // SC: O(v) for extra queue and colors
+    // Acyclic graphs are bipartite
+    // Cyclic graph with even number of nodes in the cycle are bipartite as well.
+    // Cyclic graph with odd number of nodes in the cycle re not bipartite.
+    // (NOTE:Not the nodes n=in the whole graph, but the number of nodes making up
+    // the cycle. We've done this in hasCycle() method to get the nodes consisting
+    // the cycle.)
     public boolean isBipartite() {
         var colors = new HashMap<Integer, Integer>(); // 1 = Blue, 2 = Red
         var queue = new ArrayDeque<Node>();
