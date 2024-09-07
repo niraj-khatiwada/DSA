@@ -2,13 +2,16 @@ package Graph;
 
 import java.util.*;
 
-public class DirectedGraph {
+public class UndirectedGraph {
     private class Edge {
+        public Node from;
         public Node to;
         public int weight;
 
-        public Edge(Node to) {
+        public Edge(Node from, Node to, int weight) {
+            this.from = from;
             this.to = to;
+            this.weight = weight;
         }
     }
 
@@ -33,14 +36,14 @@ public class DirectedGraph {
     }
 
     // O(v); v = number of vertices
-    public void addEdge(int from, int to) {
+    public void addEdge(int from, int to, int weight) {
         var fromNode = graph.get(from);
         if (fromNode == null) {
-            throw new IllegalArgumentException("from node does not exit");
+            throw new IllegalArgumentException("from node does not exist");
         }
         var toNode = graph.get(to);
         if (toNode == null) {
-            throw new IllegalArgumentException("to node does not exit");
+            throw new IllegalArgumentException("to node does not exist");
         }
         var exists = false;
         for (var edge : fromNode.edges) {
@@ -50,7 +53,8 @@ public class DirectedGraph {
             }
         }
         if (!exists) {
-            fromNode.edges.add(new Edge(toNode));
+            fromNode.edges.add(new Edge(fromNode, toNode, weight));
+            toNode.edges.add(new Edge(toNode, fromNode, weight));
         }
     }
 
@@ -58,11 +62,11 @@ public class DirectedGraph {
     public void removeEdge(int from, int to) {
         var fromNode = graph.get(from);
         if (fromNode == null) {
-            throw new IllegalArgumentException("from node does not exit");
+            throw new IllegalArgumentException("from node does not exist");
         }
         var toNode = graph.get(to);
         if (toNode == null) {
-            throw new IllegalArgumentException("to node does not exit");
+            throw new IllegalArgumentException("to node does not exist");
         }
         Edge ed = null;
         for (var edge : fromNode.edges) {
@@ -72,7 +76,8 @@ public class DirectedGraph {
             }
         }
         if (ed != null) {
-            fromNode.edges.add(ed);
+            fromNode.edges.remove(ed);
+            toNode.edges.remove(ed);
         }
     }
 
@@ -267,11 +272,11 @@ public class DirectedGraph {
     public boolean pathExists(int from, int to) {
         var fromNode = graph.get(from);
         if (fromNode == null) {
-            throw new IllegalArgumentException("from node does not exit");
+            throw new IllegalArgumentException("from node does not exist");
         }
         var toNode = graph.get(to);
         if (toNode == null) {
-            throw new IllegalArgumentException("to node does not exit");
+            throw new IllegalArgumentException("to node does not exist");
         }
         var visited = new HashSet<Integer>();
         return this._pathExists(fromNode, toNode, visited);
@@ -329,12 +334,54 @@ public class DirectedGraph {
         path.put(node.value, parent);
         visiting.add(node.value);
         for (var edge : node.edges) {
-            var res = _hasCycle(edge.to, node, visiting, path);
-            if ((boolean) res[0]) {
-                return res;
+            if (edge.to != parent) {
+                var res = _hasCycle(edge.to, node, visiting, path);
+                if ((boolean) res[0]) {
+                    return res;
+                }
             }
         }
         return new Object[] { false, null, null };
+    }
+
+    // Graph Coloring
+    public boolean isBipartite() {
+        var colors = new HashMap<Integer, Integer>(); // 1 = Blue, 2 = Red
+        var queue = new ArrayDeque<Node>();
+        for (var entry : graph.entrySet()) {
+            var node = entry.getValue();
+            queue.add(node);
+            if (colors.get(node.value) == null) {
+                colors.put(node.value, 1); // Make first node blue
+            }
+            if (!this._isBipartiteBFS(queue, colors)) {
+                System.out.println(colors);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean _isBipartiteBFS(Queue<Node> queue, Map<Integer, Integer> colors) {
+        while (!queue.isEmpty()) {
+            var size = queue.size();
+            for (var i = 0; i < size; i++) {
+                var pop = queue.poll();
+                var parentColor = colors.get(pop.value);
+                for (var edge : pop.edges) {
+                    var childColor = colors.get(edge.to.value);
+                    if (childColor != null) {
+                        if (childColor == parentColor) {
+                            return false;
+                        }
+                    } else {
+                        colors.put(edge.to.value, parentColor == 1 ? 2 : 1);
+                        queue.offer(edge.to);
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public void print() {
@@ -346,4 +393,5 @@ public class DirectedGraph {
             }
         }
     }
+
 }
