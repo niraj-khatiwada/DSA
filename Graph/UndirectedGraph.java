@@ -404,8 +404,9 @@ public class UndirectedGraph {
     }
 
     // Dijktra's Algorithm
+    // Only works for positive weights
     // O(v+elog(v))
-    public int findShortestPath(int src, int dest) {
+    public int dijktraAlgorithm(int src, int dest) {
         var distance = new int[graph.size()]; // Tracks minimum distance from src to all nodes
         for (var i = 0; i < distance.length; i++) {
             if (i != src) {
@@ -435,6 +436,63 @@ public class UndirectedGraph {
             }
         }
         return -1;
+    }
+
+    // Bellman Ford Algorithm
+    // Works for negative weights as well
+    // O(v*e)
+    public int bellmanFordAlgorithm(int src, int dest) {
+        var distance = new int[graph.size()]; // Tracks minimum distance from src to all nodes
+        for (var i = 0; i < distance.length; i++) {
+            if (i != src) {
+                distance[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        // O(v*e)
+        for (var i = 0; i < (graph.size() - 1); i++) { // O(v)
+            for (var entry : graph.entrySet()) { // O(e)
+                var u = entry.getKey();
+                for (var edge : entry.getValue().edges) {
+                    var v = edge.to.value;
+                    var wt = edge.weight;
+                    // Relaxation
+                    if (distance[u] != Integer.MAX_VALUE && (distance[u] + wt) < distance[v]) {
+                        distance[v] = distance[u] + wt;
+                    }
+                }
+            }
+        }
+
+        return distance[dest] == Integer.MAX_VALUE ? -1 : distance[dest];
+    }
+
+    // Prim's Algorithm
+    // O(v)
+    public int minimumSpanningTree() {
+        var min = 0;
+        var path = new ArrayList<Integer>();
+        var visited = new HashSet<Integer>();
+        var iterator = graph.keySet().iterator();
+        var src = iterator.next();
+        Node srcNode = graph.get(src);
+        var queue = new PriorityQueue<Edge>(Comparator.comparingInt(x -> x.weight));
+        queue.addAll(srcNode.edges);
+        visited.add(src);
+        while (!queue.isEmpty()) {
+            var pop = queue.poll();
+            if (visited.contains(pop.to.value)) {
+                continue;
+            }
+            visited.add(pop.to.value);
+            path.add(pop.to.value);
+            min += pop.weight;
+            for (var edge : pop.to.edges) {
+                queue.offer(edge);
+            }
+        }
+        System.out.println(path);
+        return min;
     }
 
     public void print() {
