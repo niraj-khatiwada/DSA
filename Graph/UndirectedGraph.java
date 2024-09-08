@@ -3,6 +3,17 @@ package Graph;
 import java.util.*;
 
 public class UndirectedGraph {
+
+    private class NodeEntry {
+        public Node node;
+        public int weight;
+
+        public NodeEntry(Node node, int weight) {
+            this.node = node;
+            this.weight = weight;
+        }
+    }
+
     private class Edge {
         public Node from;
         public Node to;
@@ -390,6 +401,40 @@ public class UndirectedGraph {
             }
         }
         return true;
+    }
+
+    // Dijktra's Algorithm
+    // O(v+elog(v))
+    public int findShortestPath(int src, int dest) {
+        var distance = new int[graph.size()]; // Tracks minimum distance from src to all nodes
+        for (var i = 0; i < distance.length; i++) {
+            if (i != src) {
+                distance[i] = Integer.MAX_VALUE;
+            }
+        }
+        var srcNode = graph.get(src);
+        var visited = new HashSet<Integer>();
+        var minHeap = new PriorityQueue<NodeEntry>(Comparator.comparingInt(x -> x.weight));
+        minHeap.add(new NodeEntry(srcNode, 0));
+        while (!minHeap.isEmpty()) {
+            var pop = minHeap.poll();
+
+            if (visited.contains(pop.node.value)) {
+                continue;
+            }
+            if (pop.node.value == dest) {
+                System.out.println(Arrays.toString(distance));
+                return pop.weight;
+            }
+            visited.add(pop.node.value);
+            for (var edge : pop.node.edges) {
+                if ((distance[pop.node.value] + edge.weight) < distance[edge.to.value]) {
+                    distance[edge.to.value] = distance[pop.node.value] + edge.weight;
+                    minHeap.offer(new NodeEntry(edge.to, pop.weight + edge.weight));
+                }
+            }
+        }
+        return -1;
     }
 
     public void print() {

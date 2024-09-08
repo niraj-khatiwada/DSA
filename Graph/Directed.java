@@ -3,6 +3,7 @@ package Graph;
 import java.util.*;
 
 public class Directed {
+
     private class Edge {
         public Node to;
 
@@ -363,6 +364,72 @@ public class Directed {
         }
         visited.add(node.value);
         stack.push(node.value);
+    }
+
+    // Kahn's algorithm for topological sorting
+    // O in degree vertices must be first and 0 out degree vertices must be last in
+    // the sorted list
+    // Gist of this algorithm is, if a vertex does not have any other dependency,
+    // add it to queue.
+    public List<Integer> kahnsAlgorithm() {
+        var inDegree = new HashMap<Integer, Integer>();
+        for (var entry : graph.entrySet()) {
+            inDegree.put(entry.getKey(), 0);
+
+        }
+        for (var entry : graph.entrySet()) {
+            var edges = entry.getValue().edges;
+            for (var edge : edges) {
+                inDegree.put(edge.to.value, inDegree.get(edge.to.value) + 1);
+            }
+        }
+        var queue = new ArrayDeque<Integer>();
+        for (var entry : inDegree.entrySet()) {
+            // If it has in degree 0, that means it does not have any other dependency to
+            // wait for. It can perform it's task.
+            if (entry.getValue() == 0) {
+                queue.add(entry.getKey());
+            }
+        }
+        var sorted = new ArrayList<Integer>();
+        while (!queue.isEmpty()) {
+            var pop = queue.poll();
+            sorted.add(pop);
+            var node = graph.get(pop);
+            for (var edge : node.edges) {
+                inDegree.put(edge.to.value, inDegree.get(edge.to.value) - 1);
+                // If it has in degree 0, that means it does not have any other dependency to
+                // wait for. It can perform it's task.
+                if (inDegree.get(edge.to.value) == 0) {
+                    queue.add(edge.to.value);
+                }
+            }
+        }
+        return sorted;
+    }
+
+    // O(v^v)
+    public void allPathsFromSrcToDest(int src, int dest) {
+        var srcNode = graph.get(src);
+        var path = new ArrayList<Integer>();
+        this._allPathsFromSrcToDest(srcNode, dest, path);
+    }
+
+    private void _allPathsFromSrcToDest(Node node, int target, List<Integer> path) {
+        if (node == null) {
+            return;
+        }
+        if (node.value == target) {
+            var copy = new ArrayList<Integer>(path);
+            copy.add(node.value);
+            System.out.println(copy);
+            return;
+        }
+        path.add(node.value);
+        for (var edge : node.edges) {
+            _allPathsFromSrcToDest(edge.to, target, path);
+        }
+        path.remove(Integer.valueOf(node.value));
     }
 
     public void print() {
