@@ -429,8 +429,10 @@ public class UndirectedGraph {
             }
             visited.add(pop.node.value);
             for (var edge : pop.node.edges) {
-                if ((distance[pop.node.value] + edge.weight) < distance[edge.to.value]) {
-                    distance[edge.to.value] = distance[pop.node.value] + edge.weight;
+                var next = edge.to.value;
+                var nextDistance = distance[pop.node.value] + edge.weight;
+                if (nextDistance < distance[next]) {
+                    distance[next] = nextDistance;
                     minHeap.offer(new NodeEntry(edge.to, pop.weight + edge.weight));
                 }
             }
@@ -468,7 +470,7 @@ public class UndirectedGraph {
     }
 
     // Prim's Algorithm
-    // O(v)
+    // O(elog(v))
     public int minimumSpanningTree() {
         var min = 0;
         var path = new ArrayList<Integer>();
@@ -479,7 +481,9 @@ public class UndirectedGraph {
         var queue = new PriorityQueue<Edge>(Comparator.comparingInt(x -> x.weight));
         queue.addAll(srcNode.edges);
         visited.add(src);
-        while (!queue.isEmpty()) {
+        while (visited.size() != graph.size()) { // Remember, once we've connected all the nodes, that'll be the minimim
+                                                 // spanning tree. So we don't need to look until pq is empty. So need
+                                                 // of !queue.isEmpty() here
             var pop = queue.poll();
             if (visited.contains(pop.to.value)) {
                 continue;
