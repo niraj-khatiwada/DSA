@@ -1,17 +1,25 @@
 import java.util.*;
 
-import Graph.ConnectingCitiesWithMinimumCost;
+import Graph.Directed;
 
 class Main {
 
     public static void main(String[] args) {
-        var graph = new ConnectingCitiesWithMinimumCost();
+        var graph = new Directed();
 
-        System.out.println(graph.minimumCost(new int[][] { { 0, 1, 2, 3, 4 },
-                { 1, 0, 5, 0, 7 },
-                { 2, 5, 0, 6, 0 },
-                { 3, 0, 6, 0, 0 },
-                { 4, 7, 0, 0, 0 } }));
+        graph.addNode(0);
+        graph.addNode(1);
+        graph.addNode(2);
+        graph.addNode(3);
+        graph.addNode(4);
+
+        graph.addEdge(0, 2);
+        graph.addEdge(0, 3);
+        graph.addEdge(1, 0);
+        graph.addEdge(2, 1);
+        graph.addEdge(3, 4);
+
+        graph.stronglyConnectedComponents();
     }
 
 }

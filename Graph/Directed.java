@@ -359,10 +359,10 @@ public class Directed {
         if (node == null || visited.contains(node.value)) {
             return;
         }
+        visited.add(node.value);
         for (var edge : node.edges) {
             _topologicalSort(edge.to, stack, visited);
         }
-        visited.add(node.value);
         stack.push(node.value);
     }
 
@@ -430,6 +430,51 @@ public class Directed {
             _allPathsFromSrcToDest(edge.to, target, path);
         }
         path.remove(Integer.valueOf(node.value));
+    }
+
+    // Kosaraju's Algorithm
+    // O(V+E)
+    // 1. Find the topologically sorted list
+    // 2. Transpose the graph
+    // 3. Perform dfs starting from the values of topologically sorted list
+    public void stronglyConnectedComponents() {
+        // 1. Topological Sort
+        var sorted = this.topologicalSort();
+
+        // 2. Transpose the graph:
+        // Transpose means making a new graph by reversing the edges of the original
+        // graph. It's like matrix transpose.
+        var transpose = new Directed();
+
+        for (var key : graph.keySet()) {
+            transpose.addNode(key);
+        }
+        for (var entry : graph.entrySet()) {
+            for (var edge : entry.getValue().edges) {
+                transpose.addEdge(edge.to.value, entry.getKey());
+            }
+        }
+
+        // 3. Perform DFS based on topological sort
+        var visited = new HashSet<Integer>();
+        for (var itm : sorted) {
+            var comp = new ArrayList<Integer>();
+            this._stronglyConnectedComponents(transpose.graph.get(itm), comp, visited);
+            if (comp.size() != 0) {
+                System.out.println(comp);
+            }
+        }
+    }
+
+    private void _stronglyConnectedComponents(Node node, List<Integer> comp, Set<Integer> visited) {
+        if (node == null || visited.contains(node.value)) {
+            return;
+        }
+        comp.add(node.value);
+        visited.add(node.value);
+        for (var edge : node.edges) {
+            _stronglyConnectedComponents(edge.to, comp, visited);
+        }
     }
 
     public void print() {
