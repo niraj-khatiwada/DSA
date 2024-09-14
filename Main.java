@@ -1,13 +1,13 @@
 import java.util.*;
 
-import Array.Array;
+import Array.TrappingRainWater;
 
 class Main {
 
     public static void main(String[] args) {
-        var array = new Array();
+        var array = new TrappingRainWater();
 
-        System.out.println(array.kadanesAlgorithm(new int[] { -1, -2, -3, -4 }));
+        System.out.println(array.rainWaterTrapped(new int[] { 2, 1, 3 }));
 
     }
 
