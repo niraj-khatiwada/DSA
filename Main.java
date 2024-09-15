@@ -1,13 +1,12 @@
 import java.util.*;
 
-import Array.TrappingRainWater;
+import Array.TripletsSum;
 
 class Main {
 
     public static void main(String[] args) {
-        var array = new TrappingRainWater();
-
-        System.out.println(array.rainWaterTrapped(new int[] { 2, 1, 3 }));
+        var array = new TripletsSum();
+        array.tripletsSum(new int[] { -1, 0, 2 });
 
     }
 
