@@ -1,15 +1,12 @@
 import java.util.*;
 
-import Array.TripletsSum;
+import Array.TransposeMatrix;
 
 class Main {
 
     public static void main(String[] args) {
-        var array = new TripletsSum();
-        array.tripletsSum(new int[] { 0, -1, 1, 0, 0 });
-
-        var set = new HashSet<Integer>();
-        set.add(1);
+        var arr = new TransposeMatrix();
+        arr.transpose(new int[][] { { 1 }, { 2 }, { 3 } });
     }
 
 }
