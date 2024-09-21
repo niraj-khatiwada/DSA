@@ -3,7 +3,7 @@ package Strings;
 public class KMP {
     // O(n+m)
     public boolean hasSubstring(String str, String substr) {
-        var lps = _constructLPS(str, substr);
+        var lps = _constructLPS(substr);
         int i = 0, j = 0;
         while (i < str.length() && j < substr.length()) {
             if (str.charAt(i) == substr.charAt(j)) {
@@ -21,7 +21,7 @@ public class KMP {
 
     }
 
-    private int[] _constructLPS(String str, String substr) {
+    private int[] _constructLPS(String substr) {
         var lps = new int[substr.length()];
 
         int prevLPS = 0, i = 1;
