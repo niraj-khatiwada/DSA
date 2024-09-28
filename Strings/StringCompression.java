@@ -3,21 +3,23 @@ package Strings;
 public class StringCompression {
     // aaabbc
     // aaaaaaaaaabbc. Remember count can be greater than 9 as well.
-    public String compress(String str) {
+    public String compress(String word) {
         var rs = new StringBuilder();
         var last = '.';
         var count = 0;
-        for (var ch : str.toCharArray()) {
+        for (var i = 0; i < word.length(); i++) {
+            var ch = word.charAt(i);
             if (ch == last) {
                 if (count > 1) {
-                    var c = count;
-                    while (c != 0) {
-                        rs.deleteCharAt(rs.length() - 1);
-                        c = c / 10;
-                    }
+                    rs.deleteCharAt(rs.length() - 1);
                 }
-                rs.append((count + 1) + "");
                 count++;
+                if (count > 9) {
+                    count = 1;
+                    rs.append(9 + "" + ch);
+                } else {
+                    rs.append(count + "");
+                }
             } else {
                 rs.append(ch);
                 count = 1;
